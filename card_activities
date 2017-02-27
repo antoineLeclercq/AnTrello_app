@@ -1,0 +1,19 @@
+// creating card
+{{userName}} added {{cadrName}} to {{listName}} => if cardView, {{cardName}} = 'this card'
+
+// adding comment
+{{userName}} {{display comment}} => if not in cardView => {{userName}} on {{cardName}} {{display comment}}
+
+// updating due date
+{{userName}} set {{cardName}} to be due {{dueDate}} => if cardView, {{cardName}} = 'this card'
+{{userName}} changed the due date of {{cardName}} to {{dueDate}} => if cardView, {{cardName}} = 'this card'
+{{userName}} removed the due date from {{cardName}} => if cardView, {{cardName}} = 'this card'
+
+// move card
+{{userName}} moved {{cardName}} from {{sourceList}} to {{destinationList}} => if cardView, {{cardName}} = 'this card'
+
+// copy card
+{{userName}} copied {{copyCardName}} from {{originalCardName}} in list {{listName}}
+
+// archive card
+{{userName}} archived {{cardName}}

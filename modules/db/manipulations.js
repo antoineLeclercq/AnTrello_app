@@ -1,3 +1,6 @@
+var path = require('path');
+var queries = require(path.resolve(path.dirname(__dirname), 'db/queries.js'));
+var _ = require ('underscore');
 var pg = require('pg');
 var client = new pg.Client('pg://localhost:5432/antrello_app');
 client.connect();
@@ -46,7 +49,13 @@ var storage = {
 var lists = {
   all: function (task) {
     storage.query({
-      query: 'SELECT * FROM list;',
+      query: queries.allLists,
+    }, task);
+  },
+  insert: function (options, task) {
+    storage.query({
+      query: queries.insertList,
+      options: [options.name, options.position],
     }, task);
   },
 };
@@ -78,10 +87,33 @@ storage.startingData = function (task) {
   var data = {};
 
   this.lists.all(function (result) {
-    data.lists = result.rows;
-
+    data.lists = formatCardResults(result.rows);
     task(data);
   });
+};
+
+function formatCardResults(rows) {
+  var formatedRows = [];
+
+  rows.forEach(function (row) {
+    var formatedRow = _.findWhere(formatedRows, { id: row.id }) || { cards: [] };
+    var card = {};
+
+    _.each(row, function (v, k) {
+      var match = k.match(/^card_(.+)$/);
+
+      if (match) {
+        card[match.pop()] = v;
+      } else {
+        formatedRow[k] = v;
+      }
+    });
+
+    formatedRow.cards.push(card);
+    formatedRows.push(formatedRow);
+  });
+
+  return formatedRows;
 }
 
 

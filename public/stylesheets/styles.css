@@ -1,0 +1,328 @@
+@import "whitespace-reset.css";
+@import "https://fonts.googleapis.com/css?family=Lobster";
+input {
+  height: 16px;
+  padding: 7px;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+}
+a {
+  text-decoration: none;
+}
+textarea {
+  resize: none;
+  border: none;
+  border-radius: 3px;
+  background: inherit;
+  font: inherit;
+  color: inherit;
+}
+textarea:focus {
+  outline: none;
+}
+.modal {
+  display: none;
+  position: absolute;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #d6dadc;
+  z-index: 2;
+}
+.modal hr {
+  border: none;
+  border-bottom: 1px solid #d6dadc;
+  margin: 10px auto;
+}
+.modal h3 {
+  text-align: center;
+  font-weight: normal;
+  color: #959da1;
+}
+.close {
+  margin: 0 10px 0 0;
+  float: right;
+  cursor: pointer;
+  color: #959da1;
+}
+.close:hover {
+  color: #4d4d4d;
+}
+#lists {
+  display: inline-block;
+}
+.list {
+  display: inline-block;
+  position: relative;
+  width: 270px;
+  margin: 0 10px;
+  padding: 5px 8px;
+  border-radius: 3px;
+  background: #d6dadc;
+  color: #4d4d4d;
+}
+.list .title {
+  height: 16px;
+  padding: 5px;
+  font-weight: bold;
+  transition: background 0.25s;
+}
+.list .title:focus {
+  background: #fff;
+}
+.list .more {
+  float: right;
+  padding: 5px 5px 0 5px;
+  border-radius: 3px;
+  color: #959da1;
+  cursor: pointer;
+}
+.list .more:hover {
+  color: inherit;
+  background: #c4c9cc;
+}
+.list .modal {
+  top: 40px;
+  left: 240px;
+  width: 300px;
+  padding: 10px 0;
+  background: #fff;
+  color: #4d4d4d;
+}
+.list .modal hr {
+  width: 270px;
+}
+.list .modal .actions {
+  font-weight: bold;
+}
+.list .modal .actions .action {
+  padding: 7px 10px;
+}
+.list .modal .actions .action:hover {
+  background: #298fca;
+  color: #fff;
+}
+.list #more-actions {
+  display: none;
+}
+.list #more-actions:checked + .modal {
+  display: inline-block;
+}
+.material-icons.md-16 {
+  font-size: 16px;
+}
+.material-icons.md-18 {
+  font-size: 18px;
+}
+.material-icons.md-24 {
+  font-size: 24px;
+}
+.material-icons.md-30 {
+  font-size: 24px;
+}
+.material-icons.md-36 {
+  font-size: 36px;
+}
+.material-icons.md-48 {
+  font-size: 48px;
+}
+body {
+  font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  background: #0079bf;
+}
+body > header {
+  box-sizing: border-box;
+  position: relative;
+  height: 40px;
+  padding: 5px;
+  background: #026aa7;
+  text-align: center;
+}
+body > header form {
+  position: absolute;
+  left: 0;
+  padding: 0 0 0 5px;
+}
+body > header form input {
+  width: 180px;
+  background: #5ba4cf;
+  transition: width 0.25s;
+  opacity: 0.7;
+}
+body > header form input:hover {
+  opacity: 1;
+}
+body > header form input:focus {
+  width: 270px;
+  background: #fff;
+  opacity: 1;
+}
+body > header form input:focus + span {
+  display: none;
+}
+body > header form input:focus + span + span {
+  display: inline-block;
+  position: absolute;
+  left: 255px;
+  color: #a5acb0;
+  cursor: pointer;
+  z-index: 1;
+}
+body > header form span {
+  position: absolute;
+  left: 165px;
+  padding: 3px;
+  transform: rotate(90deg);
+  font-size: 16px;
+  color: #fff;
+}
+body > header form span + span {
+  transition: left 0.25s;
+  z-index: -1;
+}
+body > header h1 {
+  display: inline-block;
+  font: bold 25px Lobster, Serif;
+  color: #5ba4cf;
+}
+body > header h1:hover {
+  color: #bcd9ea;
+  cursor: pointer;
+}
+#notif {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
+#notif > label {
+  box-sizing: border-box;
+  padding: 2px 4px 6px 4px;
+  height: 40px;
+  border-radius: 3px;
+  font-size: 18px;
+  background: rgba(91,164,207,0.7);
+  color: #fff;
+  cursor: pointer;
+}
+#notif > label:hover {
+  background: #5ba4cf;
+}
+#notif > label i {
+  vertical-align: middle;
+}
+#notif input {
+  display: none;
+}
+#notif input:checked + .modal {
+  display: inline-block;
+}
+#notif .modal {
+  width: 450px;
+  top: 35px;
+  right: 5px;
+  background: #edeff0;
+  color: #959da1;
+}
+#notif .modal hr {
+  width: 420px;
+}
+#notif .modal section {
+  margin: 5px 0 0 0;
+  padding: 30px 0;
+  border: 1px dashed #959da1;
+  border-radius: 3px;
+  background: #d6dadc;
+}
+main {
+  padding: 10px;
+}
+main > header {
+  text-align: right;
+  color: #fff;
+}
+main > header .menu {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+main > header .menu:hover {
+  background: #026aa7;
+}
+main > header .menu i {
+  margin: 0 10px 0 0;
+  vertical-align: middle;
+}
+main .add-list {
+  display: inline-block;
+  width: 270px;
+  padding: 5px;
+  border-radius: 3px;
+  background: #026aa7;
+  vertical-align: top;
+  transition: background 0.25s;
+}
+main .add-list label {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 3px;
+}
+main .add-list label input {
+  background: inherit;
+  transition: background 0.25s;
+  font-size: 14px;
+  color: #4d4d4d;
+}
+main .add-list label input::-webkit-input-placeholder {
+  color: #bcd9ea;
+  font-size: 14px;
+  transition: color 0.25s;
+}
+main .add-list label + div {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.25s;
+}
+main .add-list label + div input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+main .add-list label + div input[type="submit"]:hover {
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 0%);
+}
+main .add-list label + div .close {
+  float: none;
+  margin: 0 0 0 5px;
+}
+main .add-list label + div .close i {
+  vertical-align: middle;
+}
+main .add-list.show {
+  background: #d6dadc;
+  color: #4d4d4d;
+}
+main .add-list.show label {
+  display: block;
+  border: 1px solid #959da1;
+  box-shadow: inset 0 1px 8px rgba(0,0,0,0.15);
+}
+main .add-list.show label input::-webkit-input-placeholder {
+  color: #959da1;
+}
+main .add-list.show label + div {
+  height: 35px;
+  margin: 5px 0 0 0;
+}
+main .add-list.show label + div .material-icons {
+  font-size: 24px;
+}

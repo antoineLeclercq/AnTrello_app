@@ -1,19 +1,21 @@
 var root = 'http://localhost:3000';
 var request = require('request');
 var path = require('path');
-var storageTest = require(path.resolve(path.dirname(__dirname), 'modules/db_manipulations.js'))(true);
+var storageTest = require(path.resolve(path.dirname(__dirname), 'modules/tests/db_manipulations.js'));
 var moment = require('moment');
 var _ = require('underscore');
-var authorizedRoutes = ['list', 'card', 'comment', 'label', 'activity', 'notification'];
+var authorizedRoutes = ['lists', 'cards', 'comments', 'labels', 'activities', 'notifications'];
 
-describe('new/:table route', function () {
+describe('/:collection/new route', function () {
   var tablesAndData = [{
+      collection: 'lists',
       table: 'list',
       data: {
         name: 'test list',
         position: 0
       },
     }, {
+      collection: 'cards',
       table: 'card',
       data: {
         list_id: 1,
@@ -24,18 +26,21 @@ describe('new/:table route', function () {
         subscriber: false,
       },
     }, {
+      collection: 'comments',
       table: 'comment',
       data: {
         card_id: 2,
         content: 'test comment'
       },
     }, {
+      collection: 'labels',
       table: 'label',
       data: {
         name: 'test label',
         color: '#ffffff'
       },
     }, {
+      collection: 'activities',
       table: 'activity',
       data: {
         card_id: 2,
@@ -49,17 +54,17 @@ describe('new/:table route', function () {
   ];
 
   for (var i = 0; i < tablesAndData.length; i ++) {
-    testTable(tablesAndData[i].table, tablesAndData[i].data);
+    testTable('/' + tablesAndData[i].collection + '/new' , tablesAndData[i].table, tablesAndData[i].data);
   }
 });
 
-function testTable(table, data) {
+function testTable(route, table, data) {
   afterEach(function () {
     storageTest.deleteLastRowFromTable(table);
   });
 
   it('creates a new' + table + 'in the database', function (done) {
-    request.post({ url: root + '/new/' + table, form: data }, function (error, response, body) {
+    request.post({ url: root + route, form: data }, function (error, response, body) {
       if (error) { throw error; }
 
       storageTest.getLastIdFromTable(table, function (result) {

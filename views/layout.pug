@@ -1,7 +1,85 @@
+include _mixins.pug
+
 doctype html
 html
   head
     title= AnTrello
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    link(rel='stylesheet', href='/stylesheets/styles.css')
+    +js_scripts("vendor/all")
   body
+    header
+      form
+        input(type="text")
+        span
+          i.material-icons search
+        span.close
+          i.material-icons close
+      h1 AnTrello
+      #notif
+        label(for="notif_check")
+          i.material-icons notifications_none
+        input#notif_check(type="checkbox")
+        .modal
+          h3 Notifications
+            label.close(for="notif_check")
+              i.material-icons.md-16 close
+          hr
+          section No Notifications
+    main
+      header
+        .menu
+          i.material-icons.md-16 more_horiz
+          u Show Menu
+      .container
+        ul#lists
+          li
+            section.list
+              header
+                textarea.title Todos For Today
+                label.more(for="more-actions")
+                  i.material-icons.md-16 more_horiz
+                input#more-actions(type="checkbox")
+                .modal
+                  h3 List Actions
+                    label.close(for="more-actions")
+                      i.material-icons.md-16 close
+                  hr
+                  ul.actions
+                    li.action Add Card...
+                    li.action Copy List...
+                    li.action Move List...
+                    li.action Subscribe...
+                  hr
+                  ul.actions
+                    li.action Move All cards in This List...
+                    li.action Archive All Cards in This List...
+                  hr
+                  ul.actions
+                    li.action Archive This List
+              ul.cards
+                li.card
+                  ul.labels
+                    li.label
+                  p Thing to do today
+                  ul.icons
+                    li.comment-icon
+                    li.subscribe-icon
+
+        .add-list.show
+          form(action="/new/list")
+            label
+              input(type="text" placeholder="Add a list..." name="list_name")
+            div
+              input(type="submit" value="Save")
+              a.close(href="#")
+                i.material-icons.md-30 close
+
+
     block content
+    +js_scripts("app")
+    +js_scripts("models/list")
+    +js_scripts("collections/lists")
+
+    script.
+      App.lists = new Lists(!{JSON.stringify(data.lists)});

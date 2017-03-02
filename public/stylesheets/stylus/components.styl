@@ -1,0 +1,106 @@
+input
+  height: heights.input
+  padding: paddings.input
+  outline: none
+  border: none
+  border-radius: 3px
+
+a
+  text-decoration: none
+
+textarea
+  resize: none
+  border: none
+  border-radius: border.radius
+  background: inherit
+  font: inherit
+  color: inherit
+  &:focus
+    outline: none
+
+.modal
+  display: none
+  position: absolute
+  border-radius: border.radius
+  box-sizing: border-box
+  padding: 10px
+  background: white
+  border: 1px solid colors.bgDiscrete
+  z-index: 2
+  hr
+    border: none
+    border-bottom: 1px solid colors.bgDiscrete
+    margin: 10px auto
+  h3
+    text-align: center
+    font-weight: normal
+    color: colors.fontDiscrete
+
+.close
+  margin: 0 10px 0 0
+  float: right
+  cursor: pointer
+  color: colors.fontDiscrete
+  &:hover
+    color: colors.mainFont
+
+
+#lists
+  display: inline-block
+
+.list
+  display: inline-block
+  position: relative
+  width: widths.list
+  margin: 0 10px
+  padding: 5px 8px
+  border-radius: border.radius
+  background: colors.bgDiscrete
+  color: colors.mainFont
+  .title
+    height: 16px
+    padding: 5px
+    font-weight: bold
+    transition: background 0.25s
+    &:focus
+      background: white
+  .more
+    float: right
+    padding: 5px 5px 0 5px
+    border-radius: border.radius
+    color: colors.fontDiscrete
+    cursor: pointer
+    &:hover
+      color: inherit
+      background: colors.bgDarkerDiscrete
+  .modal
+    top: 40px
+    left: widths.list - 30
+    width: 300px
+    padding: 10px 0
+    background: white
+    color: colors.mainFont
+    hr
+      width: 300px - 30
+    .actions
+      font-weight: bold
+      .action
+        padding: 7px 10px
+        &:hover
+          background: colors.modalBtnHover
+          color: white
+  #more-actions
+    display: none
+    &:checked
+      + .modal
+        display: inline-block
+
+// .cards
+//   .card
+
+.material-icons.md-16 { font-size: 16px; }
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-30 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }

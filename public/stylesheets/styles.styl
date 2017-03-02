@@ -1,0 +1,171 @@
+@import "whitespace-reset.css"
+@import "https://fonts.googleapis.com/css?family=Lobster"
+@import "stylus/_mixins"
+@import "stylus/components"
+
+body
+  font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif
+  background: colors.bodyBg
+  > header
+    box-sizing: border-box
+    position: relative
+    height: heights.header
+    padding: 5px
+    background: colors.headerBg
+    text-align: center
+    form
+      position: absolute
+      left: 0
+      padding: 0 0 0 5px
+      input
+        width: widths.headerInput
+        background: colors.logo
+        transition: width 0.25s
+        opacity: 0.7
+        &:hover
+          opacity: 1
+        &:focus
+          width: widths.longInput
+          background: white
+          opacity: 1
+          + span
+            display: none
+            + span
+              display: inline-block
+              position: absolute
+              left: widths.longInput - 15
+              color: colors.icon
+              cursor: pointer
+              z-index: 1
+      span
+        position: absolute
+        left: widths.headerInput - 15
+        padding: paddings.icon
+        transform: rotate(90deg)
+        font-size: 16px
+        color: colors.font
+        + span
+          transition: left 0.25s
+          z-index: -1
+    h1
+      display: inline-block
+      font: bold 25px Lobster, Serif
+      color: colors.logo
+      &:hover
+        color: colors.logoHover
+        cursor: pointer
+
+
+#notif
+  position: absolute
+  top: 7px
+  right: 10px
+  > label
+    box-sizing: border-box
+    padding: 2px 4px 6px 4px
+    height: heights.header
+    border-radius: border.radius
+    font-size: 18px
+    background: colors.btnHeader
+    color: colors.font
+    cursor: pointer
+    &:hover
+      background: colors.btnHeaderHover
+    i
+      vertical-align: middle
+  input
+    display: none
+    &:checked
+      + .modal
+        display: inline-block
+  .modal
+    width: 450px
+    top: 35px
+    right: 5px
+    background: colors.bgModal
+    color: colors.fontDiscrete
+    hr
+      width: 450px - 30
+    section
+      margin: 5px 0 0 0
+      padding: 30px 0
+      border: 1px dashed colors.fontDiscrete
+      border-radius: border.radius
+      background: colors.bgDiscrete
+
+main
+  padding: 10px
+  > header
+    text-align: right
+    color: colors.font
+    .menu
+      display: inline-block
+      padding: 5px 10px
+      border-radius: border.radius
+      font-size: 12px
+      cursor: pointer
+      &:hover
+        background: colors.headerBg
+      i
+        margin: 0 10px 0 0
+        vertical-align: middle
+  .add-list
+    display: inline-block
+    width: widths.list
+    padding: 5px
+    border-radius: border.radius
+    background: colors.headerBg
+    vertical-align: top
+    transition: background 0.25s
+    label
+      width: 100%
+      cursor: pointer
+      border-radius: border.radius
+      input
+        background: inherit
+        transition: background 0.25s
+        font-size: 14px
+        color: colors.mainFont
+        &::-webkit-input-placeholder
+          color: colors.placeholder
+          font-size: 14px
+          transition: color 0.25s
+      + div
+        display: block
+        height: 0
+        overflow: hidden
+        transition: height 0.25s
+        input[type="submit"]
+          padding: 0 20px
+          min-height: 30px
+          box-shadow: shadows.submitBtn
+          background: colors.submitBtn
+          color: white
+          font-size: 14px
+          font-weight: bold
+          cursor: pointer
+          &:hover
+            background: colors.submitBtnHover
+        .close
+          float: none
+          margin: 0 0 0 5px
+          i
+            vertical-align: middle
+    &.show
+      background: colors.bgDiscrete
+      color: colors.mainFont
+      label
+        display: block
+        border: 1px solid colors.fontDiscrete
+        box-shadow: shadows.input
+        input
+          &::-webkit-input-placeholder
+            color: colors.fontDiscrete
+        + div
+          height: 35px
+          margin: 5px 0 0 0
+          .material-icons
+            font-size: 24px
+
+
+

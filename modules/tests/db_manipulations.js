@@ -1,5 +1,5 @@
 var pg = require('pg');
-var client = new pg.Client('pg://localhost:5432/antrello_app');
+var client = new pg.Client('pg://localhost:5432/antrello_test');
 client.connect();
 
 var storage = {
@@ -16,19 +16,23 @@ var storage = {
     });
     this.log(queryAndOptions);
   },
-  delete: function (table, opts) {
+  getLastIdFromTable: function (table, task) {
     this.query({
-      query: 'DELETE FROM ' + table + ' WHERE id = $1;',
-      options: opts,
+      query: 'SELECT last_value FROM ' + table + '_id_seq;',
+    }, task);
+  },
+  deleteLastRowFromTable: function (table) {
+    this.query({
+      query: 'DELETE FROM ' + table + ' WHERE id = (SELECT last_value FROM ' + table + '_id_seq);',
     });
   },
-  select: function (table, id, task) {
+  getRowFromTable: function (table, id, task) {
     this.query({
-      query: 'SELECT * FROM ' + table + ' WHERE id = $1;',
+      query: 'SELECT * FROM ' + table + ' WHERE id = $1',
       options: [id],
     }, task);
   },
-  insert: function (table, options, task) {
+  addRowToTable: function (table, options, task) {
     var names = options.names.join(', ');
     var values = options.values.map(function (val, i) {
       return '$' + (i + 1);
@@ -42,47 +46,5 @@ var storage = {
   },
   disconnect: client.end,
 };
-
-var lists = {
-  all: function (task) {
-    storage.query({
-      query: 'SELECT * FROM list;',
-    }, task);
-  },
-};
-
-var cards = {
-
-};
-
-var comments = {
-
-};
-
-var labels = {
-
-};
-
-var activities = {
-
-};
-
-storage.lists = lists;
-storage.cards = cards;
-storage.comments = comments;
-storage.labels = labels;
-storage.activities = activities;
-
-storage.startingData = function (task) {
-  var self = this;
-  var data = {};
-
-  this.lists.all(function (result) {
-    data.lists = result.rows;
-
-    task(data);
-  });
-}
-
 
 module.exports = storage;

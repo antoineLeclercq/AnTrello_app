@@ -14,5 +14,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "autosize": "^3.0.20",
+    "jquery-ui": "^1.12.1"
+  }
 }

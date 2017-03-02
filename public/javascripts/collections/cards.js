@@ -1,4 +1,4 @@
 var Cards = Backbone.Collection.extend({
-  model: card,
+  model: Card,
   url: '/cards',
 });

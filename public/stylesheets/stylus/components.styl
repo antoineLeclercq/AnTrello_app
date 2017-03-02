@@ -9,12 +9,12 @@ a
   text-decoration: none
 
 textarea
-  resize: none
   border: none
   border-radius: border.radius
   background: inherit
   font: inherit
   color: inherit
+  resize: none
   &:focus
     outline: none
 
@@ -26,7 +26,7 @@ textarea
   padding: 10px
   background: white
   border: 1px solid colors.bgDiscrete
-  z-index: 2
+  z-index: 3
   hr
     border: none
     border-bottom: 1px solid colors.bgDiscrete
@@ -35,6 +35,15 @@ textarea
     text-align: center
     font-weight: normal
     color: colors.fontDiscrete
+  + .overlay
+    display: none
+    position: fixed
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    opacity: 0
+    z-index: 2
 
 .close
   margin: 0 10px 0 0
@@ -47,53 +56,64 @@ textarea
 
 #lists
   display: inline-block
+  height: 100%
 
-.list
+.list-container
   display: inline-block
-  position: relative
-  width: widths.list
-  margin: 0 10px
-  padding: 5px 8px
-  border-radius: border.radius
-  background: colors.bgDiscrete
-  color: colors.mainFont
-  .title
-    height: 16px
-    padding: 5px
-    font-weight: bold
-    transition: background 0.25s
-    &:focus
-      background: white
-  .more
-    float: right
-    padding: 5px 5px 0 5px
+  height: 100%
+  .list
+    box-sizing: border-box
+    display: inline-block
+    position: relative
+    width: widths.list
+    margin: 0 5px
+    padding: 5px 8px
     border-radius: border.radius
-    color: colors.fontDiscrete
-    cursor: pointer
-    &:hover
-      color: inherit
-      background: colors.bgDarkerDiscrete
-  .modal
-    top: 40px
-    left: widths.list - 30
-    width: 300px
-    padding: 10px 0
-    background: white
+    background: colors.bgDiscrete
     color: colors.mainFont
-    hr
-      width: 300px - 30
-    .actions
+    vertical-align: top
+    .title
+      box-sizing: border-box
+      width: 200px
+      padding: 5px
       font-weight: bold
-      .action
-        padding: 7px 10px
-        &:hover
-          background: colors.modalBtnHover
-          color: white
-  #more-actions
-    display: none
-    &:checked
-      + .modal
+      transition: background 0.25s
+      cursor: pointer
+      &:focus
+        background: white
+    .list-icons
+      float: right
+      span
         display: inline-block
+        color: colors.fontDiscrete
+      .more
+        padding: 5px 5px 0 5px
+        border-radius: border.radius
+        cursor: pointer
+        &:hover
+          color: inherit
+          background: colors.bgDarkerDiscrete
+      .subscribed
+        display: none
+    .list-icons.is-subscribed
+      .subscribed
+        display: inline-block
+    .modal
+      top: 40px
+      left: widths.list - 30
+      width: 300px
+      padding: 10px 0
+      background: white
+      color: colors.mainFont
+      hr
+        width: 300px - 30
+      .actions
+        font-weight: bold
+        .action
+          padding: 7px 10px
+          &:hover
+            background: colors.modalBtnHover
+            color: white
 
 // .cards
 //   .card

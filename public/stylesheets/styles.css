@@ -11,12 +11,12 @@ a {
   text-decoration: none;
 }
 textarea {
-  resize: none;
   border: none;
   border-radius: 3px;
   background: inherit;
   font: inherit;
   color: inherit;
+  resize: none;
 }
 textarea:focus {
   outline: none;
@@ -29,7 +29,7 @@ textarea:focus {
   padding: 10px;
   background: #fff;
   border: 1px solid #d6dadc;
-  z-index: 2;
+  z-index: 3;
 }
 .modal hr {
   border: none;
@@ -40,6 +40,16 @@ textarea:focus {
   text-align: center;
   font-weight: normal;
   color: #959da1;
+}
+.modal + .overlay {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: 2;
 }
 .close {
   margin: 0 10px 0 0;
@@ -52,38 +62,58 @@ textarea:focus {
 }
 #lists {
   display: inline-block;
+  height: 100%;
 }
-.list {
+.list-container {
+  display: inline-block;
+  height: 100%;
+}
+.list-container .list {
+  box-sizing: border-box;
   display: inline-block;
   position: relative;
   width: 270px;
-  margin: 0 10px;
+  margin: 0 5px;
   padding: 5px 8px;
   border-radius: 3px;
   background: #d6dadc;
   color: #4d4d4d;
+  vertical-align: top;
 }
-.list .title {
-  height: 16px;
+.list-container .list .title {
+  box-sizing: border-box;
+  width: 200px;
   padding: 5px;
   font-weight: bold;
   transition: background 0.25s;
-}
-.list .title:focus {
-  background: #fff;
-}
-.list .more {
-  float: right;
-  padding: 5px 5px 0 5px;
-  border-radius: 3px;
-  color: #959da1;
   cursor: pointer;
 }
-.list .more:hover {
+.list-container .list .title:focus {
+  background: #fff;
+}
+.list-container .list .list-icons {
+  float: right;
+}
+.list-container .list .list-icons span {
+  display: inline-block;
+  color: #959da1;
+}
+.list-container .list .list-icons .more {
+  padding: 5px 5px 0 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.list-container .list .list-icons .more:hover {
   color: inherit;
   background: #c4c9cc;
 }
-.list .modal {
+.list-container .list .list-icons .subscribed {
+  display: none;
+}
+.list-container .list .list-icons.is-subscribed .subscribed {
+  display: inline-block;
+}
+.list-container .list .modal {
   top: 40px;
   left: 240px;
   width: 300px;
@@ -91,24 +121,18 @@ textarea:focus {
   background: #fff;
   color: #4d4d4d;
 }
-.list .modal hr {
+.list-container .list .modal hr {
   width: 270px;
 }
-.list .modal .actions {
+.list-container .list .modal .actions {
   font-weight: bold;
 }
-.list .modal .actions .action {
+.list-container .list .modal .actions .action {
   padding: 7px 10px;
 }
-.list .modal .actions .action:hover {
+.list-container .list .modal .actions .action:hover {
   background: #298fca;
   color: #fff;
-}
-.list #more-actions {
-  display: none;
-}
-.list #more-actions:checked + .modal {
-  display: inline-block;
 }
 .material-icons.md-16 {
   font-size: 16px;
@@ -131,6 +155,7 @@ textarea:focus {
 body {
   font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif;
   background: #0079bf;
+  min-width: 500px;
 }
 body > header {
   box-sizing: border-box;
@@ -236,6 +261,7 @@ body > header h1:hover {
   background: #d6dadc;
 }
 main {
+  box-sizing: border-box;
   padding: 10px;
 }
 main > header {
@@ -256,38 +282,43 @@ main > header .menu i {
   margin: 0 10px 0 0;
   vertical-align: middle;
 }
-main .add-list {
+main .container {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+main .container .add-list {
   display: inline-block;
   width: 270px;
+  margin: 0 10px 0 0;
   padding: 5px;
   border-radius: 3px;
   background: #026aa7;
   vertical-align: top;
   transition: background 0.25s;
 }
-main .add-list label {
+main .container .add-list label {
   width: 100%;
   cursor: pointer;
   border-radius: 3px;
 }
-main .add-list label input {
+main .container .add-list label input {
   background: inherit;
   transition: background 0.25s;
   font-size: 14px;
   color: #4d4d4d;
 }
-main .add-list label input::-webkit-input-placeholder {
+main .container .add-list label input::-webkit-input-placeholder {
   color: #bcd9ea;
   font-size: 14px;
   transition: color 0.25s;
 }
-main .add-list label + div {
+main .container .add-list label + div {
   display: block;
   height: 0;
   overflow: hidden;
   transition: height 0.25s;
 }
-main .add-list label + div input[type="submit"] {
+main .container .add-list label + div input[type="submit"] {
   padding: 0 20px;
   min-height: 30px;
   box-shadow: 0 1px 0 #3f6f21;
@@ -297,32 +328,32 @@ main .add-list label + div input[type="submit"] {
   font-weight: bold;
   cursor: pointer;
 }
-main .add-list label + div input[type="submit"]:hover {
+main .container .add-list label + div input[type="submit"]:hover {
   background: linear-gradient(to bottom, #61bd4f 0, #5aac44 0%);
 }
-main .add-list label + div .close {
+main .container .add-list label + div .close {
   float: none;
   margin: 0 0 0 5px;
 }
-main .add-list label + div .close i {
+main .container .add-list label + div .close i {
   vertical-align: middle;
 }
-main .add-list.show {
+main .container .add-list.show {
   background: #d6dadc;
   color: #4d4d4d;
 }
-main .add-list.show label {
+main .container .add-list.show label {
   display: block;
   border: 1px solid #959da1;
   box-shadow: inset 0 1px 8px rgba(0,0,0,0.15);
 }
-main .add-list.show label input::-webkit-input-placeholder {
+main .container .add-list.show label input::-webkit-input-placeholder {
   color: #959da1;
 }
-main .add-list.show label + div {
+main .container .add-list.show label + div {
   height: 35px;
   margin: 5px 0 0 0;
 }
-main .add-list.show label + div .material-icons {
+main .container .add-list.show label + div .material-icons {
   font-size: 24px;
 }

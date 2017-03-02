@@ -6,6 +6,7 @@
 body
   font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif
   background: colors.bodyBg
+  min-width: 500px
   > header
     box-sizing: border-box
     position: relative
@@ -94,6 +95,7 @@ body
       background: colors.bgDiscrete
 
 main
+  box-sizing: border-box
   padding: 10px
   > header
     text-align: right
@@ -109,63 +111,64 @@ main
       i
         margin: 0 10px 0 0
         vertical-align: middle
-  .add-list
-    display: inline-block
-    width: widths.list
-    padding: 5px
-    border-radius: border.radius
-    background: colors.headerBg
-    vertical-align: top
-    transition: background 0.25s
-    label
-      width: 100%
-      cursor: pointer
+  .container
+    overflow-x: scroll;
+    white-space: nowrap;
+    .add-list
+      display: inline-block
+      width: widths.list
+      margin: 0 10px 0 0
+      padding: 5px
       border-radius: border.radius
-      input
-        background: inherit
-        transition: background 0.25s
-        font-size: 14px
-        color: colors.mainFont
-        &::-webkit-input-placeholder
-          color: colors.placeholder
-          font-size: 14px
-          transition: color 0.25s
-      + div
-        display: block
-        height: 0
-        overflow: hidden
-        transition: height 0.25s
-        input[type="submit"]
-          padding: 0 20px
-          min-height: 30px
-          box-shadow: shadows.submitBtn
-          background: colors.submitBtn
-          color: white
-          font-size: 14px
-          font-weight: bold
-          cursor: pointer
-          &:hover
-            background: colors.submitBtnHover
-        .close
-          float: none
-          margin: 0 0 0 5px
-          i
-            vertical-align: middle
-    &.show
-      background: colors.bgDiscrete
-      color: colors.mainFont
+      background: colors.headerBg
+      vertical-align: top
+      transition: background 0.25s
       label
-        display: block
-        border: 1px solid colors.fontDiscrete
-        box-shadow: shadows.input
+        width: 100%
+        cursor: pointer
+        border-radius: border.radius
         input
+          background: inherit
+          transition: background 0.25s
+          font-size: 14px
+          color: colors.mainFont
           &::-webkit-input-placeholder
-            color: colors.fontDiscrete
+            color: colors.placeholder
+            font-size: 14px
+            transition: color 0.25s
         + div
-          height: 35px
-          margin: 5px 0 0 0
-          .material-icons
-            font-size: 24px
-
-
-
+          display: block
+          height: 0
+          overflow: hidden
+          transition: height 0.25s
+          input[type="submit"]
+            padding: 0 20px
+            min-height: 30px
+            box-shadow: shadows.submitBtn
+            background: colors.submitBtn
+            color: white
+            font-size: 14px
+            font-weight: bold
+            cursor: pointer
+            &:hover
+              background: colors.submitBtnHover
+          .close
+            float: none
+            margin: 0 0 0 5px
+            i
+              vertical-align: middle
+      &.show
+        background: colors.bgDiscrete
+        color: colors.mainFont
+        label
+          display: block
+          border: 1px solid colors.fontDiscrete
+          box-shadow: shadows.input
+          input
+            &::-webkit-input-placeholder
+              color: colors.fontDiscrete
+          + div
+            height: 35px
+            margin: 5px 0 0 0
+            .material-icons
+              font-size: 24px

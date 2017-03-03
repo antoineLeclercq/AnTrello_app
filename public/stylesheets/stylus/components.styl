@@ -1,6 +1,6 @@
 input
   height: heights.input
-  padding: paddings.input
+  padding: 7px
   outline: none
   border: none
   border-radius: 3px
@@ -10,31 +10,32 @@ a
 
 textarea
   border: none
-  border-radius: border.radius
-  background: inherit
-  font: inherit
-  color: inherit
+  border-radius: radius.main
   resize: none
   &:focus
     outline: none
+  &.formated
+    background: inherit
+    font: inherit
+    color: inherit
 
 .modal
   display: none
   position: absolute
-  border-radius: border.radius
+  border-radius: radius.main
   box-sizing: border-box
   padding: 10px
   background: white
-  border: 1px solid colors.bgDiscrete
+  border: 1px solid $colors.light-grey
   z-index: 3
   hr
     border: none
-    border-bottom: 1px solid colors.bgDiscrete
+    border-bottom: 1px solid $colors.light-grey
     margin: 10px auto
   h3
     text-align: center
     font-weight: normal
-    color: colors.fontDiscrete
+    color: $colors.darker-grey
   + .overlay
     display: none
     position: fixed
@@ -49,9 +50,9 @@ textarea
   margin: 0 10px 0 0
   float: right
   cursor: pointer
-  color: colors.fontDiscrete
+  color: $colors.darker-grey
   &:hover
-    color: colors.mainFont
+    color: $colors.light-black
 
 
 #lists
@@ -68,9 +69,9 @@ textarea
     width: widths.list
     margin: 0 5px
     padding: 5px 8px
-    border-radius: border.radius
-    background: colors.bgDiscrete
-    color: colors.mainFont
+    border-radius: radius.main
+    background: $colors.light-grey
+    color: $colors.light-black
     vertical-align: top
     .title
       box-sizing: border-box
@@ -85,14 +86,14 @@ textarea
       float: right
       span
         display: inline-block
-        color: colors.fontDiscrete
+        color: $colors.darker-grey
       .more
         padding: 5px 5px 0 5px
-        border-radius: border.radius
+        border-radius: radius.main
         cursor: pointer
         &:hover
           color: inherit
-          background: colors.bgDarkerDiscrete
+          background: $colors.grey
       .subscribed
         display: none
     .list-icons.is-subscribed
@@ -104,7 +105,7 @@ textarea
       width: 300px
       padding: 10px 0
       background: white
-      color: colors.mainFont
+      color: $colors.light-black
       hr
         width: 300px - 30
       .actions
@@ -112,15 +113,65 @@ textarea
         .action
           padding: 7px 10px
           &:hover
-            background: colors.modalBtnHover
+            background: $colors.light-black
             color: white
+  .add-card
+    a.show
+      display: block
+      box-sizing: border-box
+      height: 30px
+      padding: 5px 0 0 2px
+      border-radius: radius.main
+      color: $colors.darker-grey
+      cursor: pointer
+      &:hover
+        text-decoration: underline
+        color: $colors.light-black
+        background: $colors.grey
+      &.hide
+        display: none
+      + form
+        display: none
+    form.show
+      display: block
+      textarea
+        form-controls()
 
-// .cards
-//   .card
+.card
+  box-sizing: border-box
+  width: widths.list - 16
+  padding: 7px
+  margin: 5px 0
+  border-radius: radius.main
+  box-shadow: shadows.bottom
+  background: white
+  .edit
+    display: none
+    float: right
+    margin: -4px 0 0 0
+    padding: 5px 5px 2px 5px
+    border-radius: radius.main
+    color: $colors.grey
+    cursor: pointer
+    &:hover
+      color: $colors.light-black
+      background: $colors.grey
+  &:hover
+    background: $colors.lighter-grey
+    .edit
+      display: block
 
-.material-icons.md-16 { font-size: 16px; }
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-30 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-14
+  font-size: 14px
+.material-icons.md-16
+  font-size: 16px
+.material-icons.md-18
+  font-size: 18px
+.material-icons.md-24
+  font-size: 24px
+.material-icons.md-30
+  font-size: 24px
+.material-icons.md-36
+  font-size: 36px
+.material-icons.md-48
+  font-size: 48px

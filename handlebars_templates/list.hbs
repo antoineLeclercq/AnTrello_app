@@ -1,6 +1,6 @@
 <li class="list" data-id="{{id}}">
   <header>
-    <textarea class="title" rows="1">{{name}}</textarea>
+    <textarea class="title formated" rows="1">{{name}}</textarea>
     <div class="list-icons">
       <span class="subscribed"><i class="material-icons md-16">remove_red_eye</i></span>
       <span class="more"><i class="material-icons md-16">more_horiz</i></span>
@@ -31,6 +31,7 @@
   <ul class="cards">
     {{#each cards}}
     <li class="card">
+      <span class="edit"><i class="material-icons md-14">edit</i></span>
       <ul class="labels">
         <li class="label"></li>
       </ul>
@@ -42,4 +43,16 @@
     </li>
     {{/each}}
   </ul>
+  <div class="add-card">
+    <a class="show" href="#">Add a card...</a>
+    <form action="/cards" method="post">
+      <textarea rows="1" name="card_name"></textarea>
+      <div>
+        <input type="submit" value="Save">
+        <a class="close" href="#">
+          <i class="material-icons md-30">close</i>
+        </a>
+      </div>
+    </form>
+  </div>
 </li>

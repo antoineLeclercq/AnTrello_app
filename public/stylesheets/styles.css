@@ -13,13 +13,15 @@ a {
 textarea {
   border: none;
   border-radius: 3px;
-  background: inherit;
-  font: inherit;
-  color: inherit;
   resize: none;
 }
 textarea:focus {
   outline: none;
+}
+textarea.formated {
+  background: inherit;
+  font: inherit;
+  color: inherit;
 }
 .modal {
   display: none;
@@ -131,8 +133,88 @@ textarea:focus {
   padding: 7px 10px;
 }
 .list-container .list .modal .actions .action:hover {
-  background: #298fca;
+  background: #4d4d4d;
   color: #fff;
+}
+.list-container .add-card a.show {
+  display: block;
+  box-sizing: border-box;
+  height: 30px;
+  padding: 5px 0 0 2px;
+  border-radius: 3px;
+  color: #959da1;
+  cursor: pointer;
+}
+.list-container .add-card a.show:hover {
+  text-decoration: underline;
+  color: #4d4d4d;
+  background: #c4c9cc;
+}
+.list-container .add-card a.show.hide {
+  display: none;
+}
+.list-container .add-card a.show + form {
+  display: none;
+}
+.list-container .add-card form.show {
+  display: block;
+}
+.list-container .add-card form.show textarea + div {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.25s;
+}
+.list-container .add-card form.show textarea + div input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.list-container .add-card form.show textarea + div input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
+}
+.list-container .add-card form.show textarea + div .close {
+  float: none;
+  margin: 0 0 0 5px;
+}
+.list-container .add-card form.show textarea + div .close i {
+  vertical-align: middle;
+}
+.card {
+  box-sizing: border-box;
+  width: 254px;
+  padding: 7px;
+  margin: 5px 0;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  background: #fff;
+}
+.card .edit {
+  display: none;
+  float: right;
+  margin: -4px 0 0 0;
+  padding: 5px 5px 2px 5px;
+  border-radius: 3px;
+  color: #c4c9cc;
+  cursor: pointer;
+}
+.card .edit:hover {
+  color: #4d4d4d;
+  background: #c4c9cc;
+}
+.card:hover {
+  background: #edeff0;
+}
+.card:hover .edit {
+  display: block;
+}
+.material-icons.md-14 {
+  font-size: 14px;
 }
 .material-icons.md-16 {
   font-size: 16px;
@@ -159,9 +241,15 @@ body {
 }
 body > header {
   box-sizing: border-box;
-  position: relative;
+  position: fixed;
+  height: 70px;
+  min-width: 720px;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 40px;
   padding: 5px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
   background: #026aa7;
   text-align: center;
 }
@@ -172,12 +260,19 @@ body > header form {
 }
 body > header form input {
   width: 180px;
-  background: #5ba4cf;
+  background: #bcd9ea;
   transition: width 0.25s;
-  opacity: 0.7;
+  opacity: 0.35;
+}
+body > header form input + span {
+  transform: rotate(90deg);
+  color: #fff;
+}
+body > header form input + span + span {
+  opacity: 0;
 }
 body > header form input:hover {
-  opacity: 1;
+  opacity: 0.6;
 }
 body > header form input:focus {
   width: 270px;
@@ -185,36 +280,54 @@ body > header form input:focus {
   opacity: 1;
 }
 body > header form input:focus + span {
-  display: none;
+  left: 255px;
 }
 body > header form input:focus + span + span {
   display: inline-block;
   position: absolute;
   left: 255px;
+  opacity: 1;
   color: #a5acb0;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
 }
 body > header form span {
   position: absolute;
   left: 165px;
   padding: 3px;
-  transform: rotate(90deg);
   font-size: 16px;
-  color: #fff;
-}
-body > header form span + span {
   transition: left 0.25s;
-  z-index: -1;
 }
 body > header h1 {
   display: inline-block;
   font: bold 25px Lobster, Serif;
-  color: #5ba4cf;
+  opacity: 0.7;
+  color: #bcd9ea;
 }
 body > header h1:hover {
-  color: #bcd9ea;
+  opacity: 1;
   cursor: pointer;
+}
+body > header section {
+  text-align: right;
+}
+body > header section .menu {
+  display: inline-block;
+  margin: 10px 0 0 0;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: right;
+  color: #fff;
+  background: #0079bf;
+}
+body > header section .menu:hover {
+  background: #026aa7;
+}
+body > header section .menu i {
+  margin: 0 10px 0 0;
+  vertical-align: middle;
 }
 #notif {
   position: absolute;
@@ -227,12 +340,12 @@ body > header h1:hover {
   height: 40px;
   border-radius: 3px;
   font-size: 18px;
-  background: rgba(91,164,207,0.7);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0, rgba(255,255,255,0.2) 100%);
   color: #fff;
   cursor: pointer;
 }
 #notif > label:hover {
-  background: #5ba4cf;
+  background: linear-gradient(to top, rgba(255,255,255,0.3) 0, rgba(255,255,255,0.2) 100%);
 }
 #notif > label i {
   vertical-align: middle;
@@ -262,25 +375,8 @@ body > header h1:hover {
 }
 main {
   box-sizing: border-box;
+  margin: 70px 0 0 0;
   padding: 10px;
-}
-main > header {
-  text-align: right;
-  color: #fff;
-}
-main > header .menu {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 3px;
-  font-size: 12px;
-  cursor: pointer;
-}
-main > header .menu:hover {
-  background: #026aa7;
-}
-main > header .menu i {
-  margin: 0 10px 0 0;
-  vertical-align: middle;
 }
 main .container {
   overflow-x: scroll;
@@ -329,7 +425,7 @@ main .container .add-list label + div input[type="submit"] {
   cursor: pointer;
 }
 main .container .add-list label + div input[type="submit"]:hover {
-  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 0%);
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
 main .container .add-list label + div .close {
   float: none;

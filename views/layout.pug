@@ -27,16 +27,17 @@ html
               i.material-icons.md-16 close
           hr
           section No Notifications
-    main
-      header
+      section
         .menu
           i.material-icons.md-16 more_horiz
           u Show Menu
+
+    main
       .container
         ul#lists
 
         .add-list
-          form(action="/lists/new")
+          form(action="/lists" method="post")
             label
               input(type="text" placeholder="Add a list..." name="list_name")
             div

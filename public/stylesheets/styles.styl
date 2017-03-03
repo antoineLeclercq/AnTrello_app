@@ -5,56 +5,82 @@
 
 body
   font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif
-  background: colors.bodyBg
+  background: $colors.blue
   min-width: 500px
   > header
     box-sizing: border-box
-    position: relative
+    position: fixed
+    height: 70px
+    min-width: 720px
+    top: 0
+    left: 0
+    right: 0
     height: heights.header
     padding: 5px
-    background: colors.headerBg
+    box-shadow: shadows.bottom
+    background: $colors.darker-blue
     text-align: center
     form
       position: absolute
       left: 0
       padding: 0 0 0 5px
       input
-        width: widths.headerInput
-        background: colors.logo
+        width: widths.short-input
+        background: $colors.light-blue
         transition: width 0.25s
-        opacity: 0.7
+        opacity: 0.35
+        + span
+          transform: rotate(90deg)
+          color: white
+          + span
+            opacity: 0
         &:hover
-          opacity: 1
+          opacity: 0.6
         &:focus
-          width: widths.longInput
+          width: widths.input
           background: white
           opacity: 1
           + span
-            display: none
+            left: widths.input - 15
             + span
               display: inline-block
               position: absolute
-              left: widths.longInput - 15
-              color: colors.icon
+              left: widths.input - 15
+              opacity: 1
+              color: $colors.dark-grey
               cursor: pointer
-              z-index: 1
+              z-index: 2
       span
         position: absolute
-        left: widths.headerInput - 15
-        padding: paddings.icon
-        transform: rotate(90deg)
+        left: widths.short-input - 15
+        padding: 3px
         font-size: 16px
-        color: colors.font
-        + span
-          transition: left 0.25s
-          z-index: -1
+        transition: left 0.25s
     h1
       display: inline-block
       font: bold 25px Lobster, Serif
-      color: colors.logo
+      opacity: 0.7
+      color: $colors.light-blue
       &:hover
-        color: colors.logoHover
+        opacity: 1
         cursor: pointer
+    section
+      text-align: right
+      .menu
+        display: inline-block
+        margin: 10px 0 0 0
+        padding: 5px 10px
+        border-radius: radius.main
+        font-size: 12px
+        cursor: pointer
+        text-align: right
+        color: white
+        background: $colors.blue
+        &:hover
+          background: $colors.darker-blue
+        i
+          margin: 0 10px 0 0
+          vertical-align: middle
 
 
 #notif
@@ -65,13 +91,13 @@ body
     box-sizing: border-box
     padding: 2px 4px 6px 4px
     height: heights.header
-    border-radius: border.radius
+    border-radius: radius.main
     font-size: 18px
-    background: colors.btnHeader
-    color: colors.font
+    background: $colors.light-blue-gradient-bottom
+    color: white
     cursor: pointer
     &:hover
-      background: colors.btnHeaderHover
+      background: $colors.light-blue-gradient-top
     i
       vertical-align: middle
   input
@@ -83,34 +109,21 @@ body
     width: 450px
     top: 35px
     right: 5px
-    background: colors.bgModal
-    color: colors.fontDiscrete
+    background: $colors.lighter-grey
+    color: $colors.darker-grey
     hr
       width: 450px - 30
     section
       margin: 5px 0 0 0
       padding: 30px 0
-      border: 1px dashed colors.fontDiscrete
-      border-radius: border.radius
-      background: colors.bgDiscrete
+      border: 1px dashed $colors.darker-grey
+      border-radius: radius.main
+      background: $colors.light-grey
 
 main
   box-sizing: border-box
+  margin: 70px 0 0 0
   padding: 10px
-  > header
-    text-align: right
-    color: colors.font
-    .menu
-      display: inline-block
-      padding: 5px 10px
-      border-radius: border.radius
-      font-size: 12px
-      cursor: pointer
-      &:hover
-        background: colors.headerBg
-      i
-        margin: 0 10px 0 0
-        vertical-align: middle
   .container
     overflow-x: scroll;
     white-space: nowrap;
@@ -119,54 +132,34 @@ main
       width: widths.list
       margin: 0 10px 0 0
       padding: 5px
-      border-radius: border.radius
-      background: colors.headerBg
+      border-radius: radius.main
+      background: $colors.darker-blue
       vertical-align: top
       transition: background 0.25s
       label
         width: 100%
         cursor: pointer
-        border-radius: border.radius
+        border-radius: radius.main
         input
           background: inherit
           transition: background 0.25s
           font-size: 14px
-          color: colors.mainFont
+          color: $colors.light-black
           &::-webkit-input-placeholder
-            color: colors.placeholder
+            color: $colors.light-blue
             font-size: 14px
             transition: color 0.25s
-        + div
-          display: block
-          height: 0
-          overflow: hidden
-          transition: height 0.25s
-          input[type="submit"]
-            padding: 0 20px
-            min-height: 30px
-            box-shadow: shadows.submitBtn
-            background: colors.submitBtn
-            color: white
-            font-size: 14px
-            font-weight: bold
-            cursor: pointer
-            &:hover
-              background: colors.submitBtnHover
-          .close
-            float: none
-            margin: 0 0 0 5px
-            i
-              vertical-align: middle
+        form-controls()
       &.show
-        background: colors.bgDiscrete
-        color: colors.mainFont
+        background: $colors.light-grey
+        color: $colors.light-black
         label
           display: block
-          border: 1px solid colors.fontDiscrete
-          box-shadow: shadows.input
+          border: 1px solid $colors.darker-grey
+          box-shadow: shadows.inside
           input
             &::-webkit-input-placeholder
-              color: colors.fontDiscrete
+              color: $colors.darker-grey
           + div
             height: 35px
             margin: 5px 0 0 0

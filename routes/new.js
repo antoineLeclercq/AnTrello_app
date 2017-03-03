@@ -1,29 +1,35 @@
 var express = require('express');
 var router = express.Router();
-var pg = require('pg');
-var client = pg.Client({
-  dbname: 'antrello_app',
-});
-var authorizedRoutesAndTables = {
-  lists: 'list',
-  cards: 'card',
+var path = require('path');
+var storage = require(path.resolve(path.dirname(__dirname), 'modules/db/manipulations.js'));
+var _ = require('underscore');
+
+var validRoutesAndDBInfo = {
+  lists: {
+    table: 'list',
+    colNames: ['name', 'position'],
+  },
+  cards: {
+    table: 'card',
+    colNames: ['list_id', 'name', 'description', 'due_date', 'position', 'subscriber'],
+  },
   comments: 'comment',
   labels: 'label',
   activities: 'activity',
 };
 
-router.post('/:collection/new', function (req, res, err) {
+router.post('/:collection', function (req, res, err) {
   var collection = req.params.collection;
-  var table = authorizedRoutesAndTables[collection];
+  var table = validRoutesAndDBInfo[collection].table;
   var inputs;
-  var options;
+  var colNamesAndValues;
 
   if (!table) { throw 'Invalid Route'; }
 
-  inputs = JSON.parse(JSON.stringify(req.body));
-  options = { names: _.keys(inputs), values: _.values(inputs) };
+  inputs = _.pick(req.body, validRoutesAndDBInfo[collection].colNames);
+  colNamesAndValues = { names: _.keys(inputs), values: _.values(inputs) };
 
-  storageTest.addRowToTable(table, options, function (result) {
+  storage.insert(table, colNamesAndValues, function (result) {
     res.send(result.rows[0]);
   });
 });

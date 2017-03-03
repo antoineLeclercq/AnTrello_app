@@ -4,8 +4,7 @@ var queries = {
     'card.position  AS card_position, card.subscriber  AS card_subscriber ' +
     'FROM list ' +
     'LEFT JOIN card ON list.id = card.list_id ' +
-    'ORDER BY list.id;',
-  insertList: 'INSERT INTO list(name, position) VALUES ($1, $2) RETURNING id;',
+    'ORDER BY list.id;'
 };
 
 module.exports = queries;

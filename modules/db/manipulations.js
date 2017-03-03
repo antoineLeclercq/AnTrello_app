@@ -58,10 +58,42 @@ var lists = {
       options: [options.name, options.position],
     }, task);
   },
+  formatListsResult: function (rows) {
+    return _.each(this.formatCardsResult(rows), function (row) {
+      row.cards = row.cards.filter(function (card) {
+        return card.id;
+      });
+
+      return row;
+    });
+  },
+  formatCardsResult: function (rows) {
+    return _.values(rows.reduce(function (result, row) {
+      var formatedRow = result[row.id] || {};
+      var card = {};
+
+      _.each(row, function (v, k) {
+          var match = k.match(/^card_(.+)$/);
+
+          if (match) {
+            card[match.pop()] = v;
+          } else {
+            formatedRow[k] = v;
+          }
+      });
+
+      formatedRow.cards = formatedRow.cards ? formatedRow.cards.concat(card) : [card];
+      result[formatedRow.id] = formatedRow;
+
+      return result;
+    }, {}));
+  },
 };
 
 var cards = {
-
+  insert: function (options, task) {
+    
+  }
 };
 
 var comments = {
@@ -87,34 +119,14 @@ storage.startingData = function (task) {
   var data = {};
 
   this.lists.all(function (result) {
-    data.lists = formatCardResults(result.rows);
+    data.lists = self.lists.formatListsResult(result.rows);
     task(data);
   });
 };
 
-function formatCardResults(rows) {
-  var formatedRows = [];
 
-  rows.forEach(function (row) {
-    var formatedRow = _.findWhere(formatedRows, { id: row.id }) || { cards: [] };
-    var card = {};
 
-    _.each(row, function (v, k) {
-      var match = k.match(/^card_(.+)$/);
 
-      if (match) {
-        card[match.pop()] = v;
-      } else {
-        formatedRow[k] = v;
-      }
-    });
-
-    formatedRow.cards.push(card);
-    formatedRows.push(formatedRow);
-  });
-
-  return formatedRows;
-}
 
 
 module.exports = storage;

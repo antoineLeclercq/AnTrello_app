@@ -9,6 +9,7 @@ var stylus = require('stylus');
 
 var index = require('./routes/index');
 var new_tests = require('./routes/tests/new');
+var new_item = require('./routes/new');
 var lists = require('./routes/lists');
 
 var app = express();
@@ -33,8 +34,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/', new_tests);
+app.use('/', new_item);
 app.use('/lists', lists);
+
+app.use('/', new_tests);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

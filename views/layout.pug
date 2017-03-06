@@ -3,7 +3,7 @@ include _mixins.pug
 doctype html
 html
   head
-    title= AnTrello
+    title AnTrello
     link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
     link(rel='stylesheet', href='/stylesheets/styles.css')
     +js_scripts("vendor/all")
@@ -40,7 +40,7 @@ html
           form(action="/lists" method="post")
             label
               input(type="text" placeholder="Add a list..." name="list_name")
-            div
+            div.form-controls
               input(type="submit" value="Save")
               a.close(href="#")
                 i.material-icons.md-30 close
@@ -50,9 +50,10 @@ html
     +js_scripts("app")
     +js_scripts("models/list", "card")
     +js_scripts("collections/lists", "cards")
-    +js_scripts("views/list", "add_list")
+    +js_scripts("views/lists", "card", "list_form", "card_form")
 
     script.
       App.lists = new Lists(!{JSON.stringify(data.lists)});
+      var a = !{JSON.stringify(data.lists)};
 
     +js_scripts("router")

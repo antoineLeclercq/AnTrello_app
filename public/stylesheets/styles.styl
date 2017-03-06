@@ -15,17 +15,18 @@ body
     top: 0
     left: 0
     right: 0
-    height: heights.header
+    height: $heights.header
     padding: 5px
-    box-shadow: shadows.bottom
+    box-shadow: $shadows.bottom
     background: $colors.darker-blue
     text-align: center
+    z-index: 1
     form
       position: absolute
       left: 0
       padding: 0 0 0 5px
       input
-        width: widths.short-input
+        width: $widths.short-input
         background: $colors.light-blue
         transition: width 0.25s
         opacity: 0.35
@@ -37,22 +38,22 @@ body
         &:hover
           opacity: 0.6
         &:focus
-          width: widths.input
+          width: $widths.input
           background: white
           opacity: 1
           + span
-            left: widths.input - 15
+            left: $widths.input - 15
             + span
               display: inline-block
               position: absolute
-              left: widths.input - 15
+              left: $widths.input - 15
               opacity: 1
               color: $colors.dark-grey
               cursor: pointer
               z-index: 2
       span
         position: absolute
-        left: widths.short-input - 15
+        left: $widths.short-input - 15
         padding: 3px
         font-size: 16px
         transition: left 0.25s
@@ -70,7 +71,7 @@ body
         display: inline-block
         margin: 10px 0 0 0
         padding: 5px 10px
-        border-radius: radius.main
+        border-radius: $radius.main
         font-size: 12px
         cursor: pointer
         text-align: right
@@ -90,8 +91,8 @@ body
   > label
     box-sizing: border-box
     padding: 2px 4px 6px 4px
-    height: heights.header
-    border-radius: radius.main
+    height: $heights.header
+    border-radius: $radius.main
     font-size: 18px
     background: $colors.light-blue-gradient-bottom
     color: white
@@ -117,7 +118,7 @@ body
       margin: 5px 0 0 0
       padding: 30px 0
       border: 1px dashed $colors.darker-grey
-      border-radius: radius.main
+      border-radius: $radius.main
       background: $colors.light-grey
 
 main
@@ -129,34 +130,40 @@ main
     white-space: nowrap;
     .add-list
       display: inline-block
-      width: widths.list
-      margin: 0 10px 0 0
+      width: $widths.list
+      margin: 0 10px 0 5px
       padding: 5px
-      border-radius: radius.main
+      border-radius: $radius.main
       background: $colors.darker-blue
       vertical-align: top
       transition: background 0.25s
-      label
-        width: 100%
-        cursor: pointer
-        border-radius: radius.main
-        input
-          background: inherit
-          transition: background 0.25s
-          font-size: 14px
-          color: $colors.light-black
-          &::-webkit-input-placeholder
-            color: $colors.light-blue
+      form
+        label
+          display: block
+          box-sizing: border-box
+          width: $widths.list
+          border-radius: $radius.main
+          cursor: pointer
+          input
+            background: inherit
+            transition: background 0.25s
             font-size: 14px
-            transition: color 0.25s
+            color: $colors.light-black
+            cursor: pointer
+            &::-webkit-input-placeholder
+              color: $colors.light-blue
+              font-size: 14px
+              transition: color 0.25s
         form-controls()
+        .form-controls
+          height: 0
       &.show
         background: $colors.light-grey
         color: $colors.light-black
         label
           display: block
           border: 1px solid $colors.darker-grey
-          box-shadow: shadows.inside
+          box-shadow: $shadows.inside
           input
             &::-webkit-input-placeholder
               color: $colors.darker-grey

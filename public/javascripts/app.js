@@ -2,20 +2,36 @@ var App = {
   templates: JST,
   indexView: function () {
     this.renderLists();
+    this.renderCardFormView();
+    this.renderListFormView();
+
     this.bindToggleAddListFormEvents();
     this.bindAutoResizeTextareaEvent();
-    this.bindEvents();
 
-    new AddListView();
+    this.bindEvents();
   },
   renderLists: function () {
-    App.lists.each(function (list) {
-      new ListView({ model: list });
+    this.listsView = new ListsView({ collection: this.lists });
+  },
+  renderCardFormView: function () {
+    this.lists.each(function (listModel) {
+      new CardFormView({
+        model: listModel,
+        el: $('.list[data-id=' + listModel.id + '] .add-card').get(0),
+      });
     });
   },
-  renderNewList: function (list) {
-    new ListView({ model: list });
+  renderListFormView: function () {
+    new ListFormView();
   },
+  // renderCards: function () {
+  //   App.lists.each(function (list) {
+  //     new CardsView({
+  //       collection: list.get('cards'),
+  //       el: $('.list[data-id=' + list.id + '] .cards').get(0),
+  //     });
+  //   });
+  // },
   bindToggleAddListFormEvents: function () {
     $('.add-list').on('click', function (e) {
       var $div = $(e.currentTarget);
@@ -34,8 +50,8 @@ var App = {
     });
   },
   bindEvents: function () {
-    this.listenTo(this.lists, 'sync', this.renderNewList);
-  },
+    this.listenTo(this.listsView, 'render', this.renderCardFormView);
+  }
 };
 
 _.extend(App, Backbone.Events);

@@ -10,53 +10,62 @@ $colors['lighter-grey'] = #EDEFF0
 $colors['light-grey'] = #D6DADC
 $colors['grey'] = #C4C9CC
 $colors['dark-grey'] = #A5ACB0
-$colors['darker-grey'] = #959DA1
+$colors['darker-grey'] = #8c8c8c
 
 $colors['light-black'] = #4d4d4d
+
+$colors['white-gradient'] = linear-gradient(to bottom,#fff 0,#F8F9F9 100%)
 
 $colors['green-gradient-bottom'] = linear-gradient(to bottom, #61BD4F 0, #5AAC44 100%)
 $colors['green-gradient-top'] = linear-gradient(to top, #61BD4F 0, #5AAC44 100%)
 
-heights = {
+$heights = {
   header: 40px
   input: 16px
 }
 
-widths = {
+$widths = {
   short-input: 180px
   input: 270px
   list: 270px
+  card-details: 724px
 }
 
-radius = {
+$radius = {
   main: 3px
 }
 
-shadows = {
-  bottom: 1px 1px 1px rgba(0,0,0,.1)
+$shadows = {
   bottom-green: 0 1px 0 #3F6F21
   inside: inset 0 1px 8px rgba(0,0,0,.15)
+  bottom: 0 1px 2px rgba(0, 0, 0, 0.2)
 }
 
+submit-btn()
+  padding: 0 20px
+  min-height: 30px
+  box-shadow: $shadows.bottom-green
+  background: $colors.green-gradient-bottom
+  color: white
+  font-size: 14px
+  font-weight: bold
+  cursor: pointer
+  &:hover
+    background: $colors.green-gradient-top
+
 form-controls()
-  + div
+  .form-controls
     display: block
-    height: 0
+    height: 35px
     overflow: hidden
     transition: height 0.25s
     input[type="submit"]
-      padding: 0 20px
-      min-height: 30px
-      box-shadow: shadows.bottom-green
-      background: $colors.green-gradient-bottom
-      color: white
-      font-size: 14px
-      font-weight: bold
-      cursor: pointer
-      &:hover
-        background: $colors.green-gradient-top
+      submit-btn()
     .close
+      display: inline-block
       float: none
       margin: 0 0 0 5px
+      &:hover
+        background: inherit
       i
         vertical-align: middle

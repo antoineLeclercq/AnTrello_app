@@ -14,14 +14,14 @@ textarea {
   border: none;
   border-radius: 3px;
   resize: none;
+  font: inherit;
+  color: inherit;
 }
 textarea:focus {
   outline: none;
 }
 textarea.formated {
   background: inherit;
-  font: inherit;
-  color: inherit;
 }
 .modal {
   display: none;
@@ -41,7 +41,7 @@ textarea.formated {
 .modal h3 {
   text-align: center;
   font-weight: normal;
-  color: #959da1;
+  color: #8c8c8c;
 }
 .modal + .overlay {
   display: none;
@@ -57,7 +57,7 @@ textarea.formated {
   margin: 0 10px 0 0;
   float: right;
   cursor: pointer;
-  color: #959da1;
+  color: #8c8c8c;
 }
 .close:hover {
   color: #4d4d4d;
@@ -98,7 +98,7 @@ textarea.formated {
 }
 .list-container .list .list-icons span {
   display: inline-block;
-  color: #959da1;
+  color: #8c8c8c;
 }
 .list-container .list .list-icons .more {
   padding: 5px 5px 0 5px;
@@ -133,39 +133,41 @@ textarea.formated {
   padding: 7px 10px;
 }
 .list-container .list .modal .actions .action:hover {
-  background: #4d4d4d;
+  background: #0079bf;
   color: #fff;
 }
-.list-container .add-card a.show {
+.list-container .add-card a {
   display: block;
   box-sizing: border-box;
   height: 30px;
   padding: 5px 0 0 2px;
   border-radius: 3px;
-  color: #959da1;
+  color: #8c8c8c;
   cursor: pointer;
 }
-.list-container .add-card a.show:hover {
+.list-container .add-card a:hover {
   text-decoration: underline;
   color: #4d4d4d;
   background: #c4c9cc;
 }
-.list-container .add-card a.show.hide {
+.list-container .add-card a + form {
   display: none;
 }
-.list-container .add-card a.show + form {
-  display: none;
-}
-.list-container .add-card form.show {
+.list-container .add-card form {
   display: block;
 }
-.list-container .add-card form.show textarea + div {
+.list-container .add-card form textarea {
+  box-sizing: border-box;
+  width: 254px;
+  padding: 5px;
+}
+.list-container .add-card form .form-controls {
   display: block;
-  height: 0;
+  height: 35px;
   overflow: hidden;
   transition: height 0.25s;
 }
-.list-container .add-card form.show textarea + div input[type="submit"] {
+.list-container .add-card form .form-controls input[type="submit"] {
   padding: 0 20px;
   min-height: 30px;
   box-shadow: 0 1px 0 #3f6f21;
@@ -175,14 +177,18 @@ textarea.formated {
   font-weight: bold;
   cursor: pointer;
 }
-.list-container .add-card form.show textarea + div input[type="submit"]:hover {
+.list-container .add-card form .form-controls input[type="submit"]:hover {
   background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
-.list-container .add-card form.show textarea + div .close {
+.list-container .add-card form .form-controls .close {
+  display: inline-block;
   float: none;
   margin: 0 0 0 5px;
 }
-.list-container .add-card form.show textarea + div .close i {
+.list-container .add-card form .form-controls .close:hover {
+  background: inherit;
+}
+.list-container .add-card form .form-controls .close i {
   vertical-align: middle;
 }
 .card {
@@ -191,7 +197,7 @@ textarea.formated {
   padding: 7px;
   margin: 5px 0;
   border-radius: 3px;
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   background: #fff;
 }
 .card .edit {
@@ -213,6 +219,119 @@ textarea.formated {
 .card:hover .edit {
   display: block;
 }
+#card-details .overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 5;
+}
+#card-details .container {
+  position: absolute;
+  z-index: 6;
+  width: 724px;
+  top: 50px;
+  left: 50%;
+  margin: 0 0 0 -377px;
+  padding: 20px 15px;
+  border-radius: 3px;
+  background: #edeff0;
+  color: #8c8c8c;
+}
+#card-details .container > .close {
+  position: absolute;
+  float: none;
+  top: 5px;
+  right: 0;
+}
+#card-details .container h1 {
+  display: inline-block;
+  margin: 0 0 10px 0;
+  color: #4d4d4d;
+  font-size: 16px;
+}
+#card-details .container .details {
+  display: inline-block;
+  width: 560px;
+  vertical-align: top;
+}
+#card-details .container .details section {
+  margin: 0 0 0 35px;
+}
+#card-details .container .details section + section {
+  margin-top: 30px;
+}
+#card-details .container .details section header {
+  margin: 0 0 0 -35px;
+}
+#card-details .container .details section header i {
+  margin: 0 7px 0 0;
+}
+#card-details .container .details section ul {
+  margin: 25px 0;
+}
+#card-details .container .details section a {
+  color: inherit;
+  text-decoration: underline;
+}
+#card-details .container .details section i {
+  vertical-align: middle;
+}
+#card-details .container .details .description h3 {
+  margin: 0 0 10px 0;
+  font-weight: normal;
+}
+#card-details .container .details .description p {
+  color: #4d4d4d;
+}
+#card-details .container .details .add-comment textarea {
+  width: 95%;
+  height: 75px;
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  color: #4d4d4d;
+}
+#card-details .container .details .add-comment input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#card-details .container .details .add-comment input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
+}
+#card-details .container aside {
+  display: inline-block;
+  width: 140px;
+  margin: 40px 0 0 20px;
+}
+#card-details .container aside section {
+  margin: 20px 0;
+}
+#card-details .container aside .action {
+  padding: 8px;
+  border: 1px solid #d6dadc;
+  border-bottom: 1px solid #c4c9cc;
+  border-radius: 3px;
+  margin: 7px 0;
+  background: linear-gradient(to bottom, #fff 0, #f8f9f9 100%);
+  color: #4d4d4d;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#card-details .container aside .action:hover {
+  background: #0079bf;
+  border: 1px solid #0079bf;
+  border-bottom: 1px solid;
+  color: #fff;
+}
 .material-icons.md-14 {
   font-size: 14px;
 }
@@ -226,7 +345,7 @@ textarea.formated {
   font-size: 24px;
 }
 .material-icons.md-30 {
-  font-size: 24px;
+  font-size: 30px;
 }
 .material-icons.md-36 {
   font-size: 36px;
@@ -249,9 +368,10 @@ body > header {
   right: 0;
   height: 40px;
   padding: 5px;
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   background: #026aa7;
   text-align: center;
+  z-index: 1;
 }
 body > header form {
   position: absolute;
@@ -361,7 +481,7 @@ body > header section .menu i {
   top: 35px;
   right: 5px;
   background: #edeff0;
-  color: #959da1;
+  color: #8c8c8c;
 }
 #notif .modal hr {
   width: 420px;
@@ -369,7 +489,7 @@ body > header section .menu i {
 #notif .modal section {
   margin: 5px 0 0 0;
   padding: 30px 0;
-  border: 1px dashed #959da1;
+  border: 1px dashed #8c8c8c;
   border-radius: 3px;
   background: #d6dadc;
 }
@@ -385,36 +505,39 @@ main .container {
 main .container .add-list {
   display: inline-block;
   width: 270px;
-  margin: 0 10px 0 0;
+  margin: 0 10px 0 5px;
   padding: 5px;
   border-radius: 3px;
   background: #026aa7;
   vertical-align: top;
   transition: background 0.25s;
 }
-main .container .add-list label {
-  width: 100%;
-  cursor: pointer;
+main .container .add-list form label {
+  display: block;
+  box-sizing: border-box;
+  width: 270px;
   border-radius: 3px;
+  cursor: pointer;
 }
-main .container .add-list label input {
+main .container .add-list form label input {
   background: inherit;
   transition: background 0.25s;
   font-size: 14px;
   color: #4d4d4d;
+  cursor: pointer;
 }
-main .container .add-list label input::-webkit-input-placeholder {
+main .container .add-list form label input::-webkit-input-placeholder {
   color: #bcd9ea;
   font-size: 14px;
   transition: color 0.25s;
 }
-main .container .add-list label + div {
+main .container .add-list form .form-controls {
   display: block;
-  height: 0;
+  height: 35px;
   overflow: hidden;
   transition: height 0.25s;
 }
-main .container .add-list label + div input[type="submit"] {
+main .container .add-list form .form-controls input[type="submit"] {
   padding: 0 20px;
   min-height: 30px;
   box-shadow: 0 1px 0 #3f6f21;
@@ -424,15 +547,22 @@ main .container .add-list label + div input[type="submit"] {
   font-weight: bold;
   cursor: pointer;
 }
-main .container .add-list label + div input[type="submit"]:hover {
+main .container .add-list form .form-controls input[type="submit"]:hover {
   background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
-main .container .add-list label + div .close {
+main .container .add-list form .form-controls .close {
+  display: inline-block;
   float: none;
   margin: 0 0 0 5px;
 }
-main .container .add-list label + div .close i {
+main .container .add-list form .form-controls .close:hover {
+  background: inherit;
+}
+main .container .add-list form .form-controls .close i {
   vertical-align: middle;
+}
+main .container .add-list form .form-controls {
+  height: 0;
 }
 main .container .add-list.show {
   background: #d6dadc;
@@ -440,11 +570,11 @@ main .container .add-list.show {
 }
 main .container .add-list.show label {
   display: block;
-  border: 1px solid #959da1;
+  border: 1px solid #8c8c8c;
   box-shadow: inset 0 1px 8px rgba(0,0,0,0.15);
 }
 main .container .add-list.show label input::-webkit-input-placeholder {
-  color: #959da1;
+  color: #8c8c8c;
 }
 main .container .add-list.show label + div {
   height: 35px;

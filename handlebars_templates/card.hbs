@@ -1,0 +1,67 @@
+<div class="overlay"></div>
+<div class="container">
+  <i class="material-icons md-30 close">close</i>
+  <div class="details">
+    <section>
+      <header>
+        <i class="material-icons">web_asset</i>
+        <h1>{{name}}</h1>
+      </header>
+      <p>in list <a href="#">{{listName}}</a></p>
+      <ul class="labels">
+        {{#each labels}}
+        <li class="label" style="background: {{color}};"></li>
+        {{/each}}
+      </ul>
+      <div class="description">
+        {{#if description}}
+        <h3>Description <a href="#">Edit</a></h3>
+        <p>{{description}}<p>
+        {{else}}
+        <i class="material-icons md-16">subject</i>
+        <a href="#">Edit the description...</a>
+        {{/if}}
+      </div>
+    </section>
+    <section class="add-comment">
+      <header>
+        <i class="material-icons">comment</i>
+        <h1>Add Comment</h1>
+      </header>
+      <form action="/comments" method="post">
+        <textarea class="comment-input" placeholder="Write a comment..."></textarea>
+        <input type="submit" value="Send">
+      </form>
+    </section>
+    <section class="activity">
+      <header>
+        <i class="material-icons">list</i>
+        <h1>Activity</h1>
+      </header>
+      <ul class="activities">
+        {{#each activities}}
+          <li></li>
+        {{/each}}
+      </ul>
+    </section>
+  </div>
+  <aside>
+    <section class="add">
+      <h1>Add</h1>
+      <ul>
+      <ul class="actions">
+        <li class="action">Labels</li>
+        <li class="action">Due Date</li>
+      </ul>
+    </section>
+    <section class="card-actions">
+      <h1>Actions</h1>
+      <ul class="actions">
+        <li class="action">Move</li>
+        <li class="action">Copy</li>
+        <li class="action">Subscribe</li>
+        <li class="action">Archive</li>
+      </ul>
+    </section>
+  </aside>
+</div>

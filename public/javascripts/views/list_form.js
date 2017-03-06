@@ -1,4 +1,4 @@
-var AddListView = Backbone.View.extend({
+var ListFormView = Backbone.View.extend({
   el: $('.add-list').get(0),
   events: {
     'submit form': 'createList',

@@ -31,6 +31,7 @@ module.exports = function (grunt) {
           processName: function (filePath) {
             return filePath.match(/\/(.+).hbs$/).pop();
           },
+          partialsUseNamespace: true,
         },
       }
     }

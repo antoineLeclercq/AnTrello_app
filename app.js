@@ -10,7 +10,7 @@ var stylus = require('stylus');
 var index = require('./routes/index');
 var new_tests = require('./routes/tests/new');
 var new_item = require('./routes/new');
-var lists = require('./routes/lists');
+var update = require('./routes/update');
 
 var app = express();
 
@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/', new_item);
-app.use('/lists', lists);
+app.use('/', update);
 
 app.use('/', new_tests);
 

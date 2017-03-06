@@ -43,6 +43,18 @@ var storage = {
       options: options.values,
     }, task);
   },
+  update: function (table, options, task) {
+    var names = options.names.join(', ');
+    var values = options.values.map(function (val, i) {
+      return '$' + (i + 1);
+    }).join(', ');
+    var query = 'UPDATE ' + table + ' SET (' + names + ')' + ' = (' + values + ') WHERE id = ' + options.id + ';';
+
+    this.query({
+      query: query,
+      options: options.values,
+    }, task);
+  },
   disconnect: client.end,
 };
 

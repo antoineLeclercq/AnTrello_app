@@ -6,7 +6,7 @@ var moment = require('moment');
 var _ = require('underscore');
 var authorizedRoutes = ['lists', 'cards', 'comments', 'labels', 'activities', 'notifications'];
 
-describe('/:collection/new route', function () {
+describe('POST /:collection route', function () {
   var tablesAndData = [{
       collection: 'lists',
       table: 'list',
@@ -56,37 +56,33 @@ describe('/:collection/new route', function () {
   for (var i = 0; i < tablesAndData.length; i ++) {
     testTable('/' + tablesAndData[i].collection + '/new' , tablesAndData[i].table, tablesAndData[i].data);
   }
-});
 
-function testTable(route, table, data) {
-  afterEach(function () {
-    storageTest.deleteLastRowFromTable(table);
-  });
+  function testTable(route, table, data) {
+    afterEach(function () {
+      storageTest.deleteLastRowFromTable(table);
+    });
 
-  it('creates a new' + table + 'in the database', function (done) {
-    request.post({ url: root + route, form: data }, function (error, response, body) {
-      if (error) { throw error; }
+    it('creates a new' + table + 'in the database', function (done) {
+      request.post({ url: root + route, form: data }, function (error, response, body) {
+        if (error) { throw error; }
 
-      storageTest.getLastIdFromTable(table, function (result) {
-        var id = Number(result.rows[0].last_value);
+        storageTest.getLastIdFromTable(table, function (result) {
+          var id = Number(result.rows[0].last_value);
 
-        expect(JSON.parse(body).id).toBe(id);
+          expect(JSON.parse(body).id).toBe(id);
 
-        storageTest.getRowFromTable(table, id, function (result) {
-          _.each(data, function (value, key) {
-            if (/date/.test(key)) {
-              expect(moment(result.rows[0][key]).format()).toBe(value);
-            } else {
-              expect(result.rows[0][key]).toBe(value);
-            }
+          storageTest.getRowFromTable(table, id, function (result) {
+            _.each(data, function (value, key) {
+              if (/date/.test(key)) {
+                expect(moment(result.rows[0][key]).format()).toBe(value);
+              } else {
+                expect(result.rows[0][key]).toBe(value);
+              }
+            });
+            done();
           });
-          done();
         });
       });
     });
-  });
-}
-
-describe('get/:table route', function () {
-
+  }
 });

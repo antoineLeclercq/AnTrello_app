@@ -6,7 +6,7 @@ CREATE TABLE list (
 
 CREATE TABLE card (
   id serial PRIMARY KEY,
-  list_id integer REFERENCES list(id) NOT NULL,
+  list_id integer NOT NULL REFERENCES list(id) ON DELETE CASCADE,
   name text NOT NULL,
   description text,
   due_date timestamp,
@@ -22,16 +22,15 @@ CREATE TABLE label (
 
 CREATE TABLE card_label (
   id serial PRIMARY KEY,
-  card_id integer REFERENCES card(id) NOT NULL,
-  label_id integer REFERENCES label(id) NOT NULL
+  card_id integer NOT NULL REFERENCES card(id) ON DELETE CASCADE,
+  label_id integer NOT NULL REFERENCES label(id) ON DELETE CASCADE
 );
 
 CREATE TABLE comment (
   id serial PRIMARY KEY,
-  card_id integer REFERENCES card(id) NOT NULL,
+  card_id integer NOT NULL REFERENCES card(id) ON DELETE CASCADE,
   content text NOT NULL
 );
-
 
 CREATE TABLE action (
   id serial PRIMARY KEY,
@@ -45,9 +44,9 @@ CREATE TABLE actionable_item (
 
 CREATE TABLE activity (
   id serial PRIMARY KEY,
-  card_id integer REFERENCES card(id) NOT NULL,
-  list_id_source integer REFERENCES list(id),
-  list_id_dest integer REFERENCES list(id),
+  card_id integer NOT NULL REFERENCES card(id) ON DELETE CASCADE,
+  list_id_source integer REFERENCES list(id) ON DELETE CASCADE,
+  list_id_dest integer REFERENCES list(id) ON DELETE CASCADE,
   action_id integer REFERENCES action(id),
   actionable_item_id integer REFERENCES actionable_item(id),
   comment_id integer REFERENCES comment(id),
@@ -56,7 +55,7 @@ CREATE TABLE activity (
 
 CREATE TABLE notification (
   id serial PRIMARY KEY,
-  activity_id integer REFERENCES activity(id) NOT NULL,
+  activity_id integer NOT NULL REFERENCES activity(id) ON DELETE CASCADE,
   seen boolean NOT NULL
 );
 

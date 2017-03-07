@@ -19,11 +19,11 @@ var storage = {
     });
     this.log(queryAndOptions);
   },
-  delete: function (table, opts) {
+  delete: function (table, opts, task) {
     this.query({
       query: 'DELETE FROM ' + table + ' WHERE id = $1;',
       options: opts,
-    });
+    }, task);
   },
   select: function (table, id, task) {
     this.query({
@@ -135,10 +135,5 @@ storage.startingData = function (task) {
     task(data);
   });
 };
-
-
-
-
-
 
 module.exports = storage;

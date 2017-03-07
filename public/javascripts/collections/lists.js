@@ -20,9 +20,14 @@ var Lists = Backbone.Collection.extend({
       }
     });
   },
+  deleteList: function (list) {
+    this.sync('delete', list);
+    this.remove(list);    
+  },
   initialize: function () {
     this.on({
       'create_list': this.create,
+      'destroy_list': this.deleteList,
       'change:position': this.update,
       'change:name': this.update,
     });

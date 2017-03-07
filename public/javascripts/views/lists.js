@@ -3,12 +3,16 @@ var ListsView = Backbone.View.extend({
   template: App.templates.lists,
   events: {
     'click .list > .overlay, .list > .modal .close, .list > header .more': 'toggleMoreOptionsModal',
+    'click .overlay-header': 'preventFocus',
     'focusout .title': 'updateListName',
     'click .actions .archive': 'destroyList',
   },
   toggleMoreOptionsModal: function (e) {
     var $list = $(e.target).closest('.list');
     $list.find('> .modal, > .overlay').toggle();
+  },
+  preventFocus: function (e) {
+    $(e.target).hide().next().focus();
   },
   updateListName: function (e) {
     var $titleTextarea = $(e.target);
@@ -19,6 +23,8 @@ var ListsView = Backbone.View.extend({
     if (newName !== list.get('name')) {
       list.set('name', newName);
     }
+
+    $titleTextarea.prev().show();
   },
   destroyList: function (e) {
     var listId = $(e.target).closest('.list').attr('data-id');
@@ -79,7 +85,7 @@ var ListsView = Backbone.View.extend({
   },
   initialize: function () {
     this.render();
-    this.listenTo(this.collection, 'create_list destroy_list', this.render);
+    this.listenTo(this.collection, 'create_list destroy_list sync:create', this.render);
     this.bindSortingEvents();
   },
 });

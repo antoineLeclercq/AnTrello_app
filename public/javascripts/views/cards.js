@@ -43,25 +43,25 @@ var CardsView = Backbone.View.extend({
     }. bind(this));
   },
   updateCardsOnSort: function (event, ui) {
-    var oldList = App.lists.get($(ui.sender).closest('.list').attr('data-id'));
+    var oldListCards = App.lists.get($(ui.sender).closest('.list').attr('data-id')).get('cards');
     var $cardElement = ui.item;
     var cardId = $cardElement.attr('data-id');
     var cardPosition = $cardElement.closest('.cards').find('.card').index($cardElement);
     var newListId = Number($cardElement.closest('.list').attr('data-id'));
-    var newList = App.lists.get(newListId);
-    var card = oldList.get('cards').remove(cardId, { silent: true });
+    var newListCards = App.lists.get(newListId).get('cards');
+    var card = oldListCards.remove(cardId, { silent: true });
 
-    this.collection.trigger('move_card_remove', card);
+    oldListCards.trigger('move_card_remove', card);
     card.set({
       list_id: newListId,
       position: cardPosition,
     });
-    newList.get('cards').add(card, { silent: true });
-    this.collection.trigger('move_card_add', card);
+    newListCards.add(card, { silent: true });
+    newListCards.trigger('move_card_add', card);
   },
   initialize: function () {
     this.render();
-    this.listenTo(this.collection, 'create_card', this.render);
+    this.listenTo(this.collection, 'create_card sync:create', this.render);
     this.bindSortingEvents();
     this.listenTo(App, 'render_board', this.remove);
   },

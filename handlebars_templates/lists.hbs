@@ -1,11 +1,12 @@
 {{#each lists}}
   <li class="list" data-id="{{id}}" data-position="{{position}}">
     <header>
+      <div class="overlay-header"></div>
       <textarea class="title formated" rows="1">{{name}}</textarea>
-      <div class="list-icons">
+      <section class="list-icons">
         <span class="subscribed"><i class="material-icons md-16">remove_red_eye</i></span>
         <span class="more"><i class="material-icons md-16">more_horiz</i></span>
-      </div>
+      </section>
     </header>
     <section class="modal">
       <h3>List Actions
@@ -13,7 +14,6 @@
       </h3>
       <hr/>
       <ul class="actions">
-        <li class="action">Add Card...</li>
         <li class="action">Copy List...</li>
         <li class="action">Move List...</li>
         <li class="action">Subscribe...</li>

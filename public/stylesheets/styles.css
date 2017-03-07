@@ -84,6 +84,17 @@ textarea.formated {
   color: #4d4d4d;
   vertical-align: top;
 }
+.list header {
+  position: relative;
+}
+.list .overlay-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
 .list .title {
   box-sizing: border-box;
   width: 200px;

@@ -2,41 +2,32 @@ var Cards = Backbone.Collection.extend({
   comparator: 'position',
   model: Card,
   url: '/cards',
-  updatePositions: function (action, movedCard) {
-    var pivotPosition = movedCard.get('position');
-
-    this.each(function (card) {
-      var position = card.get('position');
-
-      if (card === movedCard || position < pivotPosition) { return; }
-
-      if (action === 'add') {
-        if (position >= pivotPosition) { card.set('position', position + 1); }
-      } else if (action === 'remove') {
-        if (position > pivotPosition) { card.set('position', position - 1); }
-      }
-    });
+  updatePositionsAndSort: function (action, movedCard) {
+    collectionHelpers.updatePositionsAndSort.call(this, action, movedCard);
   },
-  updatePositionsAndSort: function (card, action) {
-    this.updatePositions(action, card);
-    this.sort();
-  },
-  syncUpdateAndRender: function (card) {
+  update: function (card) {
     this.sync('update', card);
   },
-  updatePositionsAndSortAndSync: function (card) {
-    this.updatePositionsAndSort(card, 'add');
-    this.syncUpdateAndRender(card);
-  },
-  updatePositionsAndSortAndRender: function (card) {
-    this.updatePositionsAndSort(card, 'remove');
+  createCard: function (card) {
+    this.create(card, {
+      success: function() {
+        this.trigger('sync:create');
+      }.bind(this),
+    });
   },
   initialize: function () {
     this.on({
-      'create_card': this.create,
-      'change': this.syncUpdateAndRender,
-      'move_card_add': this.updatePositionsAndSortAndSync,
-      'move_card_remove': this.updatePositionsAndSortAndRender,
+      'create_card': this.createCard,
+      'change': this.update,
+    });
+
+    this.on('move_card_remove', function (card) {
+      this.updatePositionsAndSort('remove', card);
+    });
+
+    this.on('move_card_add', function (card) {
+      this.updatePositionsAndSort('add', card);
+      this.update(card);
     });
   },
 });

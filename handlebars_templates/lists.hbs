@@ -1,62 +1,60 @@
 {{#each lists}}
-  <div class="list-container">
-    <li class="list" data-id="{{id}}">
-      <header>
-        <textarea class="title formated" rows="1">{{name}}</textarea>
-        <div class="list-icons">
-          <span class="subscribed"><i class="material-icons md-16">remove_red_eye</i></span>
-          <span class="more"><i class="material-icons md-16">more_horiz</i></span>
-        </div>
-      </header>
-      <section class="modal">
-        <h3>List Actions
-          <span class="close"><i class="material-icons md-16">close</i></span>
-        </h3>
-        <hr/>
-        <ul class="actions">
-          <li class="action">Add Card...</li>
-          <li class="action">Copy List...</li>
-          <li class="action">Move List...</li>
-          <li class="action">Subscribe...</li>
-        </ul>
-        <hr/>
-        <ul class="actions">
-          <li class="action">Move All cards in This List...</li>
-          <li class="action">Archive All Cards in This List...</li>
-        </ul>
-        <hr/>
-        <ul class="actions">
-          <li class="action">Archive This List</li>
-        </ul>
-      </section>
-      <div class="overlay"></div>
-      <ul class="cards">
-      {{#each cards}}
-        <li class="card" data-id="{{id}}">
-          <span class="edit"><i class="material-icons md-14">edit</i></span>
-          <ul class="labels">
-            <li class="label"></li>
-          </ul>
-          <p>{{name}}</p>
-          <ul class="icons">
-            <li class="comment-icon"></li>
-            <li class="subscribe-icon"></li>
-          </ul>
-        </li>
-      {{/each}}
-      </ul>
-      <div class="add-card">
-        <a href="#">Add a card...</a>
-        <form action="/cards" method="post">
-          <textarea rows="4" name="card_name"></textarea>
-          <div class="form-controls">
-            <input type="submit" value="Save">
-            <a class="close" href="#">
-              <i class="material-icons md-30">close</i>
-            </a>
-          </div>
-        </form>
+  <li class="list" data-id="{{id}}" data-position="{{position}}">
+    <header>
+      <textarea class="title formated" rows="1">{{name}}</textarea>
+      <div class="list-icons">
+        <span class="subscribed"><i class="material-icons md-16">remove_red_eye</i></span>
+        <span class="more"><i class="material-icons md-16">more_horiz</i></span>
       </div>
-    </li>
-  </div>
+    </header>
+    <section class="modal">
+      <h3>List Actions
+        <span class="close"><i class="material-icons md-16">close</i></span>
+      </h3>
+      <hr/>
+      <ul class="actions">
+        <li class="action">Add Card...</li>
+        <li class="action">Copy List...</li>
+        <li class="action">Move List...</li>
+        <li class="action">Subscribe...</li>
+      </ul>
+      <hr/>
+      <ul class="actions">
+        <li class="action">Move All cards in This List...</li>
+        <li class="action">Archive All Cards in This List...</li>
+      </ul>
+      <hr/>
+      <ul class="actions">
+        <li class="action">Archive This List</li>
+      </ul>
+    </section>
+    <div class="overlay"></div>
+    <ul class="cards">
+    {{!--{{#each cards}}
+      <li class="card" data-id="{{id}}" data-position="{{position}}">
+        <span class="edit"><i class="material-icons md-14">edit</i></span>
+        <ul class="labels">
+          <li class="label"></li>
+        </ul>
+        <p>{{name}}</p>
+        <ul class="icons">
+          <li class="comment-icon"></li>
+          <li class="subscribe-icon"></li>
+        </ul>
+      </li>
+    {{/each}}--}}
+    </ul>
+    <div class="add-card">
+      <a href="#">Add a card...</a>
+      <form action="/cards" method="post">
+        <textarea rows="4" name="card_name"></textarea>
+        <div class="form-controls">
+          <input type="submit" value="Save">
+          <a class="close" href="#">
+            <i class="material-icons md-30">close</i>
+          </a>
+        </div>
+      </form>
+    </div>
+  </li>
 {{/each}}

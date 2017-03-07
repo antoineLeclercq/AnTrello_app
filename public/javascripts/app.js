@@ -24,14 +24,6 @@ var App = {
   renderListFormView: function () {
     new ListFormView();
   },
-  // renderCards: function () {
-  //   App.lists.each(function (list) {
-  //     new CardsView({
-  //       collection: list.get('cards'),
-  //       el: $('.list[data-id=' + list.id + '] .cards').get(0),
-  //     });
-  //   });
-  // },
   bindToggleAddListFormEvents: function () {
     $('.add-list').on('click', function (e) {
       var $div = $(e.currentTarget);
@@ -50,7 +42,7 @@ var App = {
     });
   },
   bindEvents: function () {
-    this.listenTo(this.listsView, 'render', this.renderCardFormView);
+    this.on('render_board', this.renderCardFormView);
   }
 };
 
@@ -58,5 +50,5 @@ _.extend(App, Backbone.Events);
 
 $('main > .container').css({
   'min-width': screen.availWidth,
-  'min-height': screen.availHeight,
+  'min-height': screen.availHeight - 200
 });

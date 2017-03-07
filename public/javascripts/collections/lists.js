@@ -5,9 +5,35 @@ var Lists = Backbone.Collection.extend({
   update: function (list) {
     this.sync('update', list);
   },
+  updatePositions: function (action, movedList) {
+    var pivotPosition = movedList.get('position');
+
+    this.each(function (list) {
+      var position = list.get('position');
+
+      if (list === movedList || position < pivotPosition) { return; }
+
+      if (action === 'add') {
+        if (position >= pivotPosition) { list.set('position', position + 1); }
+      } else if (action === 'remove') {
+        if (position > pivotPosition) { list.set('position', position - 1); }
+      }
+    });
+  },
   initialize: function () {
-    this.on('create_list', this.create);
-    this.on('change:position', this.sort);
-    this.on('update_list', this.update);
+    this.on({
+      'create_list': this.create,
+      'change:position': this.update,
+      'change:name': this.update,
+    });
+
+    this.on('move_list_add', function (list) {
+      this.updatePositions('add', list);
+      this.update(list);
+    });
+
+    this.on('move_list_remove', function (list) {
+      this.updatePositions('remove', list);
+    });
   },
 });

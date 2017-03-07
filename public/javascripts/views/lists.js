@@ -4,7 +4,6 @@ var ListsView = Backbone.View.extend({
   events: {
     'click .list > .overlay, .list > .modal .close, .list > header .more': 'toggleMoreOptionsModal',
     'focusout .title': 'updateListName',
-    'click .card': 'displayCard',
   },
   toggleMoreOptionsModal: function (e) {
     var $list = $(e.target).closest('.list');
@@ -18,31 +17,62 @@ var ListsView = Backbone.View.extend({
 
     if (newName !== list.get('name')) {
       list.set('name', newName);
-      this.collection.trigger('update_list', list);
     }
-  },
-  displayCard: function (e) {
-    var $card = $(e.currentTarget);
-    var cardId = $card.attr('data-id');
-    var listId =  $card.closest('.list').attr('data-id');
-    var card = this.collection.get(listId).get('cards').get(cardId);
-
-    new CardView({
-      model: card
-    });
   },
   render: function () {
     var lists = this.collection.toJSON();
 
-    lists.forEach(function (list) {
-      list.cards = list.cards.toJSON();
+    this.$el.html(this.template({ lists: lists }));
+
+    App.trigger('render_board');
+
+    this.collection.each(function (list) {
+      new CardsView({
+        collection: list.get('cards'),
+        el: this.$el.find('.list[data-id=' + list.id + '] .cards').get(0),
+      });
+    }.bind(this));
+  },
+  bindSortingEvents: function () {
+    this.sortableAndMoveableLists();
+    this.tiltListWhileSorting();
+    this.updateListsInfoOnDrop();
+  },
+  sortableAndMoveableLists: function ($lists) {
+    this.$el.sortable({
+      forcePlaceholderSize: true,
+      placeholder: "sortable-list-placeholder",
+      items: '> li',
+      tolerance: 'pointer',
+      handle: '> header',
     });
 
-    this.$el.html(this.template({ lists: lists }));
-    this.trigger('render');
+    this.$el.disableSelection();
+  },
+  tiltListWhileSorting: function () {
+    this.$el.on('sortstart sortstop', function (event, ui) {
+      ui.item.toggleClass('tilted', event.type === 'sortstart');
+    });
+  },
+  updateListsInfoOnDrop: function () {
+    this.$el.on('sortstop', this.updateListsOnSort.bind(this))
+  },
+  updateListsOnSort: function (event, ui) {
+    if (event.target !== event.currentTarget) { return; }
+
+    var $list = ui.item;
+    var listId = $list.attr('data-id');
+    var listNewPosition = this.$el.find('.list').index($list);
+    var list = this.collection.remove(listId, { silent: true });
+
+    this.collection.trigger('move_list_remove', list);
+    list.set('position', listNewPosition);
+    this.collection.add(list, { silent: true });
+    this.collection.trigger('move_list_add', list);
   },
   initialize: function () {
     this.render();
-    this.listenTo(this.collection, 'update sync sort change:cards', this.render);
+    this.listenTo(this.collection, 'create_list', this.render);
+    this.bindSortingEvents();
   },
 });

@@ -3,6 +3,12 @@ var CardView = Backbone.View.extend({
     id: "card-details",
   },
   template: App.templates.card,
+  events: {
+    'click .container > .close, > .overlay': 'removeView'
+  },
+  removeView: function () {
+    this.remove();
+  },
   formatCardData: function () {
     var cardData = this.model.toJSON();
 

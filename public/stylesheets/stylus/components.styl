@@ -8,6 +8,11 @@ input
 a
   text-decoration: none
 
+p
+  word-wrap: break-word
+  overflow: hidden
+  white-space: normal
+
 textarea
   border: none
   border-radius: $radius.main
@@ -56,111 +61,112 @@ textarea
 
 
 #lists
-  display: inline-block
+  float: left
   height: 100%
+  white-space: nowrap
 
-.list-container
+.list
+  box-sizing: border-box
   display: inline-block
-  height: 100%
-  .list
+  position: relative
+  width: $widths.list
+  margin: 0 5px
+  padding: 5px 8px
+  border-radius: $radius.main
+  background: $colors.light-grey
+  color: $colors.light-black
+  vertical-align: top
+  .title
     box-sizing: border-box
-    display: inline-block
-    position: relative
-    width: $widths.list
-    margin: 0 5px
-    padding: 5px 8px
-    border-radius: $radius.main
-    background: $colors.light-grey
-    color: $colors.light-black
-    vertical-align: top
-    .title
-      box-sizing: border-box
-      width: 200px
-      padding: 5px
-      font-weight: bold
-      transition: background 0.25s
-      cursor: pointer
-      &:focus
-        background: white
-    .list-icons
-      float: right
-      span
-        display: inline-block
-        color: $colors.darker-grey
-      .more
-        padding: 5px 5px 0 5px
-        border-radius: $radius.main
-        cursor: pointer
-        &:hover
-          color: inherit
-          background: $colors.grey
-      .subscribed
-        display: none
-    .list-icons.is-subscribed
-      .subscribed
-        display: inline-block
-    .modal
-      top: 40px
-      left: $widths.list - 30
-      width: 300px
-      padding: 10px 0
+    width: 200px
+    padding: 5px
+    font-weight: bold
+    transition: background 0.25s
+    cursor: pointer
+    &:focus
       background: white
-      color: $colors.light-black
-      hr
-        width: 300px - 30
-      .actions
-        font-weight: bold
-        .action
-          padding: 7px 10px
-          &:hover
-            background: $colors.blue
-            color: white
-  .add-card
-    a
-      display: block
-      box-sizing: border-box
-      height: 30px
-      padding: 5px 0 0 2px
-      border-radius: $radius.main
+  .list-icons
+    float: right
+    span
+      display: inline-block
       color: $colors.darker-grey
+    .more
+      padding: 5px 5px 0 5px
+      border-radius: $radius.main
       cursor: pointer
       &:hover
-        text-decoration: underline
-        color: $colors.light-black
+        color: inherit
         background: $colors.grey
-      + form
-        display: none
-    form
-      display: block
-      textarea
-        box-sizing: border-box
-        width: $widths.list - 16
-        padding: 5px;
-      form-controls()
-
-.card
-  box-sizing: border-box
-  width: $widths.list - 16
-  padding: 7px
-  margin: 5px 0
-  border-radius: $radius.main
-  box-shadow: $shadows.bottom
-  background: white
-  .edit
-    display: none
-    float: right
-    margin: -4px 0 0 0
-    padding: 5px 5px 2px 5px
+    .subscribed
+      display: none
+  .list-icons.is-subscribed
+    .subscribed
+      display: inline-block
+  .modal
+    top: 40px
+    left: $widths.list - 30
+    width: 300px
+    padding: 10px 0
+    background: white
+    color: $colors.light-black
+    hr
+      width: 300px - 30
+    .actions
+      font-weight: bold
+      .action
+        padding: 7px 10px
+        &:hover
+          background: $colors.blue
+          color: white
+.add-card
+  a
+    display: block
+    box-sizing: border-box
+    height: 30px
+    padding: 5px 0 0 2px
     border-radius: $radius.main
-    color: $colors.grey
+    color: $colors.darker-grey
     cursor: pointer
     &:hover
+      text-decoration: underline
       color: $colors.light-black
       background: $colors.grey
-  &:hover
-    background: $colors.lighter-grey
+    + form
+      display: none
+  form
+    display: block
+    textarea
+      box-sizing: border-box
+      width: $widths.list - 16
+      padding: 5px;
+    form-controls()
+
+.cards
+    min-height: 10px
+  .card
+    box-sizing: border-box
+    width: $widths.list - 16
+    padding: 7px
+    margin: 5px 0
+    border-radius: $radius.main
+    box-shadow: $shadows.bottom
+    background: white
+    cursor: pointer
     .edit
-      display: block
+      display: none
+      float: right
+      margin: -4px 0 0 0
+      padding: 5px 5px 2px 5px
+      border-radius: $radius.main
+      color: $colors.grey
+      cursor: pointer
+      &:hover
+        color: $colors.light-black
+        background: $colors.grey
+    &:hover
+      background: $colors.lighter-grey
+      .edit
+        display: block
 
 #card-details
   .overlay
@@ -249,6 +255,18 @@ textarea
           border-bottom: 1px solid $colors.dark-blue
           color: white
 
+.sortable-card-placeholder
+  padding: 7px
+  border-radius: $radius.main
+  background: $colors.dark-grey
+
+.sortable-list-placeholder
+  background: $colors.darker-blue
+  display: inline-block
+  border-radius: $radius.main
+
+.tilted
+  transform: rotate(5deg)
 
 .material-icons.md-14
   font-size: 14px

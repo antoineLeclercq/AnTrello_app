@@ -84,7 +84,7 @@ INSERT INTO card (list_id, name, description, due_date, position, subscriber)
 VALUES
   (1, 'fix background bug', 'harmless, bug, fix when possible', NULL, 0, 'false'),
   (1, 'replace modal', 'replace on second page', NULL, 1, false),
-  (2, 'finish project', 'add tests', current_timestamp, 2, true);
+  (2, 'finish project', 'add tests', current_timestamp, 0, true);
 
 INSERT INTO comment(card_id, content) VALUES (2, 'added 1 test');
 

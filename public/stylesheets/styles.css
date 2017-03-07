@@ -10,6 +10,11 @@ input {
 a {
   text-decoration: none;
 }
+p {
+  word-wrap: break-word;
+  overflow: hidden;
+  white-space: normal;
+}
 textarea {
   border: none;
   border-radius: 3px;
@@ -63,14 +68,11 @@ textarea.formated {
   color: #4d4d4d;
 }
 #lists {
-  display: inline-block;
+  float: left;
   height: 100%;
+  white-space: nowrap;
 }
-.list-container {
-  display: inline-block;
-  height: 100%;
-}
-.list-container .list {
+.list {
   box-sizing: border-box;
   display: inline-block;
   position: relative;
@@ -82,7 +84,7 @@ textarea.formated {
   color: #4d4d4d;
   vertical-align: top;
 }
-.list-container .list .title {
+.list .title {
   box-sizing: border-box;
   width: 200px;
   padding: 5px;
@@ -90,32 +92,32 @@ textarea.formated {
   transition: background 0.25s;
   cursor: pointer;
 }
-.list-container .list .title:focus {
+.list .title:focus {
   background: #fff;
 }
-.list-container .list .list-icons {
+.list .list-icons {
   float: right;
 }
-.list-container .list .list-icons span {
+.list .list-icons span {
   display: inline-block;
   color: #8c8c8c;
 }
-.list-container .list .list-icons .more {
+.list .list-icons .more {
   padding: 5px 5px 0 5px;
   border-radius: 3px;
   cursor: pointer;
 }
-.list-container .list .list-icons .more:hover {
+.list .list-icons .more:hover {
   color: inherit;
   background: #c4c9cc;
 }
-.list-container .list .list-icons .subscribed {
+.list .list-icons .subscribed {
   display: none;
 }
-.list-container .list .list-icons.is-subscribed .subscribed {
+.list .list-icons.is-subscribed .subscribed {
   display: inline-block;
 }
-.list-container .list .modal {
+.list .modal {
   top: 40px;
   left: 240px;
   width: 300px;
@@ -123,20 +125,20 @@ textarea.formated {
   background: #fff;
   color: #4d4d4d;
 }
-.list-container .list .modal hr {
+.list .modal hr {
   width: 270px;
 }
-.list-container .list .modal .actions {
+.list .modal .actions {
   font-weight: bold;
 }
-.list-container .list .modal .actions .action {
+.list .modal .actions .action {
   padding: 7px 10px;
 }
-.list-container .list .modal .actions .action:hover {
+.list .modal .actions .action:hover {
   background: #0079bf;
   color: #fff;
 }
-.list-container .add-card a {
+.add-card a {
   display: block;
   box-sizing: border-box;
   height: 30px;
@@ -145,29 +147,29 @@ textarea.formated {
   color: #8c8c8c;
   cursor: pointer;
 }
-.list-container .add-card a:hover {
+.add-card a:hover {
   text-decoration: underline;
   color: #4d4d4d;
   background: #c4c9cc;
 }
-.list-container .add-card a + form {
+.add-card a + form {
   display: none;
 }
-.list-container .add-card form {
+.add-card form {
   display: block;
 }
-.list-container .add-card form textarea {
+.add-card form textarea {
   box-sizing: border-box;
   width: 254px;
   padding: 5px;
 }
-.list-container .add-card form .form-controls {
+.add-card form .form-controls {
   display: block;
   height: 35px;
   overflow: hidden;
   transition: height 0.25s;
 }
-.list-container .add-card form .form-controls input[type="submit"] {
+.add-card form .form-controls input[type="submit"] {
   padding: 0 20px;
   min-height: 30px;
   box-shadow: 0 1px 0 #3f6f21;
@@ -177,19 +179,22 @@ textarea.formated {
   font-weight: bold;
   cursor: pointer;
 }
-.list-container .add-card form .form-controls input[type="submit"]:hover {
+.add-card form .form-controls input[type="submit"]:hover {
   background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
-.list-container .add-card form .form-controls .close {
+.add-card form .form-controls .close {
   display: inline-block;
   float: none;
   margin: 0 0 0 5px;
 }
-.list-container .add-card form .form-controls .close:hover {
+.add-card form .form-controls .close:hover {
   background: inherit;
 }
-.list-container .add-card form .form-controls .close i {
+.add-card form .form-controls .close i {
   vertical-align: middle;
+}
+.cards {
+  min-height: 10px;
 }
 .card {
   box-sizing: border-box;
@@ -199,6 +204,7 @@ textarea.formated {
   border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   background: #fff;
+  cursor: pointer;
 }
 .card .edit {
   display: none;
@@ -331,6 +337,19 @@ textarea.formated {
   border: 1px solid #0079bf;
   border-bottom: 1px solid;
   color: #fff;
+}
+.sortable-card-placeholder {
+  padding: 7px;
+  border-radius: 3px;
+  background: #a5acb0;
+}
+.sortable-list-placeholder {
+  background: #026aa7;
+  display: inline-block;
+  border-radius: 3px;
+}
+.tilted {
+  transform: rotate(5deg);
 }
 .material-icons.md-14 {
   font-size: 14px;

@@ -9,7 +9,7 @@ var ListFormView = Backbone.View.extend({
     var $input = $form.find('[name=list_name]');
     var data = {
       name: $input.val().trim(),
-      position: $('.list').length + 1,
+      position: $('.list').length,
     };
 
     if (data.name) {

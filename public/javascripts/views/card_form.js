@@ -14,7 +14,7 @@ var CardFormView = Backbone.View.extend({
     var $input = $form.find('[name=card_name]');
     var data = {
       name: $input.val().trim(),
-      position: this.$el.closest('.list').find('.card').length + 1,
+      position: this.$el.closest('.list').find('.card').length,
       list_id: this.model.id,
     };
 

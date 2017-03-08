@@ -57,7 +57,7 @@ this["JST"]["copy_list_form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"
 },"useData":true});
 
 this["JST"]["list_actions"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<h3>List Actions\n<span class=\"close\"><i class=\"material-icons md-16\">close</i></span>\n</h3>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action copy-list\">Copy List...</li>\n<li class=\"action move-list\">Move List...</li>\n<li class=\"action\">Subscribe...</li>\n</ul>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action\">Move All cards in This List...</li>\n<li class=\"action\">Archive All Cards in This List...</li>\n</ul>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action archive\">Archive This List</li>\n</ul>\n";
+    return "<h3>List Actions\n<span class=\"close\"><i class=\"material-icons md-16\">close</i></span>\n</h3>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action copy-list\">Copy List...</li>\n<li class=\"action move-list\">Move List...</li>\n<li class=\"action\">Subscribe...</li>\n</ul>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action\">Move All cards in This List...</li>\n<li class=\"action archive-cards\">Archive All Cards in This List...</li>\n</ul>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action archive-list\">Archive This List</li>\n</ul>\n";
 },"useData":true});
 
 this["JST"]["lists"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {

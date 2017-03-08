@@ -62,7 +62,7 @@ var CardsView = Backbone.View.extend({
   },
   initialize: function () {
     this.render();
-    this.listenTo(this.collection, 'create_card sync:create', this.render);
+    this.listenTo(this.collection, 'create_card sync:create archive_cards', this.render);
     this.bindSortingEvents();
     this.listenTo(App, 'render_board', this.remove);
   },

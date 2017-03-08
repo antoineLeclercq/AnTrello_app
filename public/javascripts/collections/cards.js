@@ -6,7 +6,7 @@ var Cards = Backbone.Collection.extend({
     collectionHelpers.updatePositionsAndSort.call(this, action, movedCard);
   },
   update: function (card) {
-    this.sync('update', card);
+    card.save();
   },
   createCard: function (card) {
     this.create(card, {
@@ -15,10 +15,14 @@ var Cards = Backbone.Collection.extend({
       }.bind(this),
     });
   },
+  archiveCards: function () {
+    _.invoke(this.toArray(), 'destroy');
+  },
   initialize: function () {
     this.on({
       'create_card': this.createCard,
       'change': this.update,
+      'archive_cards': this.archiveCards,
     });
 
     this.on('move_card_remove', function (card) {

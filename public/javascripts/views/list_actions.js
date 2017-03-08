@@ -3,6 +3,9 @@ var ListActionsView = Backbone.View.extend({
   events: {
     'click .move-list': 'renderMoveListView',
     'click .copy-list': 'renderCopyListView',
+    'click .archive-list': 'archiveList',
+    'click .archive-cards': 'archiveCards',
+    'click .move-cards': 'moveCards',
   },
   renderMoveListView: function () {
     App.trigger('render_move_list_form');
@@ -17,6 +20,12 @@ var ListActionsView = Backbone.View.extend({
     new CopyListView({
       model: this.model,
     });
+  },
+  archiveList: function () {
+    App.lists.trigger('archive_list', this.model);
+  },
+  archiveCards: function () {
+    this.model.get('cards').trigger('archive_cards');
   },
   render: function () {
     this.$el.html(this.template());

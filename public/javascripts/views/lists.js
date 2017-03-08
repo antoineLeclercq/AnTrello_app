@@ -6,7 +6,6 @@ var ListsView = Backbone.View.extend({
     'click .list > .overlay, .list > .modal .close, .list > header .more': 'toggleMoreOptionsModal',
     'click .overlay-header': 'preventFocus',
     'focusout .title': 'updateListName',
-    'click .actions .archive': 'destroyList',
   },
   renderMorOptionsView: function (e) {
     var list = this.collection.get($(e.target).closest('.list').attr('data-id'));
@@ -34,12 +33,6 @@ var ListsView = Backbone.View.extend({
     }
 
     $titleTextarea.prev().show();
-  },
-  destroyList: function (e) {
-    var listId = $(e.target).closest('.list').attr('data-id');
-    var list = this.collection.get(listId);
-
-    this.collection.trigger('destroy_list', list);
   },
   render: function () {
     var lists = this.collection.toJSON();
@@ -95,7 +88,7 @@ var ListsView = Backbone.View.extend({
   },
   initialize: function () {
     this.render();
-    this.listenTo(this.collection, 'create_list destroy_list sync:create sync:copy move_list', this.render);
+    this.listenTo(this.collection, 'create_list archive_list sync:create sync:copy move_list', this.render);
     this.bindSortingEvents();
   },
 });

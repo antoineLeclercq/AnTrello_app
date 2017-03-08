@@ -3,7 +3,7 @@ var Lists = Backbone.Collection.extend({
   url: '/lists',
   comparator: 'position',
   update: function (list) {
-    this.sync('update', list);
+    list.save();
   },
   updatePositionsAndSort: function (action, movedList) {
     collectionHelpers.updatePositionsAndSort.call(this, action, movedList);
@@ -41,16 +41,15 @@ var Lists = Backbone.Collection.extend({
       }.bind(this),
     });
   },
-  deleteList: function (list) {
-    this.sync('delete', list);
-    this.remove(list);
+  archiveList: function (list) {
+    list.destroy();
     this.trigger('move_list_remove', list);
   },
   initialize: function () {
     this.on({
       'create_list': this.createList,
       'copy_list': this.copyList,
-      'destroy_list': this.deleteList,
+      'archive_list': this.archiveList,
       'change:position': this.update,
       'change:name': this.update,
     });

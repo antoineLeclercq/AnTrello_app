@@ -1,7 +1,8 @@
 var ListFormView = Backbone.View.extend({
-  el: $('.add-list').get(0),
+  el: $('.container > .add-list').get(0),
   events: {
     'submit form': 'createList',
+    'click': 'toggleForm',
   },
   createList: function (e) {
     e.preventDefault();
@@ -14,10 +15,13 @@ var ListFormView = Backbone.View.extend({
 
     if (data.name) {
       App.lists.trigger('create_list', data);
-      $form.removeClass('show');
       $input.val('');
+      this.$el.removeClass('show');
     } else {
       $input.focus();
     }
   },
+  toggleForm: function (e) {
+    this.$el.toggleClass('show', $(e.target).closest('.close').length);
+  }
 });

@@ -3,18 +3,19 @@ $colors = {}
 $colors['light-blue'] = #BCD9EA
 $colors['light-blue-gradient-bottom'] = linear-gradient(to bottom,rgba(255,255,255,.3) 0,rgba(255,255,255,.2) 100%)
 $colors['light-blue-gradient-top'] = linear-gradient(to top,rgba(255,255,255,.3) 0,rgba(255,255,255,.2) 100%)
-$colors['blue'] =#0079BF
-$colors['darker-blue'] = #026AA7
+$colors['blue'] = #0079BF
+$colors['dark-blue'] = #026AA7
+$colors['darker-blue'] = #055A8C
 
 $colors['lighter-grey'] = #EDEFF0
 $colors['light-grey'] = #D6DADC
 $colors['grey'] = #C4C9CC
 $colors['dark-grey'] = #A5ACB0
-$colors['darker-grey'] = #8c8c8c
+$colors['darker-grey'] = #8C8C8C
 
-$colors['light-black'] = #4d4d4d
+$colors['light-black'] = #4D4D4D
 
-$colors['white-gradient'] = linear-gradient(to bottom,#fff 0,#F8F9F9 100%)
+$colors['white-gradient'] = linear-gradient(to bottom, #FFFFFF 0, #F8F9F9 100%)
 
 $colors['green-gradient-bottom'] = linear-gradient(to bottom, #61BD4F 0, #5AAC44 100%)
 $colors['green-gradient-top'] = linear-gradient(to top, #61BD4F 0, #5AAC44 100%)
@@ -39,6 +40,7 @@ $shadows = {
   bottom-green: 0 1px 0 #3F6F21
   inside: inset 0 1px 8px rgba(0,0,0,.15)
   bottom: 0 1px 2px rgba(0, 0, 0, 0.2)
+  all-sides-blue: 0 0 2px $colors.blue
 }
 
 submit-btn()
@@ -69,3 +71,41 @@ form-controls()
         background: inherit
       i
         vertical-align: middle
+
+label-select()
+  dl
+    position: relative
+    margin: 0 0 15px 0
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    padding: 5px
+    border: 1px solid $colors.light-grey
+    border-bottom: 1px solid $colors.grey
+    border-radius: $radius.main
+    background: $colors.white-gradient
+    font-weight: bold
+    cursor: pointer
+    h5
+      margin: 0 0 7px 0
+      color: $colors.darker-grey
+      font-size: 12px
+    p
+      color: $colors.light-black
+      font-size: 18px
+    &:hover
+      border: 1px solid $colors.blue
+      border-bottom: 1px solid $colors.dark-blue
+      background: $colors.blue
+      h5
+        color: $colors.lighter-grey
+      p
+        color: white
+  select
+    position: absolute
+    height: 100%
+    top: 0
+    left: 0
+    width: 100%
+    opacity: 0

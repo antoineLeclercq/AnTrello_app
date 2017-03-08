@@ -2,10 +2,19 @@ var ListsView = Backbone.View.extend({
   el: $('#lists').get(0),
   template: App.templates.lists,
   events: {
+    'click .list > header .more': 'renderMorOptionsView',
     'click .list > .overlay, .list > .modal .close, .list > header .more': 'toggleMoreOptionsModal',
     'click .overlay-header': 'preventFocus',
     'focusout .title': 'updateListName',
     'click .actions .archive': 'destroyList',
+  },
+  renderMorOptionsView: function (e) {
+    var list = this.collection.get($(e.target).closest('.list').attr('data-id'));
+
+    App.trigger('render_actions');
+    new ListActionsView({
+      model: list,
+    });
   },
   toggleMoreOptionsModal: function (e) {
     var $list = $(e.target).closest('.list');
@@ -58,6 +67,7 @@ var ListsView = Backbone.View.extend({
       items: '> li',
       tolerance: 'pointer',
       handle: '> header',
+      delay: 150
     });
 
     this.$el.disableSelection();
@@ -68,7 +78,7 @@ var ListsView = Backbone.View.extend({
     });
   },
   updateListsInfoOnDrop: function () {
-    this.$el.on('sortstop', this.updateListsOnSort.bind(this))
+    this.$el.on('sortstop', this.updateListsOnSort.bind(this));
   },
   updateListsOnSort: function (event, ui) {
     if (event.target !== event.currentTarget) { return; }
@@ -85,7 +95,7 @@ var ListsView = Backbone.View.extend({
   },
   initialize: function () {
     this.render();
-    this.listenTo(this.collection, 'create_list destroy_list sync:create', this.render);
+    this.listenTo(this.collection, 'create_list destroy_list sync:create sync:copy move_list', this.render);
     this.bindSortingEvents();
   },
 });

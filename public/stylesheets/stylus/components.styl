@@ -59,6 +59,10 @@ textarea
   &:hover
     color: $colors.light-black
 
+.prev
+  float: left
+  vertical-align: middle
+  cursor: pointer
 
 #lists
   float: left
@@ -78,10 +82,11 @@ textarea
   vertical-align: top
   header
     position: relative
+    cursor: pointer
   .overlay-header
     position: absolute
     top: 0
-    right: 0
+    right: 30px
     bottom: 0
     left: 0
     cursor: pointer
@@ -124,9 +129,34 @@ textarea
       font-weight: bold
       .action
         padding: 7px 10px
+        cursor: pointer
         &:hover
           background: $colors.blue
           color: white
+
+.move
+  padding: 12px
+  label-select()
+  input[type="submit"]
+    submit-btn()
+
+.copy
+  padding: 12px
+  dl
+    margin: 0 0 15px 0
+    dt
+      margin: 0 0 15px 0
+    textarea
+      width: 95%
+      min-height: 60px
+      padding: 5px
+      border: 1px solid $colors.grey
+      &:focus
+        border: 1px solid $colors.blue
+        box-shadow: $shadows.all-sides-blue
+  input[type="submit"]
+    submit-btn()
+
 .add-card
   a
     display: block
@@ -270,7 +300,7 @@ textarea
   background: $colors.dark-grey
 
 .sortable-list-placeholder
-  background: $colors.darker-blue
+  background: $colors.dark-blue
   display: inline-block
   border-radius: $radius.main
 

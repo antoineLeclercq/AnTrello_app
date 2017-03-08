@@ -1,0 +1,28 @@
+<h3>
+  <span class="prev"><i class="material-icons md-16">arrow_back</i></span>
+  MoveList
+  <span class="close"><i class="material-icons md-16">close</i></span>
+</h3>
+<hr/>
+<form>
+  <dl>
+    <dt>
+      <label>
+        <h5>Position</h5>
+        <p>{{currentPosition}}</p>
+      </label>
+    </dt>
+    <dd>
+      <select>
+        {{#each positions}}
+          {{#if current}}
+            <option value="{{current}}" selected>{{current}} (current)</option>
+          {{else}}
+            <option value="{{position}}">{{position}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
+    </dd>
+  </dl>
+  <input type="submit" value="Move">
+</form>

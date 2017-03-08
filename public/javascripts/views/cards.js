@@ -26,6 +26,7 @@ var CardsView = Backbone.View.extend({
       forcePlaceholderSize: true,
       placeholder: "sortable-card-placeholder",
       items: '> li',
+      delay: 150
     });
 
     this.$el.disableSelection();

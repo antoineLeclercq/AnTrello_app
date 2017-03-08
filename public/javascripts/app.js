@@ -5,9 +5,7 @@ var App = {
     this.renderCardFormView();
     this.renderListFormView();
 
-    this.bindToggleAddListFormEvents();
     this.bindAutoResizeTextareaEvent();
-
     this.bindEvents();
   },
   renderLists: function () {
@@ -23,18 +21,6 @@ var App = {
   },
   renderListFormView: function () {
     new ListFormView();
-  },
-  bindToggleAddListFormEvents: function () {
-    $('.add-list').on('click', function (e) {
-      var $div = $(e.currentTarget);
-
-      if ($(e.target).closest('.close').length) {
-        e.preventDefault();
-        $div.removeClass('show');
-      } else {
-        $div.addClass('show');
-      }
-    });
   },
   bindAutoResizeTextareaEvent: function () {
     $('textarea').on('keypress', function (e) {

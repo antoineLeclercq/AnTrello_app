@@ -15,6 +15,32 @@ var Lists = Backbone.Collection.extend({
       }.bind(this),
     });
   },
+  copyList: function (list, newName) {
+    var position = list.get('position') + 1;
+    var newListData = {
+      name: newName,
+      position: position,
+    };
+    var cardsData = list.get('cards').toJSON().map(function (card) {
+      return _.omit(card, ['id', 'subscriber']);
+    });
+    var newList;
+
+    this.create(newListData, {
+      success: function (data) {
+        newList = this.get(data.id);
+        this.updatePositionsAndSort('add', newList);
+
+        newList.set('cards', new Cards());
+        cardsData.forEach(function (card) {
+          card.list_id = newList.id;
+          newList.get('cards').trigger('create_card', card);
+        });
+
+        this.trigger('sync:copy');
+      }.bind(this),
+    });
+  },
   deleteList: function (list) {
     this.sync('delete', list);
     this.remove(list);
@@ -23,6 +49,7 @@ var Lists = Backbone.Collection.extend({
   initialize: function () {
     this.on({
       'create_list': this.createList,
+      'copy_list': this.copyList,
       'destroy_list': this.deleteList,
       'change:position': this.update,
       'change:name': this.update,

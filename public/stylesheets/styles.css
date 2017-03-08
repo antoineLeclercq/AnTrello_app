@@ -67,6 +67,11 @@ textarea.formated {
 .close:hover {
   color: #4d4d4d;
 }
+.prev {
+  float: left;
+  vertical-align: middle;
+  cursor: pointer;
+}
 #lists {
   float: left;
   height: 100%;
@@ -86,11 +91,12 @@ textarea.formated {
 }
 .list header {
   position: relative;
+  cursor: pointer;
 }
 .list .overlay-header {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 30px;
   bottom: 0;
   left: 0;
   cursor: pointer;
@@ -144,10 +150,102 @@ textarea.formated {
 }
 .list .modal .actions .action {
   padding: 7px 10px;
+  cursor: pointer;
 }
 .list .modal .actions .action:hover {
   background: #0079bf;
   color: #fff;
+}
+.move {
+  padding: 12px;
+}
+.move dl {
+  position: relative;
+  margin: 0 0 15px 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  border: 1px solid #d6dadc;
+  border-bottom: 1px solid #c4c9cc;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #fff 0, #f8f9f9 100%);
+  font-weight: bold;
+  cursor: pointer;
+}
+.move dl h5 {
+  margin: 0 0 7px 0;
+  color: #8c8c8c;
+  font-size: 12px;
+}
+.move dl p {
+  color: #4d4d4d;
+  font-size: 18px;
+}
+.move dl:hover {
+  border: 1px solid #0079bf;
+  border-bottom: 1px solid #026aa7;
+  background: #0079bf;
+}
+.move dl:hover h5 {
+  color: #edeff0;
+}
+.move dl:hover p {
+  color: #fff;
+}
+.move select {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+.move input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.move input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
+}
+.copy {
+  padding: 12px;
+}
+.copy dl {
+  margin: 0 0 15px 0;
+}
+.copy dl dt {
+  margin: 0 0 15px 0;
+}
+.copy dl textarea {
+  width: 95%;
+  min-height: 60px;
+  padding: 5px;
+  border: 1px solid #c4c9cc;
+}
+.copy dl textarea:focus {
+  border: 1px solid #0079bf;
+  box-shadow: 0 0 2px #0079bf;
+}
+.copy input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.copy input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
 .add-card a {
   display: block;
@@ -346,7 +444,7 @@ textarea.formated {
 #card-details .container aside .action:hover {
   background: #0079bf;
   border: 1px solid #0079bf;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #026aa7;
   color: #fff;
 }
 .sortable-card-placeholder {

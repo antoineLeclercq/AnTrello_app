@@ -1,0 +1,14 @@
+<h3>
+  <span class="prev"><i class="material-icons md-16">arrow_back</i></span>
+  Move All Cards in List
+  <span class="close"><i class="material-icons md-16">close</i></span>
+</h3>
+<hr/>
+<form>
+  <ul class="actions">
+    <li class="action">{{current}} (current)</li>
+    {{#each lists}}
+      <li class="action" data-id="{{id}}">{{name}}</li>
+    {{/each}}
+  </ul>
+</form>

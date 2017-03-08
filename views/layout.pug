@@ -51,7 +51,8 @@ html
     +js_scripts("helpers/collection_helpers", "view_helpers")
     +js_scripts("models/list", "card")
     +js_scripts("collections/lists", "cards")
-    +js_scripts("views/lists", "cards", "card", "list_form", "card_form", "list_actions", "move_list", "copy_list")
+    +js_scripts("views/lists", "cards", "card", "list_form", "card_form")
+    +js_scripts("views/list_actions/list_actions", "move_list", "copy_list", "move_cards")
 
     script.
       App.lists = new Lists(!{JSON.stringify(data.lists)});

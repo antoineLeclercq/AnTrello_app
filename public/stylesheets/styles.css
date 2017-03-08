@@ -247,6 +247,14 @@ textarea.formated {
 .copy input[type="submit"]:hover {
   background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
+.move-all-cards .actions .action:first-child {
+  color: #8c8c8c;
+  cursor: auto;
+}
+.move-all-cards .actions .action:first-child:hover {
+  background: #fff;
+  color: #8c8c8c;
+}
 .add-card a {
   display: block;
   box-sizing: border-box;

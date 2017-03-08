@@ -5,27 +5,25 @@ var ListActionsView = Backbone.View.extend({
     'click .copy-list': 'renderCopyListView',
     'click .archive-list': 'archiveList',
     'click .archive-cards': 'archiveCards',
-    'click .move-cards': 'moveCards',
+    'click .move-cards': 'renderMoveCardsView',
   },
   renderMoveListView: function () {
     App.trigger('render_move_list_form');
-
-    new MoveListView({
-      model: this.model,
-    });
+    new MoveListView({ model: this.model });
   },
   renderCopyListView: function () {
     App.trigger('render_copy_list_form');
-
-    new CopyListView({
-      model: this.model,
-    });
+    new CopyListView({ model: this.model });
   },
   archiveList: function () {
     App.lists.trigger('archive_list', this.model);
   },
   archiveCards: function () {
     this.model.get('cards').trigger('archive_cards');
+  },
+  renderMoveCardsView: function () {
+    App.trigger('render_move_cards_form');
+    new MoveCardsView({ model: this.model });
   },
   render: function () {
     this.$el.html(this.template());

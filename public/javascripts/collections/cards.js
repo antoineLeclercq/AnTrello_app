@@ -18,11 +18,21 @@ var Cards = Backbone.Collection.extend({
   archiveCards: function () {
     _.invoke(this.toArray(), 'destroy');
   },
+  addAndUpdate: function (cards) {
+    var cardIds = _.pluck(cards, 'id');
+
+    this.add(cards);
+    _.invoke(this.filter(function (card) {
+      return _.contains(cardIds, card.get('id'));
+    }), 'save');
+  },
   initialize: function () {
     this.on({
       'create_card': this.createCard,
       'change': this.update,
       'archive_cards': this.archiveCards,
+      'remove_cards': this.reset,
+      'add_cards': this.addAndUpdate,
     });
 
     this.on('move_card_remove', function (card) {

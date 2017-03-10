@@ -12,6 +12,7 @@ $colors['light-grey'] = #D6DADC
 $colors['grey'] = #C4C9CC
 $colors['dark-grey'] = #A5ACB0
 $colors['darker-grey'] = #8C8C8C
+$colors['grey-gradient-top'] = linear-gradient(to top, $colors.light-grey 0, $colors.lighter-grey 100%)
 
 $colors['light-black'] = #4D4D4D
 
@@ -19,6 +20,9 @@ $colors['white-gradient'] = linear-gradient(to bottom, #FFFFFF 0, #F8F9F9 100%)
 
 $colors['green-gradient-bottom'] = linear-gradient(to bottom, #61BD4F 0, #5AAC44 100%)
 $colors['green-gradient-top'] = linear-gradient(to top, #61BD4F 0, #5AAC44 100%)
+
+$colors['red'] = #B04632
+$colors['red-gradient-bottom'] = linear-gradient(to bottom, #CF513D 0, $colors.red 100%)
 
 $heights = {
   header: 40px
@@ -38,6 +42,7 @@ $radius = {
 
 $shadows = {
   bottom-green: 0 1px 0 #3F6F21
+  bottom-light-black: 0 1px 0 $colors.light-black
   inside: inset 0 1px 8px rgba(0,0,0,.15)
   bottom: 0 1px 2px rgba(0, 0, 0, 0.2)
   all-sides-blue: 0 0 2px $colors.blue

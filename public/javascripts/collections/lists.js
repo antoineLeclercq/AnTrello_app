@@ -31,7 +31,7 @@ var Lists = Backbone.Collection.extend({
         newList = this.get(data.id);
         this.updatePositionsAndSort('add', newList);
 
-        newList.set('cards', new Cards());
+        newList.set('cards', new ListCards());
         cardsData.forEach(function (card) {
           card.list_id = newList.id;
           newList.get('cards').trigger('create_card', card);

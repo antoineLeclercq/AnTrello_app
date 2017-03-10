@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 var helpers = {
   validRoutesAndDBInfo: {
     lists: {
@@ -18,6 +20,9 @@ var helpers = {
       table: 'activity',
     }
   },
-}
+  isValidCardId: function (id, cards) {
+    return _.findWhere(cards, { id: id });
+  },
+};
 
 module.exports = helpers;

@@ -1,6 +1,6 @@
-describe('Cards Collection', function () {
+describe('List Cards Collection', function () {
   beforeEach(function () {
-    this.cards = new Cards(cards_scaffold);
+    this.cards = new ListCards(cards_scaffold);
   });
 
   it('creates new collection of cards', function () {

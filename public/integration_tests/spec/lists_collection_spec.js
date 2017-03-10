@@ -1,6 +1,9 @@
 describe('Lists Collection', function () {
   beforeEach(function () {
     this.lists = new Lists(lists_scaffold);
+    this.lists.each(function (list) {
+      list.set('cards', new ListCards(_.where(cards_scaffold, { list_id: list.id })));
+    });
   });
 
   it('creates new collection of lists', function () {

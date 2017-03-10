@@ -42,7 +42,7 @@ var ListsView = Backbone.View.extend({
     App.trigger('render_board');
 
     this.collection.each(function (list) {
-      new CardsView({
+      new ListCardsView({
         collection: list.get('cards'),
         el: this.$el.find('.list[data-id=' + list.id + '] .cards').get(0),
       });

@@ -1,11 +1,12 @@
 var router = new (Backbone.Router.extend({
   routes: {
+    'card/:id': 'cardDetailsView',
   },
-  indexView: function () {
-    App.indexView();
+  cardDetailsView: function (id) {
+    App.cardDetailsView(id);
   },
   initialize: function () {
-    this.route(/^\/?$/, 'index', this.indexView);
+    this.route(/^\/?$/, 'index');
   },
 }))();
 

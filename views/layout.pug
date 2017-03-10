@@ -5,6 +5,7 @@ html
   head
     title AnTrello
     link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    link(rel='stylesheet', href='/stylesheets/vendor/jquery-ui/base/jquery-ui.min.css')
     link(rel='stylesheet', href='/stylesheets/styles.css')
     +js_scripts("vendor/all")
     +js_scripts("handlebars_templates")
@@ -50,12 +51,14 @@ html
     +js_scripts("app")
     +js_scripts("helpers/collection_helpers", "view_helpers")
     +js_scripts("models/list", "card")
-    +js_scripts("collections/lists", "cards")
-    +js_scripts("views/lists", "cards", "card", "list_form", "card_form")
+    +js_scripts("collections/lists", "list_cards", "cards")
+    +js_scripts("views/lists", "list_cards", "card", "list_form", "card_form")
     +js_scripts("views/list_actions/list_actions", "move_list", "copy_list", "move_cards")
+    +js_scripts("views/card_actions/due_date")
 
     script.
       App.lists = new Lists(!{JSON.stringify(data.lists)});
-      var a = !{JSON.stringify(data.lists)};
+      App.cards = new Cards(!{JSON.stringify(data.cards)});
+      App.indexView();
 
     +js_scripts("router")

@@ -1,6 +1,13 @@
 var App = {
   templates: JST,
+  addCardsToLists: function () {
+    App.lists.each(function (list) {
+      list.set('cards', new ListCards(this.cards.where({ list_id: list.id })));
+    }.bind(this));
+  },
   indexView: function () {
+    this.addCardsToLists();
+
     this.renderLists();
     this.renderCardFormView();
     this.renderListFormView();
@@ -18,9 +25,15 @@ var App = {
         el: $('.list[data-id=' + listModel.id + '] .add-card').get(0),
       });
     });
+
+    this.bindAutoResizeTextareaEvent();
   },
   renderListFormView: function () {
     new ListFormView();
+  },
+  cardDetailsView: function (id) {
+    new CardView({ model: this.cards.get(id) });
+    this.bindAutoResizeTextareaEvent();
   },
   bindAutoResizeTextareaEvent: function () {
     $('textarea').on('keypress', function (e) {
@@ -37,4 +50,15 @@ _.extend(App, Backbone.Events);
 $('main > .container').css({
   'min-width': screen.availWidth,
   'min-height': screen.availHeight - 200
+});
+
+Handlebars.registerHelper('format_date', function (date) {
+  return moment(date).calendar(null, {
+      lastDay : '[Yesterday at] LT',
+      sameDay : '[Today at] LT',
+      nextDay : '[Tomorrow at] LT',
+      lastWeek : 'MMM DD [at] LT',
+      nextWeek : 'MMM DD [at] LT',
+      sameElse : 'MMM DD [at] LT'
+  });
 });

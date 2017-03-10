@@ -1,5 +1,1 @@
-var List = Backbone.Model.extend({
-  initialize: function () {
-    this.set('cards', new Cards(this.get('cards')));
-  },
-});
+var List = Backbone.Model.extend();

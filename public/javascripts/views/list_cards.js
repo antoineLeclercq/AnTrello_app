@@ -1,4 +1,4 @@
-var CardsView = Backbone.View.extend({
+var ListCardsView = Backbone.View.extend({
   template: App.templates.cards,
   events: {
     'click .card': 'displayCard',
@@ -16,9 +16,7 @@ var CardsView = Backbone.View.extend({
     var cardId = $card.attr('data-id');
     var card = this.collection.get(cardId);
 
-    new CardView({
-      model: card
-    });
+    router.navigate('/card/' + cardId, { trigger: true });
   },
   sortableAndMoveableCards: function() {
     this.$el.sortable({
@@ -62,7 +60,7 @@ var CardsView = Backbone.View.extend({
   },
   initialize: function () {
     this.render();
-    this.listenTo(this.collection, 'create_card sync:create archive_cards remove_cards add_cards', this.render);
+    this.listenTo(this.collection, 'create_card sync:create archive_cards archive_card remove_cards add_cards change', this.render);
     this.bindSortingEvents();
     this.listenTo(App, 'render_board', this.remove);
   },

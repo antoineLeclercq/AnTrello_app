@@ -2,27 +2,47 @@
 <div class="container">
   <i class="material-icons md-30 close">close</i>
   <div class="details">
-    <section>
+    <section class="name">
       <header>
         <i class="material-icons">web_asset</i>
-        <h1>{{name}}</h1>
+        <textarea class="title formated" rows="1">{{name}}</textarea>
       </header>
       <p>in list <a href="#">{{listName}}</a></p>
-      <ul class="labels">
-        {{#each labels}}
-        <li class="label" style="background: {{color}};"></li>
-        {{/each}}
-      </ul>
-      <div class="description">
-        {{#if description}}
-        <h3>Description <a href="#">Edit</a></h3>
-        <p>{{description}}<p>
-        {{else}}
-        <i class="material-icons md-16">subject</i>
-        <a href="#">Edit the description...</a>
-        {{/if}}
-      </div>
     </section>
+    <div class="attributes">
+      {{#if labels}}
+      <section class="labels">
+        <h3>Labels</h3>
+        <ul class="labels">
+          {{#each labels}}
+          <li class="label" style="background: {{color}};"></li>
+          {{/each}}
+        </ul>
+      </section>
+      {{/if}}
+      {{#if due_date}}
+      <section class="date">
+        <h3>Due Date</h3>
+        <p><a class="due-date" href="#">{{format_date due_date}}</a></p>
+      </section>
+      {{/if}}
+      <section class="description">
+        {{#if description}}
+        <h3>Description</h3>
+        <a href="#"><span>Edit</span>
+        <p>{{description}}<p></a>
+        {{else}}
+        <a href="#"><i class="material-icons md-16">subject</i><span>Edit the description...</span></a>
+        {{/if}}
+        <form>
+          <textarea>{{description}}</textarea>
+          <div class="form-controls">
+            <input type="submit" value="Save">
+            <a class="close" href="#"><i class="material-icons md-30">close</i></a>
+          </div>
+        </form>
+      </section>
+    </div>
     <section class="add-comment">
       <header>
         <i class="material-icons">comment</i>
@@ -48,19 +68,18 @@
   <aside>
     <section class="add">
       <h1>Add</h1>
-      <ul>
       <ul class="actions">
-        <li class="action">Labels</li>
-        <li class="action">Due Date</li>
+        <li class="action labels">Labels</li>
+        <li class="action due-date">Due Date</li>
       </ul>
     </section>
     <section class="card-actions">
       <h1>Actions</h1>
       <ul class="actions">
-        <li class="action">Move</li>
-        <li class="action">Copy</li>
-        <li class="action">Subscribe</li>
-        <li class="action">Archive</li>
+        <li class="action move">Move</li>
+        <li class="action copy">Copy</li>
+        <li class="action subscribe">Subscribe</li>
+        <li class="action archive">Archive</li>
       </ul>
     </section>
   </aside>

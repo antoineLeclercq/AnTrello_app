@@ -103,9 +103,11 @@ var lists = {
 };
 
 var cards = {
-  insert: function (options, task) {
-    
-  }
+  all: function (task) {
+    storage.query({
+      query: queries.allCards,
+    }, task);
+  },
 };
 
 var comments = {

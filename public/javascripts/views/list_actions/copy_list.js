@@ -1,4 +1,5 @@
 var CopyListView = Backbone.View.extend({
+  tagName: 'section',
   attributes: {
     class: 'copy',
   },

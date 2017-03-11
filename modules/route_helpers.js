@@ -14,6 +14,10 @@ var helpers = {
       table: 'comment',
     },
     labels: {
+      table: 'label',
+      colNames: ['name'],
+    },
+    card_label: {
       table: 'card_label',
       colNames: ['card_id', 'label_id'],
     },

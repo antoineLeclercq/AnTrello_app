@@ -272,11 +272,15 @@ textarea.formated {
 }
 #card-details .details .attributes .label {
   display: inline-block;
+  box-sizing: border-box;
   height: 30px;
   min-width: 40px;
+  padding: 6px 0 0 0;
   border-radius: 3px;
+  vertical-align: top;
   font-weight: bold;
   color: #fff;
+  text-align: center;
   cursor: pointer;
 }
 #card-details .details .attributes .date .due-date {
@@ -609,13 +613,13 @@ textarea.formated {
   color: #4d4d4d;
   font-size: 12px;
 }
-.due-date-form form fieldset label input[type="time"] {
-  font-family: Helvetica;
-}
 .due-date-form form fieldset label input:focus {
   border: 1px solid #0079bf;
   box-shadow: 0 0 2px #0079bf;
   background: #fff;
+}
+.due-date-form form fieldset label input[type="time"] {
+  font-family: Helvetica;
 }
 .due-date-form form .datepicker {
   margin: 0 0 15px 0;
@@ -652,8 +656,12 @@ textarea.formated {
   box-sizing: border-box;
   height: 35px;
   width: 210px;
+  padding: 9px 0 0 9px;
   margin: 0 5px 5px 0;
   border-radius: 3px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
   cursor: pointer;
   transition: border-left 0s, width 0s, margin-left 0s;
 }
@@ -664,7 +672,7 @@ textarea.formated {
   transition: border-left 0.075s, width 0.075s, margin-left 0.075s;
 }
 .labels-form .label .check {
-  padding: 8px 8px 0 0;
+  padding-right: 8px;
   float: right;
   color: #fff;
 }
@@ -683,6 +691,38 @@ textarea.formated {
 .labels-form .edit:hover {
   background: #d6dadc;
   color: #4d4d4d;
+}
+.edit-label-form label {
+  display: block;
+  margin: 0 0 10px 0;
+}
+.edit-label-form input[type="text"] {
+  width: 95%;
+  padding: 5px;
+  margin: 5px 0 0 0;
+  border: 1px solid #c4c9cc;
+  box-shadow: inset 0 1px 8px rgba(0,0,0,0.15);
+  background: #edeff0;
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.edit-label-form input[type="text"]:focus {
+  border: 1px solid #0079bf;
+  box-shadow: 0 0 2px #0079bf;
+  background: #fff;
+}
+.edit-label-form input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.edit-label-form input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
 body {
   font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif;

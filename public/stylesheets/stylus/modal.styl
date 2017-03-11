@@ -101,19 +101,9 @@
             width: 85%
         input
           width: 80%
-          padding: 5px
-          margin: 5px 0 0 0
-          border: 1px solid $colors.grey
-          box-shadow: $shadows.inside
-          background: $colors.lighter-grey
-          color: $colors.light-black
-          font-size: 12px
+          modal-input()
           &[type="time"]
             font-family: Helvetica
-          &:focus
-            border: 1px solid $colors.blue
-            box-shadow: $shadows.all-sides-blue
-            background: white
     .datepicker
       margin: 0 0 15px 0
       color: $colors.light-black
@@ -145,8 +135,12 @@
     box-sizing: border-box
     height: 35px
     width: 210px
+    padding: 9px 0 0 9px
     margin: 0 5px 5px 0
     border-radius: $radius.main
+    color: white
+    font-weight: bold
+    font-size: 14px
     cursor: pointer
     transition: border-left 0s, width 0s, margin-left 0s
     &:hover
@@ -155,7 +149,7 @@
       border-left: 8px solid rgba(0, 0, 0, 0.25)
       transition: border-left 0.075s, width 0.075s, margin-left 0.075s
     .check
-      padding: 8px 8px 0 0
+      padding-right: 8px
       float: right
       color: white
   .edit
@@ -172,3 +166,13 @@
     &:hover
       background: $colors.light-grey
       color: $colors.light-black
+
+.edit-label-form
+  label
+    display: block
+    margin: 0 0 10px 0
+  input[type="text"]
+    width: 95%
+    modal-input()
+  input[type="submit"]
+    submit-btn()

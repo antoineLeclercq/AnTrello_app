@@ -109,6 +109,14 @@ this["JST"]["due_date_form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"m
     return "<h3>\nChange Due Date\n<span class=\"close\"><i class=\"material-icons md-16\">close</i></span>\n</h3>\n<hr/>\n<form>\n<fieldset>\n<label>\n<h2>Date</h2>\n<input type=\"text\" name=\"date\">\n</label><!--\n--><label>\n<h2>Time</h2>\n<input type=\"time\" name=\"time\" value=\"12:00\">\n</label>\n</fieldset>\n<div class=\"datepicker\"></div>\n<div class=\"form-controls\">\n<input type=\"submit\" value=\"Save\">\n<input class=\"remove\" type=\"submit\" value=\"Remove\">\n</div>\n</form>\n<div class=\"overlay\"></div>\n";
 },"useData":true});
 
+this["JST"]["edit_label_form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "<h3>\nChange Label\n<span class=\"close\"><i class=\"material-icons md-16\">close</i></span>\n</h3>\n<hr/>\n<form>\n<label>\n<h2>Name</h2>\n<input type=\"text\" value=\""
+    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"name","hash":{},"data":data}) : helper)))
+    + "\" name=\"name\">\n</label>\n<input type=\"submit\" value=\"Save\">\n</form>\n<div class=\"overlay\"></div>\n";
+},"useData":true});
+
 this["JST"]["labels"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 

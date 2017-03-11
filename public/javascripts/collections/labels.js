@@ -1,4 +1,5 @@
 var Labels = Backbone.Collection.extend({
+  url: '/labels',
   model: Label,
   comparator: 'id',
   update: function (label, cardId) {
@@ -13,7 +14,7 @@ var Labels = Backbone.Collection.extend({
     }
 
     $.ajax({
-      url: '/labels',
+      url: '/card_label',
       method: method,
       data: {
         label_id: label.id,
@@ -21,9 +22,13 @@ var Labels = Backbone.Collection.extend({
       },
     });
   },
+  updateLabel: function (label) {
+    label.save();
+  },
   initialize: function () {
     this.on({
-      'toggle_card': this.update
+      'toggle_card': this.update,
+      'change:name': this.updateLabel,
     });
   },
 });

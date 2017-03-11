@@ -17,8 +17,8 @@ router.delete('/:collection/:id', function (req, res, next) {
   });
 });
 
-router.delete('/labels', function (req, res, next) {
-  var table = route_helpers.validRoutesAndDBInfo.labels.table;
+router.delete('/card_label', function (req, res, next) {
+  var table = route_helpers.validRoutesAndDBInfo.card_label.table;
   var cardId = req.body.card_id;
   var listId = req.body.label_id;
 

@@ -1,6 +1,6 @@
 var CardView = Backbone.View.extend({
   attributes: {
-    id: "card-details",
+    id: 'card-details',
   },
   template: App.templates.card,
   events: {
@@ -12,6 +12,7 @@ var CardView = Backbone.View.extend({
     'click .due-date': 'renderDueDateView',
     'click .move-card': 'renderMoveCardView',
     'click .archive': 'archiveCard',
+    'click .copy-card': 'renderCopyCardView',
   },
   removeView: function () {
     this.remove();
@@ -83,10 +84,24 @@ var CardView = Backbone.View.extend({
       }
     });
   },
+  renderCopyCardView: function (e) {
+    var actionBtnPosition = $(e.currentTarget).offset();
+    var top = actionBtnPosition.top - 150;
+    var left = actionBtnPosition.left;
+
+    App.trigger('render_copy_card_form');
+    new CopyCardView({
+      model: this.model,
+      attributes: {
+        class: 'modal copy',
+        style: 'top:' + top + 'px;left:' + left + 'px;',
+      }
+    });
+  },
   archiveCard: function () {
     this.model.trigger('archive_card');
     this.remove();
-    this.navigate('/');
+    router.navigate('/');
   },
   formatCardData: function () {
     var cardData = this.model.toJSON();
@@ -107,7 +122,8 @@ var CardView = Backbone.View.extend({
   },
   initialize: function () {
     this.render();
+    this.$el.attr('data-id', this.model.id);
     this.listenTo(this.model, 'change', this.render);
-    this.listenTo(this.model, 'toggle_label', this.renderAndDisplayLabelsForm);
+    this.listenTo(this.model, 'toggle_label edit_label', this.renderAndDisplayLabelsForm);
   },
 });

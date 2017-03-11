@@ -20,6 +20,45 @@ var view_helpers = {
       })
       .value();
   },
+  getFormatedListNames: function (currentListName) {
+    return App.lists.map(function (list) {
+      var listData = { name: list.get('name'), id: list.id };
+
+      if (listData.name === currentListName) { listData.current = currentListName; }
+
+      return listData;
+    });
+  },
+  getFormatedLalbelsComments: function (card) {
+    return {
+      labelsCount: card.get('labels').length,
+      // commentsCount: card.get('comments').length,
+    }
+  },
+  updateListNameAndPositions: function (e) {
+    var listId =  Number($(e.target).find('option:selected').attr('data-id'));
+    var position;
+    var cards;
+    var newCardPositions;
+
+    if (listId === this.model.get('list_id')) {
+      this.render();
+    } else {
+      position = $(e.target).find('option:selected').val();
+      cards = App.cards.where({ list_id: listId });
+      newCardPositions = view_helpers.getFormatedCardPositions(cards);
+
+      if (_.isEmpty(newCardPositions)) {
+        newCardPositions.push({ position: 1 });
+      } else {
+        newCardPositions.push({ position: _.chain(newCardPositions).pluck('position').max().value() + 1 });
+      }
+
+      this.$el.find('.list-name p').text(position);
+      this.$el.find('.card-position select').html(App.templates.card_positions({ positions: newCardPositions }));
+      this.$el.find('.card-position select').trigger('change');
+    }
+  },
   formatLabelsDataForTemplate: function (cardId) {
     var data = App.labels.toJSON();
 

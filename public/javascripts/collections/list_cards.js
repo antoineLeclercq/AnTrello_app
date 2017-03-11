@@ -12,10 +12,18 @@ var ListCards = Backbone.Collection.extend({
     var newCard = this.create(card, {
       success: function() {
         this.trigger('sync:create');
+
+        if (newCard.get('labels')) {
+          newCard.get('labels').each(function (label) {
+            App.labels.trigger('toggle_card', label, newCard.id);
+          });
+        }
       }.bind(this),
     });
 
-    newCard.set('labels', new CardLabels());
+    if (!newCard.get('labels')) { newCard.set('labels', new CardLabels()); }
+
+    this.updatePositionsAndSort('add', newCard);
     App.cards.trigger('add_card', newCard);
   },
   archiveCards: function () {

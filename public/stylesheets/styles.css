@@ -263,19 +263,25 @@ textarea.formated {
   text-decoration: underline;
 }
 #card-details .details .attributes section {
+  display: inline-block;
   margin-bottom: 20px;
+  vertical-align: top;
 }
 #card-details .details .attributes section h3 {
   display: inline-block;
   margin: 0 0 10px 0;
   font-weight: normal;
 }
+#card-details .details .attributes .labels h3 {
+  margin: 0 0 5px 0;
+}
 #card-details .details .attributes .label {
   display: inline-block;
   box-sizing: border-box;
   height: 30px;
   min-width: 40px;
-  padding: 6px 0 0 0;
+  padding: 6px 6px 0 6px;
+  margin: 5px 0 0 0;
   border-radius: 3px;
   vertical-align: top;
   font-weight: bold;
@@ -291,6 +297,9 @@ textarea.formated {
   background: #d6dadc;
   color: #4d4d4d;
   text-decoration: underline;
+}
+#card-details .details .attributes .description {
+  display: block;
 }
 #card-details .details .attributes .description a i {
   margin: 0 7px 0 0;
@@ -723,6 +732,68 @@ textarea.formated {
 }
 .edit-label-form input[type="submit"]:hover {
   background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
+}
+#card-details .copy dl {
+  position: relative;
+  margin: 0 0 15px 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 5px;
+  border: 1px solid #d6dadc;
+  border-bottom: 1px solid #c4c9cc;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #fff 0, #f8f9f9 100%);
+  font-weight: bold;
+  cursor: pointer;
+}
+#card-details .copy dl h5 {
+  margin: 0 0 7px 0;
+  color: #8c8c8c;
+  font-size: 12px;
+}
+#card-details .copy dl p {
+  color: #4d4d4d;
+  font-size: 18px;
+}
+#card-details .copy dl:hover {
+  border: 1px solid #0079bf;
+  border-bottom: 1px solid #026aa7;
+  background: #0079bf;
+}
+#card-details .copy dl:hover h5 {
+  color: #edeff0;
+}
+#card-details .copy dl:hover p {
+  color: #fff;
+}
+#card-details .copy select {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+}
+#card-details .copy .card-name,
+#card-details .copy .labels-comments {
+  background: none;
+  border: none;
+  cursor: auto;
+}
+#card-details .copy .card-name:hover,
+#card-details .copy .labels-comments:hover {
+  background: none;
+  border: none;
+}
+#card-details .copy .labels-comments label {
+  font-weight: normal;
+  font-size: 14px;
+}
+#card-details .copy .labels-comments [type="checkbox"] {
+  margin: 0 5px 0 0;
+  vertical-align: middle;
 }
 body {
   font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif;

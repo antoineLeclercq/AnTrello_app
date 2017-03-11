@@ -13,6 +13,7 @@ var EditLabelView = Backbone.View.extend({
       this.model.trigger('update_name', 'name', name);
     }
 
+    App.cards.get(this.$el.closest('#card-details').attr('data-id')).trigger('edit_label');
     this.remove();
   },
   render: function () {

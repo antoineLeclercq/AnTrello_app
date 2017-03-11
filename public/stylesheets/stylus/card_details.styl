@@ -58,17 +58,23 @@
           text-decoration: underline
     .attributes
       section
+        display: inline-block
         margin-bottom: 20px
+        vertical-align: top
         h3
           display: inline-block
           margin: 0 0 10px 0
           font-weight: normal
+      .labels
+        h3
+          margin: 0 0 5px 0          
       .label
         display: inline-block
         box-sizing: border-box
         height: 30px
         min-width: 40px
-        padding: 6px 0 0 0
+        padding: 6px 6px 0 6px
+        margin: 5px 0 0 0
         border-radius: $radius.main
         vertical-align: top
         font-weight: bold
@@ -85,6 +91,7 @@
           color: $colors.light-black
           text-decoration: underline
       .description
+        display: block
         a
           i
             margin: 0 7px 0 0

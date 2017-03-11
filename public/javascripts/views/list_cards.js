@@ -1,7 +1,8 @@
 var ListCardsView = Backbone.View.extend({
   template: App.templates.cards,
   events: {
-    'click .card': 'displayCard',
+    'click .card': 'renderCardDetailsView',
+    'click .edit': 'renderCardQuickEditView',
   },
   render: function () {
     cardsData = this.collection.toJSON().map(function (card) {
@@ -15,12 +16,15 @@ var ListCardsView = Backbone.View.extend({
     this.tiltCardWhileSorting();
     this.updateCardsInfoOnDrop();
   },
-  displayCard: function (e) {
+  renderCardDetailsView: function (e) {
     var $card = $(e.currentTarget);
     var cardId = $card.attr('data-id');
     var card = this.collection.get(cardId);
 
     router.navigate('/card/' + cardId, { trigger: true });
+  },
+  renderCardQuickEditView: function (e) {
+    e.stopPropagation();
   },
   sortableAndMoveableCards: function() {
     this.$el.sortable({

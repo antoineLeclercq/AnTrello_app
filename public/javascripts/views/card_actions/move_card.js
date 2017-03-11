@@ -2,26 +2,10 @@ var MoveCardView = Backbone.View.extend({
   tagName: 'section',
   template: App.templates.move_card_form,
   events: {
-    'change .list-name select': 'updateListNameAndPositions',
+    'change .list-name select': view_helpers.updateListNameAndPositions,
     'change .card-position select': 'updatePosition',
     'click .overlay, .close': 'remove',
     'submit form': 'updateCardListAndPosition',
-  },
-  updateListNameAndPositions: function (e) {
-    var listId =  Number($(e.target).find('option:selected').attr('data-id'));
-    var position = $(e.target).find('option:selected').val();
-    var cards = App.cards.where({ list_id: listId });
-    var newCardPositions = view_helpers.getFormatedCardPositions(cards);
-
-    if (_.isEmpty(newCardPositions)) {
-      newCardPositions.push({ position: 1 });
-    } else {
-      newCardPositions.push({ position: _.chain(newCardPositions).pluck('position').max().value() + 1 });
-    }
-
-    this.$el.find('.list-name p').text(position);
-    this.$el.find('.card-position select').html(App.templates.card_positions({ positions: newCardPositions }));
-    this.$el.find('.card-position select').trigger('change');
   },
   updatePosition: function (e) {
     var position = $(e.target).find('option:selected').val();
@@ -54,13 +38,7 @@ var MoveCardView = Backbone.View.extend({
     var positionsAndListNames =  { currentList: currentListName, currentPosition: currentPosition };
 
     positionsAndListNames.positions = view_helpers.getFormatedCardPositions(cards, currentPosition);
-
-    positionsAndListNames.lists = [];
-    App.lists.each(function (list) {
-      var listData = { name: list.get('name'), id: list.id };
-      if (listData.name === currentListName) { listData.current = currentListName; }
-      positionsAndListNames.lists.push(listData);
-    });
+    positionsAndListNames.lists = view_helpers.getFormatedListNames(currentListName);
 
     this.$el.html(this.template(positionsAndListNames));
     this.$el.appendTo($('#card-details'));

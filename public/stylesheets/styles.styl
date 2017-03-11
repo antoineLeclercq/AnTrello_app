@@ -2,6 +2,10 @@
 @import "https://fonts.googleapis.com/css?family=Lobster"
 @import "stylus/_mixins"
 @import "stylus/components"
+@import "stylus/list"
+@import "stylus/cards"
+@import "stylus/card_details"
+@import "stylus/modal"
 
 body
   font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif
@@ -173,3 +177,26 @@ main
             margin: 5px 0 0 0
             .material-icons
               font-size: 24px
+
+.add-card
+  a
+    display: block
+    box-sizing: border-box
+    height: 30px
+    padding: 5px 0 0 2px
+    border-radius: $radius.main
+    color: $colors.darker-grey
+    cursor: pointer
+    &:hover
+      text-decoration: underline
+      color: $colors.light-black
+      background: $colors.grey
+    + form
+      display: none
+  form
+    display: block
+    textarea
+      box-sizing: border-box
+      width: $widths.list - 16
+      padding: 5px;
+    form-controls()

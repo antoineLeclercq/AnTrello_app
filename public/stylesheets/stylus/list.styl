@@ -1,0 +1,67 @@
+#lists
+  float: left
+  height: 100%
+  white-space: nowrap
+
+.list
+  box-sizing: border-box
+  display: inline-block
+  position: relative
+  width: $widths.list
+  margin: 0 5px
+  padding: 5px 8px
+  border-radius: $radius.main
+  background: $colors.light-grey
+  color: $colors.light-black
+  vertical-align: top
+  header
+    position: relative
+    cursor: pointer
+  .overlay-header
+    position: absolute
+    top: 0
+    right: 30px
+    bottom: 0
+    left: 0
+    cursor: pointer
+  .title
+    width: 200px
+  .list-icons
+    float: right
+    span
+      display: inline-block
+      color: $colors.darker-grey
+    .more
+      padding: 5px 5px 0 5px
+      border-radius: $radius.main
+      cursor: pointer
+      &:hover
+        color: inherit
+        background: $colors.grey
+    .subscribed
+      display: none
+  .list-icons.is-subscribed
+    .subscribed
+      display: inline-block
+  .modal
+    top: 40px
+    left: $widths.list - 30
+    width: 300px
+    padding: 10px 0
+    background: white
+    color: $colors.light-black
+    hr
+      width: 300px - 30
+    .actions
+      font-weight: bold
+      .action
+        padding: 7px 10px
+        cursor: pointer
+        &:hover
+          background: $colors.blue
+          color: white
+
+.sortable-list-placeholder
+  background: $colors.dark-blue
+  display: inline-block
+  border-radius: $radius.main

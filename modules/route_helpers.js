@@ -14,7 +14,8 @@ var helpers = {
       table: 'comment',
     },
     labels: {
-      table: 'label'
+      table: 'card_label',
+      colNames: ['card_id', 'label_id'],
     },
     activities: {
       table: 'activity',

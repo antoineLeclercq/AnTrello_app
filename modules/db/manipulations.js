@@ -20,8 +20,16 @@ var storage = {
     this.log(queryAndOptions);
   },
   delete: function (table, opts, task) {
+    var query;
+
+    if (table === 'card_label') {
+      query = 'DELETE FROM ' + table + ' WHERE card_id = $1 AND label_id = $2;';
+    } else {
+      query = 'DELETE FROM ' + table + ' WHERE id = $1;';
+    }
+
     this.query({
-      query: 'DELETE FROM ' + table + ' WHERE id = $1;',
+      query: query,
       options: opts,
     }, task);
   },
@@ -115,7 +123,11 @@ var comments = {
 };
 
 var labels = {
-
+  all: function (task) {
+    storage.query({
+      query: queries.allLabelsAndCardIds,
+    }, task);
+  },
 };
 
 var activities = {
@@ -129,12 +141,22 @@ storage.labels = labels;
 storage.activities = activities;
 
 storage.startingData = function (task) {
-  var self = this;
   var data = {};
 
-  this.lists.all(function (result) {
-    data.lists = self.lists.formatListsResult(result.rows);
-    task(data);
+  storage.lists.all(function (listsData) {
+    data.lists = listsData.rows;
+    storage.cards.all(function (cardsData) {
+      data.cards = cardsData.rows;
+      storage.labels.all(function (labelsData) {
+        data.labels = labelsData.rows;
+        data.labels = data.labels.map(function (label) {
+          label.card_ids = label.card_ids.filter(function (id) { return id; });
+          return label;
+        });
+
+        task(data);
+      });
+    });
   });
 };
 

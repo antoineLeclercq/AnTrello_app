@@ -8,7 +8,9 @@ var CardView = Backbone.View.extend({
     'focusout .title': 'updateName',
     'click .description > a, .description .close': 'toggleDescriptionForm',
     'submit .description form': 'updateDescriptionAndRender',
+    'click .actions .labels, .labels .label': 'renderLabelsView',
     'click .due-date': 'renderDueDateView',
+    'click .move-card': 'renderMoveCardView',
     'click .archive': 'archiveCard',
   },
   removeView: function () {
@@ -39,9 +41,47 @@ var CardView = Backbone.View.extend({
       this.render();
     }
   },
+  renderLabelsView: function (e) {
+    var actionBtnPosition = $(e.currentTarget).offset();
+    var top = actionBtnPosition.top + 5;
+    var left = actionBtnPosition.left;
+
+    App.trigger('render_labels_form');
+    new LabelsView({
+      model: this.model,
+      attributes: {
+        class: 'modal labels-form',
+        style: 'top:' + top + 'px;left:' + left + 'px;',
+      }
+    });
+  },
   renderDueDateView: function (e) {
+    var actionBtnPosition = $(e.currentTarget).offset();
+    var top = actionBtnPosition.top + 5;
+    var left = actionBtnPosition.left;
+
     App.trigger('render_due_date_form');
-    new DueDateView({ model: this.model });
+    new DueDateView({
+      model: this.model,
+      attributes: {
+        class: 'modal due-date-form',
+        style: 'top:' + top + 'px;left:' + left + 'px;',
+      }
+    });
+  },
+  renderMoveCardView: function (e) {
+    var actionBtnPosition = $(e.currentTarget).offset();
+    var top = actionBtnPosition.top + 5;
+    var left = actionBtnPosition.left;
+
+    App.trigger('render_move_card_form');
+    new MoveCardView({
+      model: this.model,
+      attributes: {
+        class: 'modal move',
+        style: 'top:' + top + 'px;left:' + left + 'px;',
+      }
+    });
   },
   archiveCard: function () {
     this.model.trigger('archive_card');
@@ -52,7 +92,12 @@ var CardView = Backbone.View.extend({
     var cardData = this.model.toJSON();
 
     cardData.listName = App.lists.get(cardData.list_id).get('name');
+    cardData.labels = cardData.labels.toJSON();
     return cardData;
+  },
+  renderAndDisplayLabelsForm: function () {
+    this.render();
+    $('.actions .labels').trigger('click');
   },
   render: function () {
     var card = this.formatCardData();
@@ -63,5 +108,6 @@ var CardView = Backbone.View.extend({
   initialize: function () {
     this.render();
     this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'toggle_label', this.renderAndDisplayLabelsForm);
   },
 });

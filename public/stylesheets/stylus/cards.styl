@@ -1,0 +1,41 @@
+.cards
+    min-height: 10px
+  .card
+    box-sizing: border-box
+    width: $widths.list - 16
+    padding: 7px
+    margin: 5px 0
+    border-radius: $radius.main
+    box-shadow: $shadows.bottom
+    background: white
+    cursor: pointer
+    .edit
+      display: none
+      float: right
+      margin: -4px 0 0 0
+      padding: 5px 5px 2px 5px
+      border-radius: $radius.main
+      color: $colors.grey
+      cursor: pointer
+      &:hover
+        color: $colors.light-black
+        background: $colors.grey
+    &:hover
+      background: $colors.lighter-grey
+      .edit
+        display: block
+    .labels
+      overflow: hidden
+      margin: 0 0 5px 0
+      font-size: 10px
+    .label
+      float: left
+      height: 8px
+      width: 35px
+      margin: 2px
+      border-radius: $radius.main
+
+.sortable-card-placeholder
+  padding: 7px
+  border-radius: $radius.main
+  background: $colors.dark-grey

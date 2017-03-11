@@ -1,0 +1,7 @@
+{{#each positions}}
+  {{#if current}}
+    <option value="{{current}}" selected>{{current}} (current)</option>
+  {{else}}
+    <option value="{{position}}">{{position}}</option>
+  {{/if}}
+{{/each}}

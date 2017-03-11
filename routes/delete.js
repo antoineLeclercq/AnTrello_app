@@ -17,4 +17,14 @@ router.delete('/:collection/:id', function (req, res, next) {
   });
 });
 
+router.delete('/labels', function (req, res, next) {
+  var table = route_helpers.validRoutesAndDBInfo.labels.table;
+  var cardId = req.body.card_id;
+  var listId = req.body.label_id;
+
+  storage.delete(table, [cardId, listId], function () {
+    res.sendStatus(200);
+  });
+});
+
 module.exports = router;

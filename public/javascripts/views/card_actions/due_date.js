@@ -1,13 +1,10 @@
 var DueDateView = Backbone.View.extend({
   tagName: 'section',
-  attributes: {
-    class: 'modal due-date-form',
-  },
   template: App.templates.due_date_form,
   events: {
     'click input[value="Save"]': 'saveDueDateCard',
     'click input[value="Remove"]': 'removeDueDateCard',
-    'click .overlay': 'remove',
+    'click .overlay, .close': 'remove',
   },
   saveDueDateCard: function (e) {
     e.preventDefault();
@@ -23,20 +20,25 @@ var DueDateView = Backbone.View.extend({
   },
   render: function () {
     this.$el.html(this.template());
-    this.$el.css('top', $('#card-details').find('.action.due-date').position().top + 5);
-    $('#card-details').find('.add .actions').append(this.$el);
+    this.$el.appendTo($('#card-details'));
   },
   initializeDatePickerAndTime: function () {
-    var formatedDueDate = moment(this.model.get('due_date')).format('MM/DD/YYYY');
-    var time = moment(this.model.get('due_date')).format('HH:mm');
+    var dueDate = this.model.get('due_date');
+    var formatedDueDate;
+    var time;
 
     this.$el.find('.datepicker').datepicker({
       changeMonth: true,
       changeYear: true,
       altField: 'input[name="date"]',
     });
-    this.$el.find('.datepicker').datepicker('setDate', formatedDueDate);
-    this.$el.find('[type=time]').val(time);
+
+    if (dueDate) {
+      formatedDueDate = moment(dueDate).format('MM/DD/YYYY');
+      time = moment(dueDate).format('HH:mm');
+      this.$el.find('.datepicker').datepicker('setDate', formatedDueDate);
+      this.$el.find('[type=time]').val(time);
+    }
   },
   initialize: function () {
     this.render();

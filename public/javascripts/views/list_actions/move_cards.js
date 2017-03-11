@@ -1,4 +1,5 @@
 var MoveCardsView = Backbone.View.extend({
+  tagName: 'section',
   attributes: {
     class: 'move-all-cards',
   },

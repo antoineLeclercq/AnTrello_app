@@ -5,8 +5,16 @@ var App = {
       list.set('cards', new ListCards(this.cards.where({ list_id: list.id })));
     }.bind(this));
   },
+  addLabelsToCards: function () {
+    App.cards.each(function (card) {
+      card.set('labels', new CardLabels(this.labels.filter(function (label) {
+        return _.contains(label.get('card_ids'), card.id);
+      })));
+    }.bind(this));
+  },
   indexView: function () {
     this.addCardsToLists();
+    this.addLabelsToCards();
 
     this.renderLists();
     this.renderCardFormView();

@@ -12,7 +12,6 @@ var collectionHelpers = {
       } else if (action === 'remove') {
         item.set('position', position - 1);
       }
-
     });
 
     this.sort();

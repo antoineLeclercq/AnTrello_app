@@ -1,0 +1,41 @@
+<h3>
+  Move Card
+  <span class="close"><i class="material-icons md-16">close</i></span>
+</h3>
+<hr/>
+<form>
+  <dl class="list-name">
+    <dt>
+      <label>
+        <h5>List</h5>
+        <p>{{currentList}}</p>
+      </label>
+    </dt>
+    <dd>
+      <select>
+        {{#each lists}}
+          {{#if current}}
+            <option data-id="{{id}}" value="{{current}}" selected>{{current}} (current)</option>
+          {{else}}
+            <option data-id="{{id}}" value="{{name}}">{{name}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
+    </dd>
+  </dl>
+  <dl class="card-position">
+    <dt>
+      <label>
+        <h5>Position</h5>
+        <p>{{currentPosition}}</p>
+      </label>
+    </dt>
+    <dd>
+      <select>
+        {{> card_positions}}
+      </select>
+    </dd>
+  </dl>
+  <input type="submit" value="Move">
+</form>
+<div class="overlay"></div>

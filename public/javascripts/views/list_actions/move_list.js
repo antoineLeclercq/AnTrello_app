@@ -1,4 +1,5 @@
 var MoveListView = Backbone.View.extend({
+  tagName: 'section',
   attributes: {
     class: 'move',
   },
@@ -29,9 +30,7 @@ var MoveListView = Backbone.View.extend({
   render: function () {
     var currentPosition = this.model.get('position') + 1;
     var positions = App.lists.pluck('position').map(function (pos) {
-      var position = { position: pos + 1 };
-      if (pos + 1 === currentPosition) { position.current = currentPosition; }
-      return position;
+      return view_helpers.formatPositionsForTemplate(pos, currentPosition);
     });
 
     this.$el.html(this.template({ positions: positions, currentPosition: currentPosition }));

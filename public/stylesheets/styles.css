@@ -37,50 +37,29 @@ textarea.title:focus {
 textarea.formated {
   background: inherit;
 }
-.modal {
-  display: none;
-  position: absolute;
-  border-radius: 3px;
-  box-sizing: border-box;
-  padding: 10px;
-  background: #fff;
-  border: 1px solid #d6dadc;
-  z-index: 3;
+.tilted {
+  transform: rotate(5deg);
 }
-.modal hr {
-  border: none;
-  border-bottom: 1px solid #d6dadc;
-  margin: 10px auto;
+.material-icons.md-14 {
+  font-size: 14px;
 }
-.modal h3 {
-  text-align: center;
-  font-weight: normal;
-  color: #8c8c8c;
+.material-icons.md-16 {
+  font-size: 16px;
 }
-.modal + .overlay {
-  display: none;
-  z-index: 2;
+.material-icons.md-18 {
+  font-size: 18px;
 }
-.overlay {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+.material-icons.md-24 {
+  font-size: 24px;
 }
-.close {
-  margin: 0 10px 0 0;
-  float: right;
-  cursor: pointer;
-  color: #8c8c8c;
+.material-icons.md-30 {
+  font-size: 30px;
 }
-.close:hover {
-  color: #4d4d4d;
+.material-icons.md-36 {
+  font-size: 36px;
 }
-.prev {
-  float: left;
-  vertical-align: middle;
-  cursor: pointer;
+.material-icons.md-48 {
+  font-size: 48px;
 }
 #lists {
   float: left;
@@ -157,6 +136,309 @@ textarea.formated {
 .list .modal .actions .action:hover {
   background: #0079bf;
   color: #fff;
+}
+.sortable-list-placeholder {
+  background: #026aa7;
+  display: inline-block;
+  border-radius: 3px;
+}
+.cards {
+  min-height: 10px;
+}
+.card {
+  box-sizing: border-box;
+  width: 254px;
+  padding: 7px;
+  margin: 5px 0;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  background: #fff;
+  cursor: pointer;
+}
+.card .edit {
+  display: none;
+  float: right;
+  margin: -4px 0 0 0;
+  padding: 5px 5px 2px 5px;
+  border-radius: 3px;
+  color: #c4c9cc;
+  cursor: pointer;
+}
+.card .edit:hover {
+  color: #4d4d4d;
+  background: #c4c9cc;
+}
+.card:hover {
+  background: #edeff0;
+}
+.card:hover .edit {
+  display: block;
+}
+.card .labels {
+  overflow: hidden;
+  margin: 0 0 5px 0;
+  font-size: 10px;
+}
+.card .label {
+  float: left;
+  height: 8px;
+  width: 35px;
+  margin: 2px;
+  border-radius: 3px;
+}
+.sortable-card-placeholder {
+  padding: 7px;
+  border-radius: 3px;
+  background: #a5acb0;
+}
+#card-details > .overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 5;
+}
+#card-details .container {
+  position: absolute;
+  z-index: 6;
+  width: 724px;
+  top: 50px;
+  left: 50%;
+  margin: 0 0 0 -377px;
+  padding: 20px 15px;
+  border-radius: 3px;
+  background: #edeff0;
+  color: #8c8c8c;
+}
+#card-details .container > .close {
+  position: absolute;
+  float: none;
+  top: 5px;
+  right: 0;
+}
+#card-details .container .title,
+#card-details .container h1 {
+  display: inline-block;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #4d4d4d;
+}
+#card-details .container .title {
+  width: 93%;
+  margin: 0 0 0 -5px;
+}
+#card-details .details {
+  display: inline-block;
+  width: 560px;
+  vertical-align: top;
+}
+#card-details .details section {
+  margin: 0 0 0 35px;
+}
+#card-details .details section header {
+  margin: 0 0 0 -35px;
+}
+#card-details .details section header .title {
+  margin: none;
+}
+#card-details .details section header i {
+  margin: 0 7px 0 0;
+  vertical-align: top;
+}
+#card-details .details section a {
+  color: inherit;
+}
+#card-details .details section i {
+  vertical-align: middle;
+}
+#card-details .details .name {
+  margin-bottom: 20px;
+}
+#card-details .details .name header > i {
+  padding: 3px 0 0 0;
+}
+#card-details .details .name p a {
+  text-decoration: underline;
+}
+#card-details .details .attributes section {
+  margin-bottom: 20px;
+}
+#card-details .details .attributes section h3 {
+  display: inline-block;
+  margin: 0 0 10px 0;
+  font-weight: normal;
+}
+#card-details .details .attributes .label {
+  display: inline-block;
+  height: 30px;
+  min-width: 40px;
+  border-radius: 3px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+#card-details .details .attributes .date .due-date {
+  display: inline-block;
+  padding: 5px;
+  border: 1px;
+  border-radius: 3px;
+  background: #d6dadc;
+  color: #4d4d4d;
+  text-decoration: underline;
+}
+#card-details .details .attributes .description a i {
+  margin: 0 7px 0 0;
+}
+#card-details .details .attributes .description a span {
+  text-decoration: underline;
+}
+#card-details .details .attributes .description a p {
+  color: #4d4d4d;
+}
+#card-details .details .attributes .description form {
+  display: none;
+}
+#card-details .details .attributes .description form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 110px;
+  padding: 5px;
+  border: 1px solid #c4c9cc;
+  box-shadow: inset 0 1px 8px rgba(0,0,0,0.15);
+  background: #edeff0;
+  color: #4d4d4d;
+}
+#card-details .details .attributes .description form textarea:focus {
+  outline: none;
+}
+#card-details .details .attributes .description form .form-controls {
+  display: block;
+  height: 35px;
+  overflow: hidden;
+  transition: height 0.25s;
+}
+#card-details .details .attributes .description form .form-controls input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#card-details .details .attributes .description form .form-controls input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
+}
+#card-details .details .attributes .description form .form-controls .close {
+  display: inline-block;
+  float: none;
+  margin: 0 0 0 5px;
+}
+#card-details .details .attributes .description form .form-controls .close:hover {
+  background: inherit;
+}
+#card-details .details .attributes .description form .form-controls .close i {
+  vertical-align: middle;
+}
+#card-details .details .add-comment {
+  margin-bottom: 20px;
+}
+#card-details .details .add-comment textarea {
+  width: 95%;
+  height: 75px;
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  color: #4d4d4d;
+}
+#card-details .details .add-comment input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#card-details .details .add-comment input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
+}
+#card-details aside {
+  display: inline-block;
+  width: 140px;
+  margin: 40px 0 0 20px;
+}
+#card-details aside section {
+  margin: 20px 0;
+}
+#card-details aside section .actions {
+  position: relative;
+}
+#card-details aside section .actions .action {
+  padding: 8px;
+  border: 1px solid #d6dadc;
+  border-bottom: 1px solid #c4c9cc;
+  border-radius: 3px;
+  margin: 7px 0;
+  background: linear-gradient(to bottom, #fff 0, #f8f9f9 100%);
+  color: #4d4d4d;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#card-details aside section .actions .action:hover {
+  background: #0079bf;
+  border: 1px solid #0079bf;
+  border-bottom: 1px solid #026aa7;
+  color: #fff;
+}
+.modal {
+  display: none;
+  position: absolute;
+  border-radius: 3px;
+  box-sizing: border-box;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #d6dadc;
+  z-index: 3;
+}
+.modal hr {
+  border: none;
+  border-bottom: 1px solid #d6dadc;
+  margin: 10px auto;
+}
+.modal h3 {
+  text-align: center;
+  font-weight: normal;
+  color: #8c8c8c;
+}
+.modal + .overlay {
+  display: none;
+  z-index: 2;
+}
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.close {
+  margin: 0 10px 0 0;
+  float: right;
+  cursor: pointer;
+  color: #8c8c8c;
+}
+.close:hover {
+  color: #4d4d4d;
+}
+.prev {
+  float: left;
+  vertical-align: middle;
+  cursor: pointer;
 }
 .move {
   padding: 12px;
@@ -249,6 +531,13 @@ textarea.formated {
 .copy input[type="submit"]:hover {
   background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
+.move-all-cards {
+  padding: 12px;
+}
+.move-all-cards .actions .action {
+  margin-left: -12px;
+  margin-right: -12px;
+}
 .move-all-cards .actions .action:first-child {
   color: #8c8c8c;
   cursor: auto;
@@ -257,318 +546,60 @@ textarea.formated {
   background: #fff;
   color: #8c8c8c;
 }
-.add-card a {
-  display: block;
-  box-sizing: border-box;
-  height: 30px;
-  padding: 5px 0 0 2px;
-  border-radius: 3px;
-  color: #8c8c8c;
-  cursor: pointer;
-}
-.add-card a:hover {
-  text-decoration: underline;
-  color: #4d4d4d;
-  background: #c4c9cc;
-}
-.add-card a + form {
-  display: none;
-}
-.add-card form {
-  display: block;
-}
-.add-card form textarea {
-  box-sizing: border-box;
-  width: 254px;
-  padding: 5px;
-}
-.add-card form .form-controls {
-  display: block;
-  height: 35px;
-  overflow: hidden;
-  transition: height 0.25s;
-}
-.add-card form .form-controls input[type="submit"] {
-  padding: 0 20px;
-  min-height: 30px;
-  box-shadow: 0 1px 0 #3f6f21;
-  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.add-card form .form-controls input[type="submit"]:hover {
-  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
-}
-.add-card form .form-controls .close {
-  display: inline-block;
-  float: none;
-  margin: 0 0 0 5px;
-}
-.add-card form .form-controls .close:hover {
-  background: inherit;
-}
-.add-card form .form-controls .close i {
-  vertical-align: middle;
-}
-.cards {
-  min-height: 10px;
-}
-.card {
-  box-sizing: border-box;
-  width: 254px;
-  padding: 7px;
-  margin: 5px 0;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  background: #fff;
-  cursor: pointer;
-}
-.card .edit {
-  display: none;
-  float: right;
-  margin: -4px 0 0 0;
-  padding: 5px 5px 2px 5px;
-  border-radius: 3px;
-  color: #c4c9cc;
-  cursor: pointer;
-}
-.card .edit:hover {
-  color: #4d4d4d;
-  background: #c4c9cc;
-}
-.card:hover {
-  background: #edeff0;
-}
-.card:hover .edit {
-  display: block;
-}
-#card-details > .overlay {
+#card-details .modal {
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.6);
-  z-index: 5;
-}
-#card-details .container {
-  position: absolute;
-  z-index: 6;
-  width: 724px;
-  top: 50px;
-  left: 50%;
-  margin: 0 0 0 -377px;
-  padding: 20px 15px;
-  border-radius: 3px;
-  background: #edeff0;
-  color: #8c8c8c;
-}
-#card-details .container > .close {
-  position: absolute;
-  float: none;
-  top: 5px;
-  right: 0;
-}
-#card-details .container .title,
-#card-details .container h1 {
-  display: inline-block;
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  color: #4d4d4d;
-}
-#card-details .container .title {
-  width: 93%;
-  margin: 0 0 0 -5px;
-}
-#card-details .container .details {
-  display: inline-block;
-  width: 560px;
-  vertical-align: top;
-}
-#card-details .container .details section {
-  margin: 0 0 0 35px;
-}
-#card-details .container .details section header {
-  margin: 0 0 0 -35px;
-}
-#card-details .container .details section header .title {
-  margin: none;
-}
-#card-details .container .details section header i {
-  margin: 0 7px 0 0;
-  vertical-align: top;
-}
-#card-details .container .details section ul {
-  margin: 15px 0;
-}
-#card-details .container .details section a {
-  color: inherit;
-}
-#card-details .container .details section i {
-  vertical-align: middle;
-}
-#card-details .container .details .name {
-  margin-bottom: 20px;
-}
-#card-details .container .details .name header > i {
-  padding: 3px 0 0 0;
-}
-#card-details .container .details .name p a {
-  text-decoration: underline;
-}
-#card-details .container .details .attributes section {
-  margin-bottom: 20px;
-}
-#card-details .container .details .attributes section h3 {
-  display: inline-block;
-  margin: 0 0 10px 0;
-  font-weight: normal;
-}
-#card-details .container .details .attributes .labels .due-date,
-#card-details .container .details .attributes .date .due-date {
-  display: inline-block;
-  padding: 5px;
-  border: 1px;
-  border-radius: 3px;
-  background: #d6dadc;
-  color: #4d4d4d;
-  text-decoration: underline;
-}
-#card-details .container .details .attributes .description a i {
-  margin: 0 7px 0 0;
-}
-#card-details .container .details .attributes .description a span {
-  text-decoration: underline;
-}
-#card-details .container .details .attributes .description a p {
-  color: #4d4d4d;
-}
-#card-details .container .details .attributes .description form {
-  display: none;
-}
-#card-details .container .details .attributes .description form textarea {
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 110px;
-  padding: 5px;
-  border: 1px solid #c4c9cc;
-  box-shadow: inset 0 1px 8px rgba(0,0,0,0.15);
-  background: #edeff0;
-  color: #4d4d4d;
-}
-#card-details .container .details .attributes .description form textarea:focus {
-  outline: none;
-}
-#card-details .container .details .attributes .description form .form-controls {
-  display: block;
-  height: 35px;
-  overflow: hidden;
-  transition: height 0.25s;
-}
-#card-details .container .details .attributes .description form .form-controls input[type="submit"] {
-  padding: 0 20px;
-  min-height: 30px;
-  box-shadow: 0 1px 0 #3f6f21;
-  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-#card-details .container .details .attributes .description form .form-controls input[type="submit"]:hover {
-  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
-}
-#card-details .container .details .attributes .description form .form-controls .close {
-  display: inline-block;
-  float: none;
-  margin: 0 0 0 5px;
-}
-#card-details .container .details .attributes .description form .form-controls .close:hover {
-  background: inherit;
-}
-#card-details .container .details .attributes .description form .form-controls .close i {
-  vertical-align: middle;
-}
-#card-details .container .details .add-comment {
-  margin-bottom: 20px;
-}
-#card-details .container .details .add-comment textarea {
-  width: 95%;
-  height: 75px;
-  padding: 10px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  color: #4d4d4d;
-}
-#card-details .container .details .add-comment input[type="submit"] {
-  padding: 0 20px;
-  min-height: 30px;
-  box-shadow: 0 1px 0 #3f6f21;
-  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-#card-details .container .details .add-comment input[type="submit"]:hover {
-  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
-}
-#card-details .container aside {
-  display: inline-block;
-  width: 140px;
-  margin: 40px 0 0 20px;
-}
-#card-details .container aside section {
-  margin: 20px 0;
-}
-#card-details .container aside section .actions {
-  position: relative;
-}
-#card-details .container aside section .actions .action {
-  padding: 8px;
-  border: 1px solid #d6dadc;
-  border-bottom: 1px solid #c4c9cc;
-  border-radius: 3px;
-  margin: 7px 0;
-  background: linear-gradient(to bottom, #fff 0, #f8f9f9 100%);
-  color: #4d4d4d;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-#card-details .container aside section .actions .action:hover {
-  background: #0079bf;
-  border: 1px solid #0079bf;
-  border-bottom: 1px solid #026aa7;
-  color: #fff;
-}
-#card-details .container aside section .actions .due-date-form {
-  position: absolute;
   display: inline-block;
   width: 275px;
-  top: 0;
-  right: 0;
-  z-index: 7;
+  z-index: 8;
   background: #fff;
   color: #4d4d4d;
 }
-#card-details .container aside section .actions .due-date-form .overlay {
+#card-details .modal .form-controls {
+  display: block;
+  height: 35px;
+  overflow: hidden;
+  transition: height 0.25s;
+}
+#card-details .modal .form-controls input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#card-details .modal .form-controls input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
+}
+#card-details .modal .form-controls .close {
+  display: inline-block;
+  float: none;
+  margin: 0 0 0 5px;
+}
+#card-details .modal .form-controls .close:hover {
+  background: inherit;
+}
+#card-details .modal .form-controls .close i {
+  vertical-align: middle;
+}
+#card-details .modal .overlay {
   z-index: -1;
 }
-#card-details .container aside section .actions .due-date-form form fieldset {
+.due-date-form form fieldset {
   margin: 0 0 10px 0;
 }
-#card-details .container aside section .actions .due-date-form form fieldset label {
+.due-date-form form fieldset label {
   box-sizing: border-box;
   display: inline-block;
   padding: 0 0 0 5px;
   width: 50%;
 }
-#card-details .container aside section .actions .due-date-form form fieldset label:last-child input {
+.due-date-form form fieldset label:last-child input {
   width: 85%;
 }
-#card-details .container aside section .actions .due-date-form form fieldset label input {
+.due-date-form form fieldset label input {
   width: 80%;
   padding: 5px;
   margin: 5px 0 0 0;
@@ -578,107 +609,80 @@ textarea.formated {
   color: #4d4d4d;
   font-size: 12px;
 }
-#card-details .container aside section .actions .due-date-form form fieldset label input[type="time"] {
+.due-date-form form fieldset label input[type="time"] {
   font-family: Helvetica;
 }
-#card-details .container aside section .actions .due-date-form form fieldset label input:focus {
+.due-date-form form fieldset label input:focus {
   border: 1px solid #0079bf;
   box-shadow: 0 0 2px #0079bf;
   background: #fff;
 }
-#card-details .container aside section .actions .due-date-form form .datepicker {
+.due-date-form form .datepicker {
   margin: 0 0 15px 0;
   color: #4d4d4d;
 }
-#card-details .container aside section .actions .due-date-form form .datepicker .ui-datepicker-inline {
+.due-date-form form .datepicker .ui-datepicker-inline {
   margin: 0 auto;
 }
-#card-details .container aside section .actions .due-date-form form .datepicker .ui-corner-all {
+.due-date-form form .datepicker .ui-corner-all {
   color: #4d4d4d;
 }
-#card-details .container aside section .actions .due-date-form form .datepicker .ui-state-active {
+.due-date-form form .datepicker .ui-state-active {
   background: #0079bf;
   border: 1px #026aa7;
 }
-#card-details .container aside section .actions .due-date-form form .datepicker .ui-state-highlight {
+.due-date-form form .datepicker .ui-state-highlight {
   border: 1px solid #c4c9cc;
   background: #d6dadc;
   color: #4d4d4d;
   font-weight: bold;
 }
-#card-details .container aside section .actions .due-date-form form .form-controls {
-  display: block;
-  height: 35px;
-  overflow: hidden;
-  transition: height 0.25s;
-}
-#card-details .container aside section .actions .due-date-form form .form-controls input[type="submit"] {
-  padding: 0 20px;
-  min-height: 30px;
-  box-shadow: 0 1px 0 #3f6f21;
-  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-#card-details .container aside section .actions .due-date-form form .form-controls input[type="submit"]:hover {
-  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
-}
-#card-details .container aside section .actions .due-date-form form .form-controls .close {
-  display: inline-block;
-  float: none;
-  margin: 0 0 0 5px;
-}
-#card-details .container aside section .actions .due-date-form form .form-controls .close:hover {
-  background: inherit;
-}
-#card-details .container aside section .actions .due-date-form form .form-controls .close i {
-  vertical-align: middle;
-}
-#card-details .container aside section .actions .due-date-form form .form-controls input[type="submit"].remove {
+.due-date-form form .form-controls input[type="submit"].remove {
   float: right;
   box-shadow: 0 1px 0 #4d4d4d;
   background: linear-gradient(to top, #d6dadc 0, #edeff0 100%);
   color: #b04632;
 }
-#card-details .container aside section .actions .due-date-form form .form-controls input[type="submit"].remove:hover {
+.due-date-form form .form-controls input[type="submit"].remove:hover {
   color: #fff;
   background: linear-gradient(to bottom, #cf513d 0, #b04632 100%);
 }
-.sortable-card-placeholder {
-  padding: 7px;
-  border-radius: 3px;
-  background: #a5acb0;
-}
-.sortable-list-placeholder {
-  background: #026aa7;
+.labels-form .label {
   display: inline-block;
+  box-sizing: border-box;
+  height: 35px;
+  width: 210px;
+  margin: 0 5px 5px 0;
   border-radius: 3px;
+  cursor: pointer;
+  transition: border-left 0s, width 0s, margin-left 0s;
 }
-.tilted {
-  transform: rotate(5deg);
+.labels-form .label:hover {
+  width: 215px;
+  margin-left: -5px;
+  border-left: 8px solid rgba(0,0,0,0.25);
+  transition: border-left 0.075s, width 0.075s, margin-left 0.075s;
 }
-.material-icons.md-14 {
-  font-size: 14px;
+.labels-form .label .check {
+  padding: 8px 8px 0 0;
+  float: right;
+  color: #fff;
 }
-.material-icons.md-16 {
-  font-size: 16px;
+.labels-form .edit {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 35px;
+  height: 35px;
+  padding: 10px;
+  border-radius: 3px;
+  vertical-align: top;
+  color: #c4c9cc;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
 }
-.material-icons.md-18 {
-  font-size: 18px;
-}
-.material-icons.md-24 {
-  font-size: 24px;
-}
-.material-icons.md-30 {
-  font-size: 30px;
-}
-.material-icons.md-36 {
-  font-size: 36px;
-}
-.material-icons.md-48 {
-  font-size: 48px;
+.labels-form .edit:hover {
+  background: #d6dadc;
+  color: #4d4d4d;
 }
 body {
   font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -910,4 +914,59 @@ main .container .add-list.show label + div {
 }
 main .container .add-list.show label + div .material-icons {
   font-size: 24px;
+}
+.add-card a {
+  display: block;
+  box-sizing: border-box;
+  height: 30px;
+  padding: 5px 0 0 2px;
+  border-radius: 3px;
+  color: #8c8c8c;
+  cursor: pointer;
+}
+.add-card a:hover {
+  text-decoration: underline;
+  color: #4d4d4d;
+  background: #c4c9cc;
+}
+.add-card a + form {
+  display: none;
+}
+.add-card form {
+  display: block;
+}
+.add-card form textarea {
+  box-sizing: border-box;
+  width: 254px;
+  padding: 5px;
+}
+.add-card form .form-controls {
+  display: block;
+  height: 35px;
+  overflow: hidden;
+  transition: height 0.25s;
+}
+.add-card form .form-controls input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.add-card form .form-controls input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
+}
+.add-card form .form-controls .close {
+  display: inline-block;
+  float: none;
+  margin: 0 0 0 5px;
+}
+.add-card form .form-controls .close:hover {
+  background: inherit;
+}
+.add-card form .form-controls .close i {
+  vertical-align: middle;
 }

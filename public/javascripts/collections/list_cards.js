@@ -15,6 +15,7 @@ var ListCards = Backbone.Collection.extend({
       }.bind(this),
     });
 
+    newCard.set('labels', new CardLabels());
     App.cards.trigger('add_card', newCard);
   },
   archiveCards: function () {
@@ -31,7 +32,8 @@ var ListCards = Backbone.Collection.extend({
   initialize: function () {
     this.on({
       'create_card': this.createCard,
-      'change': this.update,
+      'change:list_id change:name change:description': this.update,
+      'change:due_date change:subscriber change:position': this.update,
       'archive_cards': this.archiveCards,
       'remove_cards': this.reset,
       'add_cards': this.addAndUpdate,

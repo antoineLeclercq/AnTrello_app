@@ -7,6 +7,11 @@ var queries = {
     'FROM list ' +
     'LEFT JOIN card ON list.id = card.list_id ' +
     'ORDER BY list.id;',
+  allLabelsAndCardIds: 'SELECT label.id, label.color, label.name, array_agg(card_id) AS card_ids ' +
+    'FROM label ' +
+    'LEFT JOIN card_label ' +
+    'ON label.id = card_label.label_id ' +
+    'GROUP BY label.id, label.color, label.name;',
 };
 
 module.exports = queries;

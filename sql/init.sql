@@ -9,7 +9,7 @@ CREATE TABLE card (
   list_id integer NOT NULL REFERENCES list(id) ON DELETE CASCADE,
   name text NOT NULL,
   description text,
-  due_date timestamp,
+  due_date timestamp with time zone,
   position integer NOT NULL,
   subscriber boolean NOT NULL
 );
@@ -87,7 +87,26 @@ VALUES
 
 INSERT INTO comment(card_id, content) VALUES (2, 'added 1 test');
 
-INSERT INTO label(name, color) VALUES ('urgent', '#ff0000');
+INSERT INTO label(color)
+VALUES
+  ('#F2D600'),
+  ('#FFAB4A'),
+  ('#EB5A46'),
+  ('#C377E0'),
+  ('#0079BF'),
+  ('#51E898'),
+  ('#FF80CE'),
+  ('#4D4D4D'),
+  ('#B6BBBF');
+
+INSERT INTO card_label (card_id, label_id)
+VALUES
+  (1, 2),
+  (1, 5),
+  (2, 3),
+  (3, 2),
+  (3, 6);
+
 
 INSERT INTO activity(card_id, action_id, actionable_item_id, date)
 VALUES (2, 1, 2, current_timestamp);

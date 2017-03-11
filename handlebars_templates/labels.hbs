@@ -1,0 +1,18 @@
+<h3>
+  Labels
+  <span class="close"><i class="material-icons md-16">close</i></span>
+</h3>
+<hr/>
+<form>
+  <ul>
+    {{#each labels}}
+    <li class="label" data-id="{{id}}" style="background:{{color}};">{{name}}
+      {{#if checked}}
+      <i class="material-icons md-18 check">check</i>
+      {{/if}}
+    </li><!--
+    --><span class="edit"><i class="material-icons md-14">edit</i></span>
+    {{/each}}
+  </ul>
+</form>
+<div class="overlay"></div>

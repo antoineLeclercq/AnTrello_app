@@ -1,0 +1,138 @@
+#card-details
+  > .overlay
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background: rgba(0, 0, 0, 0.6)
+    z-index: 5
+  .container
+    position: absolute
+    z-index: 6
+    width: $widths.card-details
+    top: 50px
+    left: 50%
+    margin: 0 0 0 (-1 * $widths.card-details / 2 - 15)
+    padding: 20px 15px
+    border-radius: $radius.main
+    background: $colors.lighter-grey
+    color: $colors.darker-grey
+    > .close
+      position: absolute
+      float: none
+      top: 5px
+      right:0
+    .title, h1
+      display: inline-block
+      margin: 0 0 10px 0
+      font-size: 16px
+      color: $colors.light-black
+    .title
+      width: 93%
+      margin: 0 0 0 -5px
+  .details
+    display: inline-block
+    width: 560px
+    vertical-align: top
+    section
+      margin: 0 0 0 35px
+      header
+        margin: 0 0 0 -35px
+        .title
+          margin: none
+        i
+          margin: 0 7px 0 0
+          vertical-align: top
+      a
+        color: inherit
+      i
+        vertical-align: middle
+    .name
+      margin-bottom: 20px
+      header
+        > i
+          padding: 3px 0 0 0
+      p
+        a
+          text-decoration: underline
+    .attributes
+      section
+        margin-bottom: 20px
+        h3
+          display: inline-block
+          margin: 0 0 10px 0
+          font-weight: normal
+      .label
+        display: inline-block
+        height: 30px
+        min-width: 40px
+        border-radius: $radius.main
+        font-weight: bold
+        color: white
+        cursor: pointer
+      .date
+        .due-date
+          display: inline-block
+          padding: 5px
+          border: 1px
+          border-radius: $radius.main
+          background: $colors.light-grey
+          color: $colors.light-black
+          text-decoration: underline
+      .description
+        a
+          i
+            margin: 0 7px 0 0
+          span
+            text-decoration: underline
+          p
+            color: $colors.light-black
+        form
+          display: none
+          textarea
+            box-sizing: border-box
+            width: 100%
+            min-height: 110px
+            padding: 5px
+            border: 1px solid $colors.grey
+            box-shadow: $shadows.inside
+            background: $colors.lighter-grey
+            color: $colors.light-black
+            &:focus
+              outline: none
+          form-controls()
+    .add-comment
+      margin-bottom: 20px
+      textarea
+        width: 95%
+        height: 75px
+        padding: 10px
+        box-shadow: $shadows.bottom
+        color: $colors.light-black
+      input[type="submit"]
+        submit-btn()
+  aside
+    display: inline-block
+    width: 140px
+    margin: 40px 0 0 20px
+    section
+      margin: 20px 0
+      .actions
+        position: relative
+        .action
+          padding: 8px
+          border: 1px solid $colors.light-grey
+          border-bottom: 1px solid $colors.grey
+          border-radius: $radius.main
+          margin: 7px 0
+          background: $colors.white-gradient
+          color: $colors.light-black
+          font-size: 14px
+          font-weight: bold
+          cursor: pointer
+          &:hover
+            background: $colors.blue
+            border: 1px solid $colors.blue
+            border-bottom: 1px solid $colors.dark-blue
+            color: white

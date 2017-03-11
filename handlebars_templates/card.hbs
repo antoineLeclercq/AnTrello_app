@@ -15,7 +15,7 @@
         <h3>Labels</h3>
         <ul class="labels">
           {{#each labels}}
-          <li class="label" style="background: {{color}};"></li>
+          <li class="label" style="background: {{color}};">{{name}}</li>
           {{/each}}
         </ul>
       </section>
@@ -76,8 +76,8 @@
     <section class="card-actions">
       <h1>Actions</h1>
       <ul class="actions">
-        <li class="action move">Move</li>
-        <li class="action copy">Copy</li>
+        <li class="action move-card">Move</li>
+        <li class="action copy-card">Copy</li>
         <li class="action subscribe">Subscribe</li>
         <li class="action archive">Archive</li>
       </ul>

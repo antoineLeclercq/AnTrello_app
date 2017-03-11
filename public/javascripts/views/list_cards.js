@@ -4,7 +4,11 @@ var ListCardsView = Backbone.View.extend({
     'click .card': 'displayCard',
   },
   render: function () {
-    this.$el.html(this.template({ cards: this.collection.toJSON() }));
+    cardsData = this.collection.toJSON().map(function (card) {
+      card.labels = card.labels.toJSON();
+      return card;
+    });
+    this.$el.html(this.template({ cards: cardsData }));
   },
   bindSortingEvents: function () {
     this.sortableAndMoveableCards();
@@ -59,8 +63,18 @@ var ListCardsView = Backbone.View.extend({
     newListCards.trigger('move_card_add', card);
   },
   initialize: function () {
+    var listCardsCollectionEvents = 'create_card ' +
+      'sync:create ' +
+      'archive_cards ' +
+      'archive_card ' +
+      'remove_cards ' +
+      'change:name change:description change:subscriber change:due_date ' +
+      'toggle_label ' +
+      'add_cards ' +
+      'move_card';
+
     this.render();
-    this.listenTo(this.collection, 'create_card sync:create archive_cards archive_card remove_cards add_cards change', this.render);
+    this.listenTo(this.collection, listCardsCollectionEvents, this.render);
     this.bindSortingEvents();
     this.listenTo(App, 'render_board', this.remove);
   },

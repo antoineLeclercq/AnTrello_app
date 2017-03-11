@@ -11,17 +11,21 @@ var ListFormView = Backbone.View.extend({
     var data = {
       name: $input.val().trim(),
       position: $('.list').length,
+      cards: new ListCards(),
     };
 
     if (data.name) {
       App.lists.trigger('create_list', data);
-      $input.val('');
-      this.$el.removeClass('show');
+      $form.find('.close').trigger('click');
     } else {
       $input.focus();
     }
   },
   toggleForm: function (e) {
-    this.$el.toggleClass('show', $(e.target).closest('.close').length);
+    var $target = $(e.target);
+    var closeBtn =  $target.closest('.close');
+
+    this.$el.toggleClass('show', !closeBtn.length);
+    if(closeBtn.length) { $target.closest('form').find('[name=list_name]').val(''); }
   }
 });

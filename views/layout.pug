@@ -50,15 +50,16 @@ html
     block content
     +js_scripts("app")
     +js_scripts("helpers/collection_helpers", "view_helpers")
-    +js_scripts("models/list", "card")
-    +js_scripts("collections/lists", "list_cards", "cards")
+    +js_scripts("models/list", "card", "label")
+    +js_scripts("collections/lists", "cards", "list_cards", "labels", "card_labels")
     +js_scripts("views/lists", "list_cards", "card", "list_form", "card_form")
     +js_scripts("views/list_actions/list_actions", "move_list", "copy_list", "move_cards")
-    +js_scripts("views/card_actions/due_date")
+    +js_scripts("views/card_actions/labels", "due_date", "move_card")
 
     script.
       App.lists = new Lists(!{JSON.stringify(data.lists)});
       App.cards = new Cards(!{JSON.stringify(data.cards)});
+      App.labels = new Labels(!{JSON.stringify(data.labels)});
       App.indexView();
 
     +js_scripts("router")

@@ -1,0 +1,174 @@
+.modal
+  display: none
+  position: absolute
+  border-radius: $radius.main
+  box-sizing: border-box
+  padding: 10px
+  background: white
+  border: 1px solid $colors.light-grey
+  z-index: 3
+  hr
+    border: none
+    border-bottom: 1px solid $colors.light-grey
+    margin: 10px auto
+  h3
+    text-align: center
+    font-weight: normal
+    color: $colors.darker-grey
+  + .overlay
+    display: none
+    z-index: 2
+
+.overlay
+  position: fixed
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+
+.close
+  margin: 0 10px 0 0
+  float: right
+  cursor: pointer
+  color: $colors.darker-grey
+  &:hover
+    color: $colors.light-black
+
+.prev
+  float: left
+  vertical-align: middle
+  cursor: pointer
+
+.move
+  padding: 12px
+  label-select()
+  input[type="submit"]
+    submit-btn()
+
+.copy
+  padding: 12px
+  dl
+    margin: 0 0 15px 0
+    dt
+      margin: 0 0 15px 0
+    textarea
+      width: 95%
+      min-height: 60px
+      padding: 5px
+      border: 1px solid $colors.grey
+      &:focus
+        border: 1px solid $colors.blue
+        box-shadow: $shadows.all-sides-blue
+  input[type="submit"]
+    submit-btn()
+
+.move-all-cards
+  padding: 12px
+  .actions
+    .action
+      margin-left: -12px
+      margin-right: -12px
+      &:first-child
+        color: $colors.darker-grey
+        cursor: auto
+        &:hover
+          background: white
+          color: $colors.darker-grey
+
+#card-details
+  .modal
+    position: fixed
+    display: inline-block
+    width: 275px
+    z-index: 8
+    background: white
+    color: $colors.light-black
+    form-controls()
+    .overlay
+      z-index: -1
+
+.due-date-form
+  form
+    fieldset
+      margin: 0 0 10px 0
+      label
+        box-sizing: border-box
+        display: inline-block
+        padding: 0 0 0 5px
+        width: 50%
+        &:last-child
+          input
+            width: 85%
+        input
+          width: 80%
+          padding: 5px
+          margin: 5px 0 0 0
+          border: 1px solid $colors.grey
+          box-shadow: $shadows.inside
+          background: $colors.lighter-grey
+          color: $colors.light-black
+          font-size: 12px
+          &[type="time"]
+            font-family: Helvetica
+          &:focus
+            border: 1px solid $colors.blue
+            box-shadow: $shadows.all-sides-blue
+            background: white
+    .datepicker
+      margin: 0 0 15px 0
+      color: $colors.light-black
+      .ui-datepicker-inline
+        margin: 0 auto
+      .ui-corner-all
+        color: $colors.light-black
+      .ui-state-active
+        background: $colors.blue
+        border: 1px $colors.dark-blue
+      .ui-state-highlight
+        border: 1px solid $colors.grey
+        background: $colors.light-grey
+        color: $colors.light-black
+        font-weight: bold
+    .form-controls
+      input[type="submit"].remove
+        float: right
+        box-shadow: $shadows.bottom-light-black
+        background: $colors.grey-gradient-top
+        color: $colors.red
+        &:hover
+          color: white
+          background: $colors.red-gradient-bottom
+
+.labels-form
+  .label
+    display: inline-block
+    box-sizing: border-box
+    height: 35px
+    width: 210px
+    margin: 0 5px 5px 0
+    border-radius: $radius.main
+    cursor: pointer
+    transition: border-left 0s, width 0s, margin-left 0s
+    &:hover
+      width: 215px
+      margin-left: -5px
+      border-left: 8px solid rgba(0, 0, 0, 0.25)
+      transition: border-left 0.075s, width 0.075s, margin-left 0.075s
+    .check
+      padding: 8px 8px 0 0
+      float: right
+      color: white
+  .edit
+    display: inline-block
+    box-sizing: border-box
+    width: 35px
+    height: 35px
+    padding: 10px
+    border-radius: $radius.main
+    vertical-align: top
+    color: $colors.grey
+    cursor: pointer
+    transition: background 0.25s, color 0.25s
+    &:hover
+      background: $colors.light-grey
+      color: $colors.light-black

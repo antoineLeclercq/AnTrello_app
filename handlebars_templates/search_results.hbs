@@ -1,0 +1,14 @@
+<h1>Search Results</h1>
+<ul class="card-results">
+  {{#each cards}}
+  <li>
+    <section>
+      <h2><i class="material-icons md-18">web_asset</i><a href="/card/{{id}}">{{name}}</a></h2>
+      <p>in <strong>{{list_name}}</strong></p>
+    </section>
+  </li>
+  {{else}}
+  <p>No cards found</p>
+  {{/each}}
+</ul>
+<div class="overlay"></div>

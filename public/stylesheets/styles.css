@@ -483,6 +483,44 @@ textarea.formated {
   vertical-align: middle;
   cursor: pointer;
 }
+.search-results {
+  position: fixed;
+  display: block;
+  top: 40px;
+  left: 5px;
+  min-width: 300px;
+  padding: 20px;
+  z-index: 2;
+  background: #edeff0;
+  color: #8c8c8c;
+}
+.search-results .overlay {
+  z-index: -1;
+  top: 40px;
+}
+.search-results h1 {
+  color: #4d4d4d;
+  margin: 0 0 20px 0;
+  font-size: 18px;
+}
+.search-results li {
+  margin: 10px 0 0 0;
+}
+.search-results h2 {
+  margin: 0 0 3px 0;
+}
+.search-results h2 i {
+  margin: 0 5px 0 0;
+  vertical-align: top;
+  color: #4d4d4d;
+}
+.search-results a {
+  color: #4d4d4d;
+}
+.search-results a:hover {
+  color: #000;
+  text-decoration: underline;
+}
 .move {
   padding: 12px;
 }
@@ -919,39 +957,44 @@ body > header form input {
   transition: width 0.25s;
   opacity: 0.35;
 }
-body > header form input + span {
-  transform: rotate(90deg);
-  color: #fff;
-}
-body > header form input + span + span {
-  opacity: 0;
-}
 body > header form input:hover {
   opacity: 0.6;
 }
-body > header form input:focus {
+body > header form input.focus {
   width: 270px;
   background: #fff;
   opacity: 1;
 }
-body > header form input:focus + span {
+body > header form input.focus ~ .search {
   left: 255px;
+  z-index: -1;
 }
-body > header form input:focus + span + span {
-  display: inline-block;
-  position: absolute;
+body > header form input.focus ~ .close {
   left: 255px;
   opacity: 1;
   color: #a5acb0;
   cursor: pointer;
   z-index: 2;
 }
+body > header form input.focus ~ .close:hover {
+  color: #8c8c8c;
+}
 body > header form span {
   position: absolute;
+  display: inline-block;
   left: 165px;
   padding: 3px;
   font-size: 16px;
   transition: left 0.25s;
+}
+body > header form .search {
+  transform: rotate(90deg);
+  color: #fff;
+  cursor: pointer;
+}
+body > header form .close {
+  opacity: 0;
+  z-index: -1;
 }
 body > header h1 {
   display: inline-block;

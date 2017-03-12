@@ -34,33 +34,37 @@ body
         background: $colors.light-blue
         transition: width 0.25s
         opacity: 0.35
-        + span
-          transform: rotate(90deg)
-          color: white
-          + span
-            opacity: 0
         &:hover
           opacity: 0.6
-        &:focus
+        &.focus
           width: $widths.input
           background: white
           opacity: 1
-          + span
+          ~ .search
             left: $widths.input - 15
-            + span
-              display: inline-block
-              position: absolute
-              left: $widths.input - 15
-              opacity: 1
-              color: $colors.dark-grey
-              cursor: pointer
-              z-index: 2
+            z-index: -1
+          ~ .close
+            left: $widths.input - 15
+            opacity: 1
+            color: $colors.dark-grey
+            cursor: pointer
+            z-index: 2
+            &:hover
+              color: $colors.darker-grey
       span
         position: absolute
+        display: inline-block
         left: $widths.short-input - 15
         padding: 3px
         font-size: 16px
         transition: left 0.25s
+      .search
+        transform: rotate(90deg)
+        color: white
+        cursor: pointer
+      .close
+        opacity: 0
+        z-index: -1
     h1
       display: inline-block
       font: bold 25px Lobster, Serif

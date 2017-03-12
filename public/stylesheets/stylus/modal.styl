@@ -39,6 +39,37 @@
   vertical-align: middle
   cursor: pointer
 
+.search-results
+  position: fixed
+  display: block
+  top: 40px
+  left: 5px
+  min-width: 300px
+  padding: 20px
+  z-index: 2
+  background: $colors.lighter-grey
+  color: $colors.darker-grey
+  .overlay
+    z-index: -1
+    top: 40px
+  h1
+    color: $colors.light-black
+    margin: 0 0 20px 0
+    font-size: 18px
+  li
+    margin: 10px 0 0 0
+  h2
+    margin: 0 0 3px 0
+    i
+      margin: 0 5px 0 0
+      vertical-align: top
+      color: $colors.light-black
+  a
+    color: $colors.light-black
+    &:hover
+      color: black
+      text-decoration: underline
+
 .move
   padding: 12px
   label-select()

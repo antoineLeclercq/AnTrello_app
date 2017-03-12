@@ -16,12 +16,16 @@ var App = {
     this.addCardsToLists();
     this.addLabelsToCards();
 
+    this.renderHeaderView();
     this.renderLists();
     this.renderCardFormView();
     this.renderListFormView();
 
     this.bindAutoResizeTextareaEvent();
     this.bindEvents();
+  },
+  renderHeaderView: function () {
+    new HeaderView();
   },
   renderLists: function () {
     this.listsView = new ListsView({ collection: this.lists });

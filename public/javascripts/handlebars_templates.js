@@ -47,14 +47,12 @@ this["JST"]["card_quick_edit"] = Handlebars.template({"1":function(container,dep
     + container.escapeExpression(((helper = (helper = helpers.commentsCount || (depth0 != null ? depth0.commentsCount : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"commentsCount","hash":{},"data":data}) : helper)))
     + "</li>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
-  return "<div class=\"overlay\"></div>\n<div class=\"container\">\n<section class=\"card-preview\" data-id=\""
-    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\">\n<ul class=\"labels\">\n"
+  return "<div class=\"overlay\"></div>\n<div class=\"container\">\n<section class=\"card-preview\">\n<ul class=\"labels\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.labels : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</ul>\n<form id=\"card-name-quick-edit\">\n<textarea autofocus>"
-    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + "</textarea>\n</form>\n<ul class=\"icons\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.subscriber : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.due_date : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
@@ -364,4 +362,24 @@ this["JST"]["move_list_form"] = Handlebars.template({"1":function(container,dept
     + "</p>\n</label>\n</dt>\n<dd>\n<select>\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.positions : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</select>\n</dd>\n</dl>\n<input type=\"submit\" value=\"Move\">\n</form>\n";
+},"useData":true});
+
+this["JST"]["search_results"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<li>\n<section>\n<h2><i class=\"material-icons md-18\">web_asset</i><a href=\"/card/"
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</a></h2>\n<p>in <strong>"
+    + alias4(((helper = (helper = helpers.list_name || (depth0 != null ? depth0.list_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"list_name","hash":{},"data":data}) : helper)))
+    + "</strong></p>\n</section>\n</li>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "<p>No cards found</p>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<h1>Search Results</h1>\n<ul class=\"card-results\">\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.cards : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "</ul>\n<div class=\"overlay\"></div>\n";
 },"useData":true});

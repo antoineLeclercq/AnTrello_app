@@ -15,20 +15,23 @@
   {{#if labelsComments}}
   <dl class="labels-comments">
     <dt>Keep...</dt>
-    <dd>
     {{#with labelsComments}}
-      {{#if labelsCount}}
+    {{#if labelsCount}}
+    <dd>
       <label>
         <input type="checkbox" name="labels">
         Labels ({{labelsCount}})
       </label>
-      {{/if}}
-      {{#if commentsCount}}
+    </dd>
+    {{/if}}
+    {{#if commentsCount}}
+    <dd>
       <label>
         <input type="checkbox" name="comments">
         Comments ({{commentsCount}})
       </label>
-      {{/if}}
+    </dd>
+    {{/if}}
     {{/with}}
     </dd>
   </dl>

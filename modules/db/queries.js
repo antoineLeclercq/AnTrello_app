@@ -12,6 +12,7 @@ var queries = {
     'LEFT JOIN card_label ' +
     'ON label.id = card_label.label_id ' +
     'GROUP BY label.id, label.color, label.name;',
+  allComments: 'SELECT * FROM comment;',
 };
 
 module.exports = queries;

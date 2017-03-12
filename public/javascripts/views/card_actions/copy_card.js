@@ -25,9 +25,17 @@ var CopyCardView = Backbone.View.extend({
     newCardData.position = position;
     newCardData.name = newName;
     newCardData.list_id = listId;
+    newCardData.comments = new Comments();
 
     if (!$('[name="labels"]').is(':checked')) { delete newCardData.labels; }
-    // if (!$('[name="comments"]').is(':checked')) { newCardData.comments = new Comments(); }
+
+    if (!$('[name="comments"]').is(':checked')) {
+      newCardData.comments = new Comments();
+    } else {
+      this.model.get('comments').forEach(function (comment) {
+        newCardData.comments.trigger('create_comment', _.omit(comment.toJSON(), 'id'));
+      });
+    }
 
     cardsDest.trigger('create_card', newCardData);
     this.remove();
@@ -43,9 +51,7 @@ var CopyCardView = Backbone.View.extend({
     positionsAndListNames.positions = view_helpers.getFormatedCardPositions(cards, currentPosition);
     positionsAndListNames.lists = view_helpers.getFormatedListNames(currentListName);
 
-    if (this.model.get('labels').length)
-    // || this.model.get('comments').length)
-    {
+    if (this.model.get('labels').length|| this.model.get('comments').length) {
       positionsAndListNames.labelsComments = view_helpers.getFormatedLalbelsComments(this.model);
     }
 

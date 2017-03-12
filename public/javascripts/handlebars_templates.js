@@ -103,7 +103,7 @@ this["JST"]["card"] = Handlebars.template({"1":function(container,depth0,helpers
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.description : depth0),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.program(8, data, 0),"data":data})) != null ? stack1 : "")
     + "<form>\n<textarea>"
     + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</textarea>\n<div class=\"form-controls\">\n<input type=\"submit\" value=\"Save\">\n<a class=\"close\" href=\"#\"><i class=\"material-icons md-30\">close</i></a>\n</div>\n</form>\n</section>\n</div>\n<section class=\"add-comment\">\n<header>\n<i class=\"material-icons\">comment</i>\n<h1>Add Comment</h1>\n</header>\n<form action=\"/comments\" method=\"post\">\n<textarea class=\"comment-input\" placeholder=\"Write a comment...\"></textarea>\n<input type=\"submit\" value=\"Send\">\n</form>\n</section>\n<section class=\"activity\">\n<header>\n<i class=\"material-icons\">list</i>\n<h1>Activity</h1>\n</header>\n<ul class=\"activities\">\n"
+    + "</textarea>\n<div class=\"form-controls\">\n<input type=\"submit\" value=\"Save\">\n<a class=\"close\" href=\"#\"><i class=\"material-icons md-30\">close</i></a>\n</div>\n</form>\n</section>\n</div>\n<section class=\"add-comment\">\n<header>\n<i class=\"material-icons\">comment</i>\n<h1>Add Comment</h1>\n</header>\n<form action=\"/comments\" method=\"post\">\n<textarea class=\"comment-content\" placeholder=\"Write a comment...\"></textarea>\n<input type=\"submit\" value=\"Send\">\n</form>\n</section>\n<section class=\"activity\">\n<header>\n<i class=\"material-icons\">list</i>\n<h1>Activity</h1>\n</header>\n<ul class=\"activities\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.activities : depth0),{"name":"each","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</ul>\n</section>\n</div>\n<aside>\n<section class=\"add\">\n<h1>Add</h1>\n<ul class=\"actions\">\n<li class=\"action labels\"><i class=\"material-icons md-14\">local_offer</i>Labels</li>\n<li class=\"action due-date\"><i class=\"material-icons md-14\">access_time</i>Due Date</li>\n</ul>\n</section>\n<section class=\"card-actions\">\n<h1>Actions</h1>\n<ul class=\"actions\">\n<li class=\"action move-card\"><i class=\"material-icons md-14\">arrow_forward</i>Move</li>\n<li class=\"action copy-card\"><i class=\"material-icons md-14\">web_asset</i>Copy</li>\n<li class=\"action subscribe\"><i class=\"material-icons md-14\">remove_red_eye</i>Subscribe</li>\n<li class=\"action archive\"><i class=\"material-icons md-14\">archive</i>Archive</li>\n</ul>\n</section>\n</aside>\n</div>\n";
 },"useData":true});
@@ -142,7 +142,7 @@ this["JST"]["cards"] = Handlebars.template({"1":function(container,depth0,helper
 },"10":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "<li><i class=\"material-icons md-14\">comment</i>"
+  return "<li><i class=\"material-icons md-14\">comment</i> "
     + container.escapeExpression(((helper = (helper = helpers.commentsCount || (depth0 != null ? depth0.commentsCount : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"commentsCount","hash":{},"data":data}) : helper)))
     + "</li>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -154,7 +154,7 @@ this["JST"]["cards"] = Handlebars.template({"1":function(container,depth0,helper
 this["JST"]["copy_card_form"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<dl class=\"labels-comments\">\n<dt>Keep...</dt>\n<dd>\n"
+  return "<dl class=\"labels-comments\">\n<dt>Keep...</dt>\n"
     + ((stack1 = helpers["with"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.labelsComments : depth0),{"name":"with","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</dd>\n</dl>\n";
 },"2":function(container,depth0,helpers,partials,data) {
@@ -165,15 +165,15 @@ this["JST"]["copy_card_form"] = Handlebars.template({"1":function(container,dept
 },"3":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "<label>\n<input type=\"checkbox\" name=\"labels\">\nLabels ("
+  return "<dd>\n<label>\n<input type=\"checkbox\" name=\"labels\">\nLabels ("
     + container.escapeExpression(((helper = (helper = helpers.labelsCount || (depth0 != null ? depth0.labelsCount : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"labelsCount","hash":{},"data":data}) : helper)))
-    + ")\n</label>\n";
+    + ")\n</label>\n</dd>\n";
 },"5":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "<label>\n<input type=\"checkbox\" name=\"comments\">\nComments ("
+  return "<dd>\n<label>\n<input type=\"checkbox\" name=\"comments\">\nComments ("
     + container.escapeExpression(((helper = (helper = helpers.commentsCount || (depth0 != null ? depth0.commentsCount : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"commentsCount","hash":{},"data":data}) : helper)))
-    + ")\n</label>\n";
+    + ")\n</label>\n</dd>\n";
 },"7":function(container,depth0,helpers,partials,data) {
     var stack1;
 

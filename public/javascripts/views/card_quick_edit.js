@@ -24,7 +24,7 @@ var CardQuickEditView = Backbone.View.extend({
     var cardData = this.model.toJSON()
 
     cardData.labels = cardData.labels.toJSON();
-    // cardData.commentsCount = cardData.comments.length;
+    cardData.commentsCount = cardData.comments.length;
 
     this.$el.html(this.template(cardData));
     this.$el.appendTo(document.body);

@@ -1,7 +1,7 @@
 CREATE TABLE list (
   id serial PRIMARY KEY,
   name varchar(255) NOT NULL,
-  position integer NOT NULL
+  position integer NOT NULL UNIQUE
 );
 
 CREATE TABLE card (
@@ -78,14 +78,23 @@ VALUES
 INSERT INTO list(name, position) VALUES ('Backlog', 0);
 INSERT INTO list(name, position) VALUES ('This Month', 1);
 INSERT INTO list(name, position) VALUES ('This Week', 2);
+INSERT INTO list(name, position) VALUES ('Today', 3);
+
 
 INSERT INTO card (list_id, name, description, due_date, position, subscriber)
 VALUES
-  (1, 'fix background bug', 'harmless, bug, fix when possible', NULL, 0, 'false'),
-  (1, 'replace modal', 'replace on second page', NULL, 1, false),
-  (2, 'finish project', 'add tests', current_timestamp, 0, true);
+  (1, 'backlog task', NULL, NULL, 0, 'false'),
+  (2, 'task for this month', NULL, NULL, 0, false),
+  (3, 'task for this week', 'finish by end of week', NULL, 0, true),
+  (4, 'task for today', 'finish by today', current_timestamp, 0, true),
+  (4, 'another task for today', 'finish by today', current_timestamp, 1, true);
 
-INSERT INTO comment(card_id, content) VALUES (2, 'added 1 test');
+INSERT INTO comment(card_id, content)
+VALUES
+  (2, 'test comment - finish by end of month'),
+  (3, 'test comment - finish by end of week'),
+  (4, 'test comment - finish by end of day');
+
 
 INSERT INTO label(color)
 VALUES
@@ -105,8 +114,11 @@ VALUES
   (1, 5),
   (2, 3),
   (3, 2),
-  (3, 6);
-
+  (3, 6),
+  (4, 7),
+  (4, 1),
+  (4, 4),
+  (5, 4);
 
 INSERT INTO activity(card_id, action_id, actionable_item_id, date)
 VALUES (2, 1, 2, current_timestamp);

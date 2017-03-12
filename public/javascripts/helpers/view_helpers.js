@@ -32,7 +32,7 @@ var view_helpers = {
   getFormatedLalbelsComments: function (card) {
     return {
       labelsCount: card.get('labels').length,
-      // commentsCount: card.get('comments').length,
+      commentsCount: card.get('comments').length,
     }
   },
   updateListNameAndPositions: function (e) {

@@ -9,6 +9,7 @@ var CardView = Backbone.View.extend({
     'focusout .title': 'updateName',
     'click .description > a, .description .close': 'toggleDescriptionForm',
     'submit .description form': 'updateDescriptionAndRender',
+    'submit .add-comment form': 'createComment',
     'click .actions .labels, .labels .label': 'renderLabelsView',
     'click .due-date': 'renderDueDateView',
     'click .move-card': 'renderMoveCardView',
@@ -41,6 +42,17 @@ var CardView = Backbone.View.extend({
     } else {
       this.model.trigger('update_description', 'description', newDescription);
       this.render();
+    }
+  },
+  createComment: function (e) {
+    e.preventDefault();
+    var commentContent = $(e.target).find('.comment-content').val().trim();
+
+    if (commentContent) {
+      this.model.trigger('create_comment', {
+        card_id: this.model.id,
+        content: commentContent
+      });
     }
   },
   renderLabelsView: function (e) {
@@ -124,7 +136,7 @@ var CardView = Backbone.View.extend({
   initialize: function () {
     this.render();
     this.$el.attr('data-id', this.model.id);
-    this.listenTo(this.model, 'change', this.render);
+    this.listenTo(this.model, 'change create_comment', this.render);
     this.listenTo(this.model, 'toggle_label edit_label', this.renderAndDisplayLabelsForm);
   },
 });

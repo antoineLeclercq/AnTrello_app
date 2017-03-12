@@ -37,7 +37,7 @@ var storage = {
     var values = options.values.map(function (val, i) {
       return '$' + (i + 1);
     }).join(', ');
-    var query = 'INSERT INTO '+ table + '(' + names + ')' + ' VALUES (' + values + ') RETURNING id;';
+    var query = 'INSERT INTO '+ table + ' (' + names + ')' + ' VALUES (' + values + ') RETURNING id;';
 
     this.query({
       query: query,

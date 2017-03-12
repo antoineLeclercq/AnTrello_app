@@ -33,12 +33,6 @@ var storage = {
       options: opts,
     }, task);
   },
-  select: function (table, id, task) {
-    this.query({
-      query: 'SELECT * FROM ' + table + ' WHERE id = $1;',
-      options: [id],
-    }, task);
-  },
   insert: function (table, options, task) {
     var names = options.names.join(', ');
     var values = options.values.map(function (val, i) {
@@ -71,43 +65,7 @@ var lists = {
     storage.query({
       query: queries.allLists,
     }, task);
-  },
-  insert: function (options, task) {
-    storage.query({
-      query: queries.insertList,
-      options: [options.name, options.position],
-    }, task);
-  },
-  formatListsResult: function (rows) {
-    return _.each(this.formatCardsResult(rows), function (row) {
-      row.cards = row.cards.filter(function (card) {
-        return card.id;
-      });
-
-      return row;
-    });
-  },
-  formatCardsResult: function (rows) {
-    return _.values(rows.reduce(function (result, row) {
-      var formatedRow = result[row.id] || {};
-      var card = {};
-
-      _.each(row, function (v, k) {
-          var match = k.match(/^card_(.+)$/);
-
-          if (match) {
-            card[match.pop()] = v;
-          } else {
-            formatedRow[k] = v;
-          }
-      });
-
-      formatedRow.cards = formatedRow.cards ? formatedRow.cards.concat(card) : [card];
-      result[formatedRow.id] = formatedRow;
-
-      return result;
-    }, {}));
-  },
+  }
 };
 
 var cards = {
@@ -119,7 +77,11 @@ var cards = {
 };
 
 var comments = {
-
+  all: function (task) {
+    storage.query({
+      query: queries.allComments,
+    }, task);
+  },
 };
 
 var labels = {
@@ -149,12 +111,16 @@ storage.startingData = function (task) {
       data.cards = cardsData.rows;
       storage.labels.all(function (labelsData) {
         data.labels = labelsData.rows;
+
         data.labels = data.labels.map(function (label) {
           label.card_ids = label.card_ids.filter(function (id) { return id; });
           return label;
         });
 
-        task(data);
+        storage.comments.all(function (commentsData) {
+          data.comments = commentsData.rows;
+          task(data);
+        });
       });
     });
   });

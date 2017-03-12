@@ -117,10 +117,12 @@
       margin-bottom: 20px
       textarea
         width: 95%
-        height: 75px
+        min-height: 75px
         padding: 10px
         box-shadow: $shadows.bottom
         color: $colors.light-black
+        &:focus
+          outline: none
       input[type="submit"]
         submit-btn()
   aside

@@ -1,5 +1,17 @@
 var App = {
   templates: JST,
+  indexView: function () {
+    this.addCardsToLists();
+    this.addLabelsToCards();
+
+    this.renderHeaderView();
+    this.renderLists();
+    this.renderCardFormView();
+    this.renderListFormView();
+
+    this.bindAutoResizeTextareaEvent();
+    this.bindEvents();
+  },
   addCardsToLists: function () {
     App.lists.each(function (list) {
       list.set('cards', new ListCards(this.cards.where({ list_id: list.id })));
@@ -12,17 +24,16 @@ var App = {
       })));
     }.bind(this));
   },
-  indexView: function () {
-    this.addCardsToLists();
-    this.addLabelsToCards();
+  addCommentsToCards: function (comments) {
+    App.cards.each(function (card) {
+      card.set('comments', new Comments());
 
-    this.renderHeaderView();
-    this.renderLists();
-    this.renderCardFormView();
-    this.renderListFormView();
-
-    this.bindAutoResizeTextareaEvent();
-    this.bindEvents();
+      comments.forEach(function (comment) {
+        if (card.id === comment.card_id) {
+          card.get('comments').add(comment);
+        }
+      });
+    });
   },
   renderHeaderView: function () {
     new HeaderView();

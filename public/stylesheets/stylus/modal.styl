@@ -75,7 +75,7 @@
           background: white
           color: $colors.darker-grey
 
-#card-details
+.card-edit
   .modal
     position: fixed
     display: inline-block
@@ -177,7 +177,7 @@
   input[type="submit"]
     submit-btn()
 
-#card-details
+.card-edit
   .copy
     label-select()
     .card-name, .labels-comments
@@ -195,3 +195,43 @@
         margin: 0 5px 0 0
         vertical-align: middle
 
+#card-quick-edit
+  position: fixed
+  display: block
+  padding: 0
+  background: none
+  border none
+  > .overlay
+    background: rgba(0, 0, 0, 0.6)
+    z-index: -1
+  .container
+    display: inline-block
+    vertical-align: top
+  .card-preview
+    margin: 0 10px 10px 0
+    &:hover
+      background: white
+  textarea
+    width: 100%
+    &:focus
+      outline: none
+  input[type="submit"]
+    submit-btn()
+  aside
+    display: inline-block
+    .action
+      display: inline-block
+      color: white
+      padding: 7px
+      margin: 0 0 5px 0
+      border-radius: $radius.main
+      background: rgba(0, 0 , 0, 0.6)
+      transition: margin-left 0.1s
+      &:hover
+        margin-left: 10px
+        background: rgba(0, 0, 0, 0.85)
+      i
+        vertical-align: middle
+        margin: 0 5px 0 0
+  .modal
+    display: block

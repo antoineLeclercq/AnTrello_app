@@ -1,0 +1,41 @@
+<div class="overlay"></div>
+<div class="container">
+  <section class="card-preview">
+    <ul class="labels">
+      {{#each labels}}
+      <li class="label" style="background:{{color}};"></li>
+      {{/each}}
+    </ul>
+    <form id="card-name-quick-edit">
+      <textarea autofocus>{{name}}</textarea>
+    </form>
+    <ul class="icons">
+      {{#if subscriber}}
+      <li><i class="material-icons md-14">remove_red_eye</i></li>
+      {{/if}}
+      {{#if due_date}}
+      <li class="due-date"><i class="material-icons md-14">access_time</i>{{format_date_preview due_date}}</li>
+      {{/if}}
+      {{#if description}}
+      <li><i class="material-icons md-16">subject</i></li>
+      {{/if}}
+      {{#if commentsCount}}
+      <li><i class="material-icons md-14">comment</i>{{commentsCount}}</li>
+      {{/if}}
+    </ul>
+  </section>
+  <div class="form-controls">
+    <input type="submit" form="card-name-quick-edit" value="Save">
+  </div>
+</div>
+<aside>
+  <section class="card-quick-edit-actions">
+      <ul class="actions">
+        <li class="action labels"><i class="material-icons md-14">local_offer</i>Edit Labels</li><br>
+        <li class="action due-date"><i class="material-icons md-14">access_time</i>Change Due Date</li><br>
+        <li class="action move-card"><i class="material-icons md-14">arrow_forward</i>Move</li><br>
+        <li class="action copy-card"><i class="material-icons md-14">web_asset</i>Copy</li><br>
+        <li class="action archive"><i class="material-icons md-14">archive</i>Archive</li>
+      </ul>
+    </section>
+</aside>

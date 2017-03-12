@@ -1,6 +1,7 @@
 var CardView = Backbone.View.extend({
   attributes: {
     id: 'card-details',
+    class: 'card-edit',
   },
   template: App.templates.card,
   events: {

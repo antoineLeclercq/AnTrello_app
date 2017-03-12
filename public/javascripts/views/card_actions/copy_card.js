@@ -51,7 +51,7 @@ var CopyCardView = Backbone.View.extend({
 
     this.$el.html(this.template(positionsAndListNames));
     this.$el.find('.card-name textarea').val(currentCardNameInput || this.model.get('name'));
-    this.$el.appendTo($('#card-details'));
+    this.$el.appendTo($('.card-edit'));
   },
   initialize: function () {
     this.render();

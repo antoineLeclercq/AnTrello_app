@@ -33,7 +33,7 @@ var LabelsView = Backbone.View.extend({
     var labelsData = view_helpers.formatLabelsDataForTemplate(this.model.id);
 
     this.$el.html(this.template(labelsData));
-    this.$el.appendTo($('#card-details'));
+    this.$el.appendTo($('.card-edit'));
   },
   initialize: function () {
     this.render();

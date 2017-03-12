@@ -1,5 +1,5 @@
 {{#each cards}}
-  <li class="card" data-id="{{id}}" data-position="{{position}}">
+  <li class="card-preview" data-id="{{id}}" data-position="{{position}}">
     <span class="edit"><i class="material-icons md-14">edit</i></span>
     <ul class="labels">
       {{#each labels}}
@@ -8,8 +8,18 @@
     </ul>
     <p>{{name}}</p>
     <ul class="icons">
-      <li class="comment-icon"></li>
-      <li class="subscribe-icon"></li>
+      {{#if subscriber}}
+      <li><i class="material-icons md-14">remove_red_eye</i></li>
+      {{/if}}
+      {{#if due_date}}
+      <li class="due-date"><i class="material-icons md-14">access_time</i>{{format_date_preview due_date}}</li>
+      {{/if}}
+      {{#if description}}
+      <li><i class="material-icons md-16">subject</i></li>
+      {{/if}}
+      {{#if commentsCount}}
+      <li><i class="material-icons md-14">comment</i>{{commentsCount}}</li>
+      {{/if}}
     </ul>
   </li>
 {{/each}}

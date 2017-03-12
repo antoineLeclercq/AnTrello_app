@@ -145,7 +145,7 @@ textarea.formated {
 .cards {
   min-height: 10px;
 }
-.card {
+.card-preview {
   box-sizing: border-box;
   width: 254px;
   padding: 7px;
@@ -155,7 +155,7 @@ textarea.formated {
   background: #fff;
   cursor: pointer;
 }
-.card .edit {
+.card-preview .edit {
   display: none;
   float: right;
   margin: -4px 0 0 0;
@@ -164,27 +164,49 @@ textarea.formated {
   color: #c4c9cc;
   cursor: pointer;
 }
-.card .edit:hover {
+.card-preview .edit:hover {
   color: #4d4d4d;
   background: #c4c9cc;
 }
-.card:hover {
+.card-preview:hover {
   background: #edeff0;
 }
-.card:hover .edit {
+.card-preview:hover .edit {
   display: block;
 }
-.card .labels {
+.card-preview .labels {
   overflow: hidden;
   margin: 0 0 5px 0;
   font-size: 10px;
 }
-.card .label {
+.card-preview .label {
   float: left;
   height: 8px;
   width: 35px;
   margin: 2px;
   border-radius: 3px;
+}
+.icons {
+  margin: 5px 0 0 0;
+}
+.icons li {
+  display: inline-block;
+  margin: 0 5px 0 0;
+  font-size: 12px;
+  vertical-align: middle;
+  color: #8c8c8c;
+}
+.icons li i {
+  vertical-align: top;
+}
+.icons .due-date {
+  padding: 2px 5px;
+  border-radius: 3px;
+  background: #8c8c8c;
+  color: #fff;
+}
+.icons .due-date i {
+  margin: 0 5px 0 0;
 }
 .sortable-card-placeholder {
   padding: 7px;
@@ -402,10 +424,18 @@ textarea.formated {
   font-weight: bold;
   cursor: pointer;
 }
+#card-details aside section .actions .action i {
+  margin: 0 5px 0 0;
+  vertical-align: middle;
+  color: #8c8c8c;
+}
 #card-details aside section .actions .action:hover {
   background: #0079bf;
   border: 1px solid #0079bf;
   border-bottom: 1px solid #026aa7;
+  color: #fff;
+}
+#card-details aside section .actions .action:hover i {
   color: #fff;
 }
 .modal {
@@ -559,7 +589,7 @@ textarea.formated {
   background: #fff;
   color: #8c8c8c;
 }
-#card-details .modal {
+.card-edit .modal {
   position: fixed;
   display: inline-block;
   width: 275px;
@@ -567,13 +597,13 @@ textarea.formated {
   background: #fff;
   color: #4d4d4d;
 }
-#card-details .modal .form-controls {
+.card-edit .modal .form-controls {
   display: block;
   height: 35px;
   overflow: hidden;
   transition: height 0.25s;
 }
-#card-details .modal .form-controls input[type="submit"] {
+.card-edit .modal .form-controls input[type="submit"] {
   padding: 0 20px;
   min-height: 30px;
   box-shadow: 0 1px 0 #3f6f21;
@@ -583,21 +613,21 @@ textarea.formated {
   font-weight: bold;
   cursor: pointer;
 }
-#card-details .modal .form-controls input[type="submit"]:hover {
+.card-edit .modal .form-controls input[type="submit"]:hover {
   background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
-#card-details .modal .form-controls .close {
+.card-edit .modal .form-controls .close {
   display: inline-block;
   float: none;
   margin: 0 0 0 5px;
 }
-#card-details .modal .form-controls .close:hover {
+.card-edit .modal .form-controls .close:hover {
   background: inherit;
 }
-#card-details .modal .form-controls .close i {
+.card-edit .modal .form-controls .close i {
   vertical-align: middle;
 }
-#card-details .modal .overlay {
+.card-edit .modal .overlay {
   z-index: -1;
 }
 .due-date-form form fieldset {
@@ -733,7 +763,7 @@ textarea.formated {
 .edit-label-form input[type="submit"]:hover {
   background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
-#card-details .copy dl {
+.card-edit .copy dl {
   position: relative;
   margin: 0 0 15px 0;
   top: 0;
@@ -748,27 +778,27 @@ textarea.formated {
   font-weight: bold;
   cursor: pointer;
 }
-#card-details .copy dl h5 {
+.card-edit .copy dl h5 {
   margin: 0 0 7px 0;
   color: #8c8c8c;
   font-size: 12px;
 }
-#card-details .copy dl p {
+.card-edit .copy dl p {
   color: #4d4d4d;
   font-size: 18px;
 }
-#card-details .copy dl:hover {
+.card-edit .copy dl:hover {
   border: 1px solid #0079bf;
   border-bottom: 1px solid #026aa7;
   background: #0079bf;
 }
-#card-details .copy dl:hover h5 {
+.card-edit .copy dl:hover h5 {
   color: #edeff0;
 }
-#card-details .copy dl:hover p {
+.card-edit .copy dl:hover p {
   color: #fff;
 }
-#card-details .copy select {
+.card-edit .copy select {
   position: absolute;
   height: 100%;
   top: 0;
@@ -776,24 +806,87 @@ textarea.formated {
   width: 100%;
   opacity: 0;
 }
-#card-details .copy .card-name,
-#card-details .copy .labels-comments {
+.card-edit .copy .card-name,
+.card-edit .copy .labels-comments {
   background: none;
   border: none;
   cursor: auto;
 }
-#card-details .copy .card-name:hover,
-#card-details .copy .labels-comments:hover {
+.card-edit .copy .card-name:hover,
+.card-edit .copy .labels-comments:hover {
   background: none;
   border: none;
 }
-#card-details .copy .labels-comments label {
+.card-edit .copy .labels-comments label {
   font-weight: normal;
   font-size: 14px;
 }
-#card-details .copy .labels-comments [type="checkbox"] {
+.card-edit .copy .labels-comments [type="checkbox"] {
   margin: 0 5px 0 0;
   vertical-align: middle;
+}
+#card-quick-edit {
+  position: fixed;
+  display: block;
+  padding: 0;
+  background: none;
+  border: none;
+}
+#card-quick-edit > .overlay {
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
+}
+#card-quick-edit .container {
+  display: inline-block;
+  vertical-align: top;
+}
+#card-quick-edit .card-preview {
+  margin: 0 10px 10px 0;
+}
+#card-quick-edit .card-preview:hover {
+  background: #fff;
+}
+#card-quick-edit textarea {
+  width: 100%;
+}
+#card-quick-edit textarea:focus {
+  outline: none;
+}
+#card-quick-edit input[type="submit"] {
+  padding: 0 20px;
+  min-height: 30px;
+  box-shadow: 0 1px 0 #3f6f21;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#card-quick-edit input[type="submit"]:hover {
+  background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
+}
+#card-quick-edit aside {
+  display: inline-block;
+}
+#card-quick-edit aside .action {
+  display: inline-block;
+  color: #fff;
+  padding: 7px;
+  margin: 0 0 5px 0;
+  border-radius: 3px;
+  background: rgba(0,0,0,0.6);
+  transition: margin-left 0.1s;
+}
+#card-quick-edit aside .action:hover {
+  margin-left: 10px;
+  background: rgba(0,0,0,0.85);
+}
+#card-quick-edit aside .action i {
+  vertical-align: middle;
+  margin: 0 5px 0 0;
+}
+#card-quick-edit .modal {
+  display: block;
 }
 body {
   font: normal 14px "Helvetica Neue", Arial, Helvetica, sans-serif;

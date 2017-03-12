@@ -1,12 +1,13 @@
 var ListCardsView = Backbone.View.extend({
   template: App.templates.cards,
   events: {
-    'click .card': 'renderCardDetailsView',
+    'click .card-preview': 'renderCardDetailsView',
     'click .edit': 'renderCardQuickEditView',
   },
   render: function () {
-    cardsData = this.collection.toJSON().map(function (card) {
+    var cardsData = this.collection.toJSON().map(function (card) {
       card.labels = card.labels.toJSON();
+      // card.comments = comments.length;
       return card;
     });
     this.$el.html(this.template({ cards: cardsData }));
@@ -25,6 +26,21 @@ var ListCardsView = Backbone.View.extend({
   },
   renderCardQuickEditView: function (e) {
     e.stopPropagation();
+    var $card = $(e.target).closest('li');
+    var cardId =  $card.attr('data-id');
+    var cardPosition = $card.offset();
+    var top = cardPosition.top;
+    var left = cardPosition.left;
+
+    new CardQuickEditView({
+      model: this.collection.get(cardId),
+      attributes: {
+        'data-id': cardId,
+        id: 'card-quick-edit',
+        class: 'modal card-edit',
+        style: 'top:' + top + 'px;left:' + left + 'px;',
+      }
+    });
   },
   sortableAndMoveableCards: function() {
     this.$el.sortable({
@@ -53,7 +69,7 @@ var ListCardsView = Backbone.View.extend({
     var oldListCards = App.lists.get($(ui.sender).closest('.list').attr('data-id')).get('cards');
     var $cardElement = ui.item;
     var cardId = $cardElement.attr('data-id');
-    var cardPosition = $cardElement.closest('.cards').find('.card').index($cardElement);
+    var cardPosition = $cardElement.closest('.cards').find('.card-preview').index($cardElement);
     var newListId = Number($cardElement.closest('.list').attr('data-id'));
     var newListCards = App.lists.get(newListId).get('cards');
     var card = oldListCards.remove(cardId, { silent: true });

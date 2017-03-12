@@ -13,12 +13,12 @@ var EditLabelView = Backbone.View.extend({
       this.model.trigger('update_name', 'name', name);
     }
 
-    App.cards.get(this.$el.closest('#card-details').attr('data-id')).trigger('edit_label');
+    App.cards.get(this.$el.closest('.card-edit').attr('data-id')).trigger('edit_label');
     this.remove();
   },
   render: function () {
     this.$el.html(this.template(this.model.toJSON()));
-    this.$el.appendTo($('#card-details'));
+    this.$el.appendTo($('.card-edit'));
   },
   initialize: function () {
     this.render();

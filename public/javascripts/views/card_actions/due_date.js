@@ -20,7 +20,7 @@ var DueDateView = Backbone.View.extend({
   },
   render: function () {
     this.$el.html(this.template());
-    this.$el.appendTo($('#card-details'));
+    this.$el.appendTo($('.card-edit'));
   },
   initializeDatePickerAndTime: function () {
     var dueDate = this.model.get('due_date');

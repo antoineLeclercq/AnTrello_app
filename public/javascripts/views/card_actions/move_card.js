@@ -41,7 +41,7 @@ var MoveCardView = Backbone.View.extend({
     positionsAndListNames.lists = view_helpers.getFormatedListNames(currentListName);
 
     this.$el.html(this.template(positionsAndListNames));
-    this.$el.appendTo($('#card-details'));
+    this.$el.appendTo($('.card-edit'));
   },
   initialize: function () {
     this.render();

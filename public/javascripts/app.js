@@ -70,3 +70,7 @@ Handlebars.registerHelper('format_date', function (date) {
       sameElse : 'MMM DD [at] LT'
   });
 });
+
+Handlebars.registerHelper('format_date_preview', function (date) {
+  return moment(date).format('MMM DD');
+});

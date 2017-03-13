@@ -1,13 +1,24 @@
 var Comments = Backbone.Collection.extend({
   url: '/comments',
   model: Comment,
-  initialize: function () {
-    this.on('create_comment', function (comment) {
-      var newComment = this.create(comment, {
-        success: function () {
-          App.activities.trigger('create_comment_activity', newComment);
-        },
-      });
+  createComment: function (comment) {
+    var newComment = this.create(comment, {
+      success: function () {
+        App.activities.trigger('create_add_comment_activity', newComment);
+      },
     });
-  }
+  },
+  copyComment: function (comment, cardSource) {
+    var newComment = this.create(comment, {
+      success: function () {
+        App.activities.trigger('create_copy_comment_activity', newComment, cardSource);
+      },
+    });
+  },
+  initialize: function () {
+    this.on({
+      'create_comment': this.createComment,
+      'copy_comment': this.copyComment,
+    });
+  },
 });

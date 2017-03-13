@@ -6,4 +6,4 @@ DROP TABLE label;
 DROP TABLE card;
 DROP TABLE list;
 
-\i /Users/Antoine/Git/AnTrello_app/sql/init.sql
+\i /Users/Antoine/Git/AnTrello_app/sql/dump.sql

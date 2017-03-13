@@ -17,6 +17,9 @@ var Card = Backbone.Model.extend({
     this.unset('due_date');
     App.activities.trigger('create_remove_due_date_activity', this);
   },
+  deleteRelatedActivities: function () {
+    App.activities.trigger('delete_activity', App.activities.where({ card_id: this.id }));
+  },
   initialize: function () {
     this.on({
       'update_name': this.set,
@@ -28,6 +31,7 @@ var Card = Backbone.Model.extend({
       'change:list_id': function () {
         App.activities.trigger('create_move_card_activity', this);
       },
+      'destroy': this.deleteRelatedActivities,
     });
   },
 });

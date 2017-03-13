@@ -45,12 +45,24 @@ var Activities = Backbone.Collection.extend({
 
     this.create(activityData);
   },
-  createCommentActivity: function (comment) {
+  createAddCommentActivity: function (comment) {
     var activityData = {
       action: 'add',
       actionable_item: 'comment',
       card_id: comment.get('card_id'),
       comment_id: comment.id,
+      date: moment().format(),
+    };
+
+    this.create(activityData);
+  },
+  createCopyCommentActivity: function (comment, cardSource) {
+    var activityData = {
+      action: 'copy',
+      actionable_item: 'comment',
+      card_id: comment.get('card_id'),
+      comment_id: comment.id,
+      card_id_source: cardSource.id,
       date: moment().format(),
     };
 
@@ -82,12 +94,11 @@ var Activities = Backbone.Collection.extend({
       'create_add_card_activity': this.createAddCardActivity,
       'create_move_card_activity': this.createMoveCardActivity,
       'create_copy_card_activity': this.createCopyCardActivity,
-      'create_comment_activity': this.createCommentActivity,
+      'create_add_comment_activity': this.createAddCommentActivity,
+      'create_copy_comment_activity': this.createCopyCommentActivity,
       'create_update_due_date_activity': this.createUpdateDueDateActivity,
       'create_remove_due_date_activity': this.createRemoveDueDateActivity,
-      'sort': function () {
-        console.log(this.pluck('date'));
-      },
+      'delete_activity': this.remove,
     });
   },
 });

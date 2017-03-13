@@ -8,27 +8,46 @@ var ListCards = Backbone.Collection.extend({
   update: function (card) {
     card.save();
   },
-  createCard: function (card, cardSource) {
+  createCard: function (card) {
     var newCard = this.create(card, {
       success: function() {
         this.trigger('sync:create');
+        App.activities.trigger('create_add_card_activity', newCard);
+      }.bind(this),
+    });
 
-        if (newCard.get('labels')) {
-          newCard.get('labels').each(function (label) {
+    newCard.set('labels', new CardLabels());
+    newCard.set('comments', new Comments());
+
+    this.updatePositionsAndSort('add', newCard);
+    App.cards.trigger('add_card', newCard);
+  },
+  copyCard: function (card, cardSource, flags) {
+    var newCard = this.create(card, {
+      success: function() {
+        if (flags.labels) {
+          cardSource.get('labels').each(function (label) {
+            newCard.get('labels').trigger('toggle_label', label);
             App.labels.trigger('toggle_card', label, newCard.id);
           });
         }
 
-        if (cardSource) {
-          App.activities.trigger('create_copy_card_activity', cardSource, newCard);
-        } else {
-          App.activities.trigger('create_add_card_activity', newCard);
+        if (flags.comments) {
+          cardSource.get('comments').each(function (comment) {
+            var newComment = _.omit(comment.toJSON(), 'id');
+
+            newComment.card_id = newCard.id;
+            newCard.get('comments').trigger('copy_comment', newComment, cardSource);
+          });
         }
+
+        this.trigger('sync:copy');
+        App.activities.trigger('create_copy_card_activity', cardSource, newCard);
       }.bind(this),
     });
 
-    if (!newCard.get('labels')) { newCard.set('labels', new CardLabels()); }
-    if (!newCard.get('comments')) { newCard.set('comments', new Comments()); }
+    newCard.set('labels', new CardLabels());
+    newCard.set('comments', new Comments());
 
     this.updatePositionsAndSort('add', newCard);
     App.cards.trigger('add_card', newCard);
@@ -47,6 +66,7 @@ var ListCards = Backbone.Collection.extend({
   initialize: function () {
     this.on({
       'create_card': this.createCard,
+      'copy_card': this.copyCard,
       'change:list_id change:name change:description': this.update,
       'change:due_date change:subscriber change:position': this.update,
       'archive_cards': this.archiveCards,

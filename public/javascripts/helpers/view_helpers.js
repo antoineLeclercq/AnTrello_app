@@ -102,6 +102,7 @@ var view_helpers = function () {
         cardSourceName: activity.card_id_source ? App.cards.get(activity.card_id_source).get('name') : null,
         sourceListName: activity.list_id_source ? App.lists.get(activity.list_id_source).get('name') : null,
         destListName: activity.list_id_dest ? App.lists.get(activity.list_id_dest).get('name') : null,
+        commentId: activity.comment_id,
         commentContent: activity.comment_id ? App.cards.get(activity.card_id).get('comments').get(activity.comment_id).get('content') : null,
         dueDate: activity.due_date ? this.formatDate(activity.due_date) : null,
         date: this.formatDate(activity.date),

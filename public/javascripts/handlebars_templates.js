@@ -55,9 +55,11 @@ Handlebars.registerPartial("card_activity", this["JST"]["card_activity"] = Handl
     + alias4(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"date","hash":{},"data":data}) : helper)))
     + "</footer>\n";
 },"11":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, alias1=depth0 != null ? depth0 : {};
 
-  return ((stack1 = helpers["with"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.add : depth0),{"name":"with","hash":{},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+  return ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.add : depth0),{"name":"with","hash":{},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n\n"
+    + ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.copy : depth0),{"name":"with","hash":{},"fn":container.program(17, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"12":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -87,14 +89,39 @@ Handlebars.registerPartial("card_activity", this["JST"]["card_activity"] = Handl
     + alias4(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"date","hash":{},"data":data}) : helper)))
     + "</footer>\n";
 },"17":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<section class=\"comment\" data-id=\""
+    + alias4(((helper = (helper = helpers.commentId || (depth0 != null ? depth0.commentId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"commentId","hash":{},"data":data}) : helper)))
+    + "\">\n<h3>User<span> copied comment by <strong>User</strong> from card <a class=\"card-name\" href=\"/card/"
+    + alias4(((helper = (helper = helpers.cardSourceId || (depth0 != null ? depth0.cardSourceId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"cardSourceId","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias4(((helper = (helper = helpers.cardSourceName || (depth0 != null ? depth0.cardSourceName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"cardSourceName","hash":{},"data":data}) : helper)))
+    + "</a></h3>\n<p>"
+    + alias4(((helper = (helper = helpers.commentContent || (depth0 != null ? depth0.commentContent : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"commentContent","hash":{},"data":data}) : helper)))
+    + "</p>\n</section>\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.isCardView : depth0),{"name":"if","hash":{},"fn":container.program(18, data, 0),"inverse":container.program(20, data, 0),"data":data})) != null ? stack1 : "");
+},"18":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "<footer>"
+    + container.escapeExpression(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"date","hash":{},"data":data}) : helper)))
+    + " - <a class=\"edit\" href=\"#\">Edit</a> - <a class=\"delete\" href=\"#\">Delete</a></footer>\n";
+},"20":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "<footer>"
+    + container.escapeExpression(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"date","hash":{},"data":data}) : helper)))
+    + "</footer>\n";
+},"22":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
-  return ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.add : depth0),{"name":"with","hash":{},"fn":container.program(18, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+  return ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.add : depth0),{"name":"with","hash":{},"fn":container.program(23, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n"
-    + ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.change : depth0),{"name":"with","hash":{},"fn":container.program(20, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.change : depth0),{"name":"with","hash":{},"fn":container.program(25, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n"
-    + ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.remove : depth0),{"name":"with","hash":{},"fn":container.program(22, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"18":function(container,depth0,helpers,partials,data) {
+    + ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.remove : depth0),{"name":"with","hash":{},"fn":container.program(27, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"23":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<section>\n<h3>User</h3>\n<p>set "
@@ -104,7 +131,7 @@ Handlebars.registerPartial("card_activity", this["JST"]["card_activity"] = Handl
     + "</p>\n</section>\n<footer>"
     + alias4(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"date","hash":{},"data":data}) : helper)))
     + "</footer>\n";
-},"20":function(container,depth0,helpers,partials,data) {
+},"25":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<section>\n<h3>User</h3>\n<p>changed the due date of "
@@ -114,7 +141,7 @@ Handlebars.registerPartial("card_activity", this["JST"]["card_activity"] = Handl
     + "</p>\n</section>\n<footer>"
     + alias4(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"date","hash":{},"data":data}) : helper)))
     + "</footer>\n";
-},"22":function(container,depth0,helpers,partials,data) {
+},"27":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
   return "<section>\n<h3>User</h3>\n<p>removed the due date from "
@@ -130,7 +157,7 @@ Handlebars.registerPartial("card_activity", this["JST"]["card_activity"] = Handl
     + "\n"
     + ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.comment : depth0),{"name":"with","hash":{},"fn":container.program(11, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n"
-    + ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.due_date : depth0),{"name":"with","hash":{},"fn":container.program(17, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["with"].call(alias1,(depth0 != null ? depth0.due_date : depth0),{"name":"with","hash":{},"fn":container.program(22, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</li>\n";
 },"useData":true}));
 
@@ -285,6 +312,14 @@ this["JST"]["cards"] = Handlebars.template({"1":function(container,depth0,helper
     var stack1;
 
   return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.cards : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"useData":true});
+
+this["JST"]["comment_form"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper;
+
+  return "<form>\n<textarea class=\"comment-content\">"
+    + container.escapeExpression(((helper = (helper = helpers.content || (depth0 != null ? depth0.content : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"content","hash":{},"data":data}) : helper)))
+    + "</textarea>\n<div class=\"form-controls\">\n<input type=\"submit\" value=\"Save\">\n<a class=\"close\" href=\"#\"><i class=\"material-icons md-30\">close</i></a>\n</div>\n</form>\n";
 },"useData":true});
 
 this["JST"]["copy_card_form"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {

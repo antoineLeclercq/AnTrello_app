@@ -19,25 +19,19 @@ var CopyCardView = Backbone.View.extend({
     var cardsDest = App.lists.get(listId).get('cards');
     var position = $form.find('.card-position select option:selected').val() - 1;
     var newName = $form.find('.card-name textarea').val();
-    var newCardData = this.model.toJSON();
+    var newCardData = {
+      position: position,
+      name: newName,
+      list_id: listId,
+      description: this.model.get('description'),
+      due_date: this.model.get('due_date'),
+    };
+    var flags = {
+      labels: this.$el.find('[name="labels"]').is(':checked'),
+      comments: this.$el.find('[name="comments"]').is(':checked'),
+    };
 
-    delete newCardData.id;
-    newCardData.position = position;
-    newCardData.name = newName;
-    newCardData.list_id = listId;
-    newCardData.comments = new Comments();
-
-    if (!$('[name="labels"]').is(':checked')) { delete newCardData.labels; }
-
-    if (!$('[name="comments"]').is(':checked')) {
-      newCardData.comments = new Comments();
-    } else {
-      this.model.get('comments').forEach(function (comment) {
-        newCardData.comments.trigger('create_comment', _.omit(comment.toJSON(), 'id'));
-      });
-    }
-
-    cardsDest.trigger('create_card', newCardData, this.model);
+    cardsDest.trigger('copy_card', newCardData, this.model, flags);
     this.remove();
   },
   render: function () {
@@ -49,6 +43,7 @@ var CopyCardView = Backbone.View.extend({
     var currentCardNameInput = this.$el.find('.card-name textarea').val();
 
     positionsAndListNames.positions = view_helpers.getFormatedCardPositions(cards, currentPosition);
+    positionsAndListNames.positions.push({ position: _.chain(positionsAndListNames.positions).pluck('position').max().value() + 1 });
     positionsAndListNames.lists = view_helpers.getFormatedListNames(currentListName);
 
     if (this.model.get('labels').length|| this.model.get('comments').length) {

@@ -21,20 +21,16 @@ var Lists = Backbone.Collection.extend({
       name: newName,
       position: position,
     };
-    var cardsData = list.get('cards').toJSON().map(function (card) {
-      return _.omit(card, ['id', 'subscriber']);
-    });
-    var newList;
-
-    this.create(newListData, {
-      success: function (data) {
-        newList = this.get(data.id);
+    var newList = this.create(newListData, {
+      success: function () {
         this.updatePositionsAndSort('add', newList);
 
         newList.set('cards', new ListCards());
-        cardsData.forEach(function (card) {
-          card.list_id = newList.id;
-          newList.get('cards').trigger('create_card', card);
+        list.get('cards').each(function (card) {
+          var cardData = _.omit(card.toJSON(), ['id', 'subscriber', 'list_id']);
+
+          cardData.list_id = newList.id;
+          newList.get('cards').trigger('copy_card', cardData, card, { labels: true, comments: true });
         });
 
         this.trigger('sync:copy');

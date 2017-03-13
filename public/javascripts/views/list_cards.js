@@ -84,7 +84,9 @@ var ListCardsView = Backbone.View.extend({
   },
   initialize: function () {
     var listCardsCollectionEvents = 'create_card ' +
+      'copy_card ' +
       'sync:create ' +
+      'sync:copy ' +
       'archive_cards ' +
       'archive_card ' +
       'remove_cards ' +

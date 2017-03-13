@@ -41,6 +41,19 @@
     <footer>{{date}}</footer>
     {{/if}}
   {{/with}}
+
+
+  {{#with copy}}
+    <section class="comment" data-id="{{commentId}}">
+      <h3>User<span> copied comment by <strong>User</strong> from card <a class="card-name" href="/card/{{cardSourceId}}">{{cardSourceName}}</a></h3>
+      <p>{{commentContent}}</p>
+    </section>
+    {{#if isCardView}}
+    <footer>{{date}} - <a class="edit" href="#">Edit</a> - <a class="delete" href="#">Delete</a></footer>
+    {{else}}
+    <footer>{{date}}</footer>
+    {{/if}}
+  {{/with}}
 {{/with}}
 
 {{#with due_date}}

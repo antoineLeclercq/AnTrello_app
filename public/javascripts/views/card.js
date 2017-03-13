@@ -16,6 +16,9 @@ var CardView = Backbone.View.extend({
     'click .archive': 'archiveCard',
     'click .copy-card': 'renderCopyCardView',
     'click .activities .card-name': 'showCard',
+    'click .activities .comment + footer .edit': 'displayCommentForm',
+    'submit .activities form': 'editComment',
+    'click .activities .comment + footer .delete': 'deleteComment',
   },
   removeView: function () {
     this.remove();
@@ -130,6 +133,26 @@ var CardView = Backbone.View.extend({
     this.render();
     $('.actions .labels').trigger('click');
   },
+  displayCommentForm: function (e) {
+    e.preventDefault();
+    var $actions = $(e.target).closest('footer');
+    var $comment = $(e.target).closest('li').find('.comment');
+    var commentId = $comment.attr('data-id');
+
+    $actions.remove();
+    new EditCommentView({
+      el: $comment.get(0),
+      model: this.model.get('comments').get(commentId),
+    });
+  },
+  deleteComment: function (e) {
+    e.preventDefault();
+    var $comment = $(e.target).closest('li').find('.comment');
+    var commentId = $comment.attr('data-id');
+
+    this.model.get('comments').get(commentId).trigger('delete_comment');
+    this.render();
+  },
   showCard: function (e) {
     e.preventDefault();
     var path = $(e.target).attr('href');
@@ -139,7 +162,7 @@ var CardView = Backbone.View.extend({
   },
   render: function () {
     var card = this.formatCardData();
-    
+
     this.$el.html(this.template(card));
     this.$el.appendTo(document.body);
   },
@@ -149,5 +172,6 @@ var CardView = Backbone.View.extend({
     this.listenTo(this.model, 'change', this.render);
     this.listenTo(App.activities, 'update', this.render);
     this.listenTo(this.model, 'toggle_label edit_label', this.renderAndDisplayLabelsForm);
+    this.listenTo(App, 'render_card', this.render);
   },
 });

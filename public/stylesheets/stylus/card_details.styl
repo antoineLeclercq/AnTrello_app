@@ -115,6 +115,9 @@
           form-controls()
     .add-comment
       margin-bottom: 20px
+      input[type="submit"]
+        submit-btn()
+    .add-comment, .comment
       textarea
         width: 95%
         min-height: 75px
@@ -123,10 +126,10 @@
         color: $colors.light-black
         &:focus
           outline: none
-      input[type="submit"]
-        submit-btn()
   .activities
     activity-list()
+    .comment
+      form-controls()
   aside
     display: inline-block
     width: 140px

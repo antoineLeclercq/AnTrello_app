@@ -32,47 +32,27 @@ CREATE TABLE comment (
   content text NOT NULL
 );
 
-CREATE TABLE action (
-  id serial PRIMARY KEY,
-  type varchar(255) NOT NULL
-);
-
-CREATE TABLE actionable_item (
-  id serial PRIMARY KEY,
-  name varchar(255)
-);
-
 CREATE TABLE activity (
   id serial PRIMARY KEY,
   card_id integer NOT NULL REFERENCES card(id) ON DELETE CASCADE,
+  card_id_source integer REFERENCES card(id) ON DELETE CASCADE,
+  comment_id integer REFERENCES comment(id) ON DELETE CASCADE,
   list_id_source integer REFERENCES list(id) ON DELETE CASCADE,
   list_id_dest integer REFERENCES list(id) ON DELETE CASCADE,
-  action_id integer REFERENCES action(id),
-  actionable_item_id integer REFERENCES actionable_item(id),
-  comment_id integer REFERENCES comment(id),
-  date timestamp NOT NULL
+  action varchar(255) NOT NULL,
+  actionable_item varchar(255) NOT NULL,
+  due_date timestamp with time zone,
+  date timestamp with time zone NOT NULL DEFAULT current_timestamp
 );
+
+ALTER TABLE activity ADD CHECK (action IN ('add', 'change', 'remove', 'move', 'copy'));
+ALTER TABLE activity ADD CHECK (actionable_item IN ('card', 'due_date', 'comment'));
 
 CREATE TABLE notification (
   id serial PRIMARY KEY,
   activity_id integer NOT NULL REFERENCES activity(id) ON DELETE CASCADE,
   seen boolean NOT NULL
 );
-
-INSERT INTO action(type)
-VALUES
-  ('add'),
-  ('archive'),
-  ('update'),
-  ('move'),
-  ('copy');
-
-INSERT INTO actionable_item(name)
-VALUES
-  ('card'),
-  ('comment'),
-  ('due_date');
-
 
 -- Starting entities
 INSERT INTO list(name, position) VALUES ('Backlog', 0);
@@ -120,15 +100,7 @@ VALUES
   (4, 4),
   (5, 4);
 
-INSERT INTO activity(card_id, action_id, actionable_item_id, date)
-VALUES (2, 1, 2, current_timestamp);
-INSERT INTO activity(card_id, list_id_source, list_id_dest, action_id, actionable_item_id, date)
-VALUES (3, 2, 3, 4, 1, current_timestamp);
-
-
-INSERT INTO notification(activity_id, seen)
-VALUES (1, false);
-
-
-
-
+INSERT INTO activity(card_id, action, actionable_item, due_date)
+VALUES (4, 'add', 'due_date', current_timestamp);
+INSERT INTO activity(card_id, list_id_source, list_id_dest, action, actionable_item)
+VALUES (1, 3, 1, 'move', 'card');

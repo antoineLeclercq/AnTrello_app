@@ -32,7 +32,7 @@ html
         .menu
           i.material-icons.md-16 more_horiz
           u Show Menu
-
+    section#menu.modal    
     main
       .container
         ul#lists
@@ -50,9 +50,9 @@ html
     block content
     +js_scripts("app")
     +js_scripts("helpers/collection_helpers", "view_helpers")
-    +js_scripts("models/list", "card", "label", "comment")
-    +js_scripts("collections/lists", "cards", "list_cards", "labels", "card_labels", "comments")
-    +js_scripts("views/header", "search_results", "lists", "list_cards", "card", "list_form", "card_form", "card_quick_edit")
+    +js_scripts("models/list", "card", "label", "comment", "activity")
+    +js_scripts("collections/lists", "cards", "list_cards", "labels", "card_labels", "comments", "activities", "card_activities")
+    +js_scripts("views/header", "search_results", "lists", "list_cards", "card", "list_form", "card_form", "card_quick_edit", "menu")
     +js_scripts("views/list_actions/list_actions", "move_list", "copy_list", "move_cards")
     +js_scripts("views/card_actions/labels", "edit_label", "due_date", "move_card", "copy_card")
 
@@ -60,7 +60,8 @@ html
       App.lists = new Lists(!{JSON.stringify(data.lists)});
       App.cards = new Cards(!{JSON.stringify(data.cards)});
       App.labels = new Labels(!{JSON.stringify(data.labels)});
-      App.addCommentsToCards(!{JSON.stringify(data.comments)})
+      App.addCommentsToCards(!{JSON.stringify(data.comments)});
+      App.activities = new Activities(!{JSON.stringify(data.activities)});
       App.indexView();
 
     +js_scripts("router")

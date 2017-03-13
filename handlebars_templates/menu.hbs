@@ -1,0 +1,16 @@
+<h1>
+  Menu
+  <span class="close"><i class="material-icons md-20">close</i></span>
+</h1>
+<hr>
+<section class="activity">
+  <header>
+    <i class="material-icons">list</i>
+    <h2>Activity</h2>
+  </header>
+  <ul class="activities">
+    {{#each activities}}
+      {{> card_activity}}
+    {{/each}}
+  </ul>
+</section>

@@ -5,6 +5,7 @@ var HeaderView = Backbone.View.extend({
     'click form .search': 'focusInput',
     'click form .close': 'clearInputAndSearchResults',
     'input form input': 'searchForCards',
+    'click .menu': 'displayMenu',
   },
   displayFocusedInput: function (e) {
     $(e.target).addClass('focus');
@@ -32,5 +33,10 @@ var HeaderView = Backbone.View.extend({
     } else {
       App.trigger('remove_search_results');
     }
+  },
+  displayMenu: function (e) {
+    $('#menu').animate({
+      right: 0,
+    }, 200);
   },
 });

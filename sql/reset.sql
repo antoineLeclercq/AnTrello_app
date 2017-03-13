@@ -1,7 +1,5 @@
 DROP TABLE notification;
 DROP TABLE activity;
-DROP TABLE actionable_item;
-DROP TABLE action;
 DROP TABLE comment;
 DROP TABLE card_label;
 DROP TABLE label;

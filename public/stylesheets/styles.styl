@@ -203,4 +203,41 @@ main
       box-sizing: border-box
       width: $widths.list - 16
       padding: 5px;
+      &:focus
+        outline: none
     form-controls()
+
+#menu
+  display: block
+  position: fixed
+  overflow: scroll
+  top: 40px
+  bottom: 0
+  right: -350px
+  width: 350px
+  z-index: 1
+  box-shadow: $shadows.left
+  border: none
+  border-radius: 0
+  background: $colors.lighter-grey
+  color: $colors.light-black
+  h1
+    text-align: center
+    font-weight: bold
+    font-size: 16px
+  header
+    border-radius: $radius.main
+    padding: 5px
+    h2
+      display: inline-block
+    i
+      vertical-align: middle
+      color: $colors.darker-grey
+    &:hover
+      background: $colors.light-grey
+      h2
+        color: black
+      i
+        color: $colors.light-black
+  .activities
+    activity-list()

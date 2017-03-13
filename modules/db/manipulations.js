@@ -93,7 +93,11 @@ var labels = {
 };
 
 var activities = {
-
+  all: function (task) {
+    storage.query({
+      query: queries.allActivities,
+    }, task);
+  },
 };
 
 storage.lists = lists;
@@ -119,7 +123,10 @@ storage.startingData = function (task) {
 
         storage.comments.all(function (commentsData) {
           data.comments = commentsData.rows;
-          task(data);
+          storage.activities.all(function (activitiesData) {
+            data.activities = activitiesData.rows;
+            task(data);
+          });
         });
       });
     });

@@ -12,11 +12,11 @@ var DueDateView = Backbone.View.extend({
     var time = this.$el.find('[name="time"]').val();
     var newDueDate = moment(date + ' ' + time).format();
 
-    this.model.trigger('save_due_date', 'due_date', newDueDate);
+    this.model.trigger('save_due_date', newDueDate);
   },
   removeDueDateCard: function (e) {
     e.preventDefault();
-    this.model.trigger('remove_due_date', 'due_date', null);
+    this.model.trigger('remove_due_date');
   },
   render: function () {
     this.$el.html(this.template());

@@ -15,6 +15,7 @@ var CardView = Backbone.View.extend({
     'click .move-card': 'renderMoveCardView',
     'click .archive': 'archiveCard',
     'click .copy-card': 'renderCopyCardView',
+    'click .activities .card-name': 'showCard',
   },
   removeView: function () {
     this.remove();
@@ -121,22 +122,32 @@ var CardView = Backbone.View.extend({
 
     cardData.listName = App.lists.get(cardData.list_id).get('name');
     cardData.labels = cardData.labels.toJSON();
+    cardData.activities = view_helpers.formatActivitiesData(App.activities.where({ card_id: this.model.id }), true);
+
     return cardData;
   },
   renderAndDisplayLabelsForm: function () {
     this.render();
     $('.actions .labels').trigger('click');
   },
+  showCard: function (e) {
+    e.preventDefault();
+    var path = $(e.target).attr('href');
+
+    router.navigate(path, { trigger: true });
+    this.remove();
+  },
   render: function () {
     var card = this.formatCardData();
-
+    
     this.$el.html(this.template(card));
     this.$el.appendTo(document.body);
   },
   initialize: function () {
     this.render();
     this.$el.attr('data-id', this.model.id);
-    this.listenTo(this.model, 'change create_comment', this.render);
+    this.listenTo(this.model, 'change', this.render);
+    this.listenTo(App.activities, 'update', this.render);
     this.listenTo(this.model, 'toggle_label edit_label', this.renderAndDisplayLabelsForm);
   },
 });

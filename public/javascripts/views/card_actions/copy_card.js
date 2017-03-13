@@ -37,7 +37,7 @@ var CopyCardView = Backbone.View.extend({
       });
     }
 
-    cardsDest.trigger('create_card', newCardData);
+    cardsDest.trigger('create_card', newCardData, this.model);
     this.remove();
   },
   render: function () {

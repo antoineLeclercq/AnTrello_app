@@ -24,6 +24,7 @@ var helpers = {
     },
     activities: {
       table: 'activity',
+      colNames: ['card_id', 'card_id_source', 'comment_id', 'list_id_source', 'list_id_dest', 'action', 'actionable_item', 'due_date', 'date'],
     }
   },
   isValidCardId: function (id, cards) {

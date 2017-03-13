@@ -17,3 +17,20 @@
 
 // archive card
 {{userName}} archived {{cardName}}
+
+
+var o = {
+  card: {
+    add: 'added ' + cardName + ' to ' + listName,
+    move: 'moved ' + cardName + ' from ' + sourceListName + ' to ' + destListName,
+    copy: 'copied ' + cardName + ' from ' + cardSourceName + ' to ' + destListName,
+  },
+  comment: {
+    add: commentContent,
+  },
+  due_date: {
+    add: 'set ' + cardName + ' to be due ' + dueDate,
+    change: 'changed the due date of ' + cardName + ' to ' + dueDate,
+    remove: 'removed the due date from ' + cardName,
+  },
+}

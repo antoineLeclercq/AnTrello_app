@@ -8,7 +8,7 @@ var ListCards = Backbone.Collection.extend({
   update: function (card) {
     card.save();
   },
-  createCard: function (card) {
+  createCard: function (card, cardSource) {
     var newCard = this.create(card, {
       success: function() {
         this.trigger('sync:create');
@@ -18,10 +18,17 @@ var ListCards = Backbone.Collection.extend({
             App.labels.trigger('toggle_card', label, newCard.id);
           });
         }
+
+        if (cardSource) {
+          App.activities.trigger('create_copy_card_activity', cardSource, newCard);
+        } else {
+          App.activities.trigger('create_add_card_activity', newCard);
+        }
       }.bind(this),
     });
 
     if (!newCard.get('labels')) { newCard.set('labels', new CardLabels()); }
+    if (!newCard.get('comments')) { newCard.set('comments', new Comments()); }
 
     this.updatePositionsAndSort('add', newCard);
     App.cards.trigger('add_card', newCard);

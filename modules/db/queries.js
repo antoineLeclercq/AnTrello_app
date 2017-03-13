@@ -13,6 +13,7 @@ var queries = {
     'ON label.id = card_label.label_id ' +
     'GROUP BY label.id, label.color, label.name;',
   allComments: 'SELECT * FROM comment;',
+  allActivities: 'SELECT * FROM activity ORDER BY date DESC',
 };
 
 module.exports = queries;

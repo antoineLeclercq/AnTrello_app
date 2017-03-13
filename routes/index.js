@@ -8,7 +8,6 @@ var route_helpers = require(path.resolve(path.dirname(__dirname), 'modules/route
 router.get('/', function(req, res, next) {
   storage.startingData(function (data) {
     res.render('index', { data: data });
-    console.log(data.cards);
   });
 });
 

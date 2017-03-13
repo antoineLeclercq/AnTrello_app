@@ -5,6 +5,7 @@ var App = {
     this.addLabelsToCards();
 
     this.renderHeaderView();
+    this.renderMenuView();
     this.renderLists();
     this.renderCardFormView();
     this.renderListFormView();
@@ -35,8 +36,18 @@ var App = {
       });
     });
   },
+  addActivitiesToCards: function (activities) {
+    App.cards.each(function (card) {
+      card.set('activities', new CardActivities(this.activities.filter(function (activity) {
+        return activity.get('card_id') === card.id;
+      })));
+    }.bind(this));
+  },
   renderHeaderView: function () {
     new HeaderView();
+  },
+  renderMenuView: function () {
+    new MenuView();
   },
   renderLists: function () {
     this.listsView = new ListsView({ collection: this.lists });
@@ -76,14 +87,7 @@ $('main > .container').css({
 });
 
 Handlebars.registerHelper('format_date', function (date) {
-  return moment(date).calendar(null, {
-      lastDay : '[Yesterday at] LT',
-      sameDay : '[Today at] LT',
-      nextDay : '[Tomorrow at] LT',
-      lastWeek : 'MMM DD [at] LT',
-      nextWeek : 'MMM DD [at] LT',
-      sameElse : 'MMM DD [at] LT'
-  });
+  return view_helpers.formatDate(date);
 });
 
 Handlebars.registerHelper('format_date_preview', function (date) {

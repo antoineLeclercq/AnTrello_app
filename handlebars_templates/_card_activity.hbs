@@ -1,0 +1,71 @@
+<li>
+{{#with card}}
+  {{#with add}}
+  <section>
+    <h3>User</h3>
+    <p>added {{#if isCardView}}this card{{else}}<a class="card-name" href="/card/{{cardId}}">{{cardName}}</a>{{/if}} to {{destListName}}</p>
+  </section>
+  <footer>{{date}}</footer>
+  {{/with}}
+
+  {{#with move}}
+  <section>
+    <h3>User</h3>
+    <p>moved {{#if isCardView}}this card{{else}}<a class="card-name" href="/card/{{cardId}}">{{cardName}}</a>{{/if}} from {{sourceListName}} to {{destListName}}</p>
+  </section>
+  <footer>{{date}}</footer>
+  {{/with}}
+
+  {{#with copy}}
+    <section>
+      <h3>User</h3>
+      <p>copied {{#if isCardView}}this card{{else}}<a class="card-name" href="/card/{{cardId}}">{{cardName}}</a>{{/if}} from <a class="card-name" href="/card/{{cardSourceId}}">{{cardSourceName}}</a> in list {{destListName}}</p>
+    </section>
+    <footer>{{date}}</footer>
+  {{/with}}
+{{/with}}
+
+{{#with comment}}
+  {{#with add}}
+    {{#if isCardView}}
+    <section class="comment" data-id="{{commentId}}">
+      <h3>User</h3>
+      <p>{{commentContent}}</p>
+    </section>
+    <footer>{{date}} - <a class="edit" href="#">Edit</a> - <a class="delete" href="#">Delete</a></footer>
+    {{else}}
+    <section class="comment" data-id="{{commentId}}">
+      <h3>User<span> on <a class="card-name" href="/card/{{cardId}}">{{cardName}}</a></span></h3>
+      <p>{{commentContent}}</p>
+    </section>
+    <footer>{{date}}</footer>
+    {{/if}}
+  {{/with}}
+{{/with}}
+
+{{#with due_date}}
+  {{#with add}}
+  <section>
+    <h3>User</h3>
+    <p>set {{#if isCardView}}this card{{else}}<a class="card-name" href="/card/{{cardId}}">{{cardName}}</a>{{/if}} to be due {{dueDate}}</p>
+  </section>
+  <footer>{{date}}</footer>
+  {{/with}}
+
+  {{#with change}}
+  <section>
+    <h3>User</h3>
+    <p>changed the due date of {{#if isCardView}}this card{{else}}<a class="card-name" href="/card/{{cardId}}">{{cardName}}</a>{{/if}} to {{dueDate}}</p>
+  </section>
+  <footer>{{date}}</footer>
+  {{/with}}
+
+  {{#with remove}}
+  <section>
+    <h3>User</h3>
+    <p>removed the due date from {{#if isCardView}}this card{{else}}<a class="card-name" href="/card/{{cardId}}">{{cardName}}</a>{{/if}}</p>
+  </section>
+  <footer>{{date}}</footer>
+  {{/with}}
+{{/with}}
+</li>

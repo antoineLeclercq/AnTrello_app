@@ -404,6 +404,67 @@ textarea.formated {
 #card-details .details .add-comment input[type="submit"]:hover {
   background: linear-gradient(to top, #61bd4f 0, #5aac44 100%);
 }
+#card-details .activities {
+  color: #4d4d4d;
+  font-size: 14px;
+}
+#card-details .activities li {
+  padding: 10px 0;
+}
+#card-details .activities li + li {
+  border-top: 1px solid #d6dadc;
+}
+#card-details .activities section {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}
+#card-details .activities section p {
+  display: inline;
+  vertical-align: middle;
+  line-height: 1.25;
+}
+#card-details .activities section h3 {
+  display: inline-block;
+  vertical-align: top;
+  color: #4d4d4d;
+  font-weight: bold;
+}
+#card-details .activities section h3 span {
+  font-weight: normal;
+}
+#card-details .activities section .card-name {
+  color: #4d4d4d;
+  text-decoration: underline;
+}
+#card-details .activities section .card-name:hover {
+  color: #000;
+}
+#card-details .activities footer {
+  display: inline-block;
+  margin: 0 0;
+  color: #8c8c8c;
+  font-size: 12px;
+}
+#card-details .activities .comment h3 {
+  display: block;
+}
+#card-details .activities .comment p {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+#card-details .activities .comment + footer {
+  display: block;
+}
+#card-details .activities .comment + footer a {
+  color: #8c8c8c;
+  text-decoration: underline;
+  cursor: pointer;
+}
 #card-details aside {
   display: inline-block;
   width: 140px;
@@ -1190,6 +1251,9 @@ main .container .add-list.show label + div .material-icons {
   width: 254px;
   padding: 5px;
 }
+.add-card form textarea:focus {
+  outline: none;
+}
 .add-card form .form-controls {
   display: block;
   height: 35px;
@@ -1219,4 +1283,105 @@ main .container .add-list.show label + div .material-icons {
 }
 .add-card form .form-controls .close i {
   vertical-align: middle;
+}
+#menu {
+  display: block;
+  position: fixed;
+  overflow: scroll;
+  top: 40px;
+  bottom: 0;
+  right: -350px;
+  width: 350px;
+  z-index: 1;
+  box-shadow: 0 0 6px rgba(0,0,0,0.4);
+  border: none;
+  border-radius: 0;
+  background: #edeff0;
+  color: #4d4d4d;
+}
+#menu h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+#menu header {
+  border-radius: 3px;
+  padding: 5px;
+}
+#menu header h2 {
+  display: inline-block;
+}
+#menu header i {
+  vertical-align: middle;
+  color: #8c8c8c;
+}
+#menu header:hover {
+  background: #d6dadc;
+}
+#menu header:hover h2 {
+  color: #000;
+}
+#menu header:hover i {
+  color: #4d4d4d;
+}
+#menu .activities {
+  color: #4d4d4d;
+  font-size: 14px;
+}
+#menu .activities li {
+  padding: 10px 0;
+}
+#menu .activities li + li {
+  border-top: 1px solid #d6dadc;
+}
+#menu .activities section {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}
+#menu .activities section p {
+  display: inline;
+  vertical-align: middle;
+  line-height: 1.25;
+}
+#menu .activities section h3 {
+  display: inline-block;
+  vertical-align: top;
+  color: #4d4d4d;
+  font-weight: bold;
+}
+#menu .activities section h3 span {
+  font-weight: normal;
+}
+#menu .activities section .card-name {
+  color: #4d4d4d;
+  text-decoration: underline;
+}
+#menu .activities section .card-name:hover {
+  color: #000;
+}
+#menu .activities footer {
+  display: inline-block;
+  margin: 0 0;
+  color: #8c8c8c;
+  font-size: 12px;
+}
+#menu .activities .comment h3 {
+  display: block;
+}
+#menu .activities .comment p {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+#menu .activities .comment + footer {
+  display: block;
+}
+#menu .activities .comment + footer a {
+  color: #8c8c8c;
+  text-decoration: underline;
+  cursor: pointer;
 }

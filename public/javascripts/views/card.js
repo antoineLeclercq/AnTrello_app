@@ -19,6 +19,7 @@ var CardView = Backbone.View.extend({
     'click .activities .comment + footer .edit': 'displayCommentForm',
     'submit .activities form': 'editComment',
     'click .activities .comment + footer .delete': 'deleteComment',
+    'click .subscribe': 'updateCardSubscriptionAndRender',
   },
   removeView: function () {
     this.remove();
@@ -159,6 +160,9 @@ var CardView = Backbone.View.extend({
 
     router.navigate(path, { trigger: true });
     this.remove();
+  },
+  updateCardSubscriptionAndRender: function () {
+    this.model.trigger('update_subscription', 'subscriber', !this.model.get('subscriber'));
   },
   render: function () {
     var card = this.formatCardData();

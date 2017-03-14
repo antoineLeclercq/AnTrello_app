@@ -1,0 +1,26 @@
+{{#if new}}
+<a class="notif-btn new-notifs" href="#">
+  <i class="material-icons">notifications_active</i>
+</a>
+{{else}}
+<a class="notif-btn" href="#">
+  <i class="material-icons">notifications_none</i>
+</a>
+{{/if}}
+<section class="modal">
+  <h3>
+    Notifications
+    <span class="close"><i class="material-icons md-16">close</i></span>
+  </h3>
+  <hr>
+
+  {{#if notifications}}
+  <ul class="notifications">
+    {{#each notifications}}
+      {{> card_activity}}
+    {{/each}}
+  </ul>
+  {{else}}
+  <ul class="notifications empty">No Notifications</ul>
+  {{/if}}
+</section>

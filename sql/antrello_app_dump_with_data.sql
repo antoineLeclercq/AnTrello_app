@@ -14,15 +14,34 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
+DROP DATABASE antrello_app;
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: antrello_app; Type: DATABASE; Schema: -; Owner: -
+--
+
+CREATE DATABASE antrello_app WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
+
+
+\connect antrello_app
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -30,12 +49,34 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: update_notifications(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION update_notifications() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+    BEGIN
+        IF NEW.subscriber = true THEN
+            INSERT INTO notification (activity_id) (
+                SELECT id FROM activity WHERE card_id = NEW.id
+            );
+        ELSIF NEW.subscriber = false THEN
+            DELETE FROM notification WHERE activity_id IN (
+                SELECT id FROM activity WHERE card_id = NEW.id
+            );
+        END IF;
+        RETURN NULL;
+    END;
+$$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: activity; Type: TABLE; Schema: public; Owner: Antoine
+-- Name: activity; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE activity (
@@ -49,15 +90,13 @@ CREATE TABLE activity (
     actionable_item character varying(255) NOT NULL,
     due_date timestamp with time zone,
     date timestamp with time zone DEFAULT now() NOT NULL,
-    CONSTRAINT activity_action_check CHECK (((action)::text = ANY ((ARRAY['add'::character varying, 'change'::character varying, 'remove'::character varying, 'move'::character varying, 'copy'::character varying])::text[]))),
-    CONSTRAINT activity_actionable_item_check CHECK (((actionable_item)::text = ANY ((ARRAY['card'::character varying, 'due_date'::character varying, 'comment'::character varying])::text[])))
+    CONSTRAINT activity_action_check CHECK (((action)::text = ANY (ARRAY[('add'::character varying)::text, ('change'::character varying)::text, ('remove'::character varying)::text, ('move'::character varying)::text, ('copy'::character varying)::text]))),
+    CONSTRAINT activity_actionable_item_check CHECK (((actionable_item)::text = ANY (ARRAY[('card'::character varying)::text, ('due_date'::character varying)::text, ('comment'::character varying)::text])))
 );
 
 
-ALTER TABLE activity OWNER TO "Antoine";
-
 --
--- Name: activity_id_seq; Type: SEQUENCE; Schema: public; Owner: Antoine
+-- Name: activity_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE activity_id_seq
@@ -68,17 +107,15 @@ CREATE SEQUENCE activity_id_seq
     CACHE 1;
 
 
-ALTER TABLE activity_id_seq OWNER TO "Antoine";
-
 --
--- Name: activity_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Antoine
+-- Name: activity_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE activity_id_seq OWNED BY activity.id;
 
 
 --
--- Name: card; Type: TABLE; Schema: public; Owner: Antoine
+-- Name: card; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE card (
@@ -92,10 +129,8 @@ CREATE TABLE card (
 );
 
 
-ALTER TABLE card OWNER TO "Antoine";
-
 --
--- Name: card_id_seq; Type: SEQUENCE; Schema: public; Owner: Antoine
+-- Name: card_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE card_id_seq
@@ -106,17 +141,15 @@ CREATE SEQUENCE card_id_seq
     CACHE 1;
 
 
-ALTER TABLE card_id_seq OWNER TO "Antoine";
-
 --
--- Name: card_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Antoine
+-- Name: card_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE card_id_seq OWNED BY card.id;
 
 
 --
--- Name: card_label; Type: TABLE; Schema: public; Owner: Antoine
+-- Name: card_label; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE card_label (
@@ -126,10 +159,8 @@ CREATE TABLE card_label (
 );
 
 
-ALTER TABLE card_label OWNER TO "Antoine";
-
 --
--- Name: card_label_id_seq; Type: SEQUENCE; Schema: public; Owner: Antoine
+-- Name: card_label_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE card_label_id_seq
@@ -140,17 +171,15 @@ CREATE SEQUENCE card_label_id_seq
     CACHE 1;
 
 
-ALTER TABLE card_label_id_seq OWNER TO "Antoine";
-
 --
--- Name: card_label_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Antoine
+-- Name: card_label_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE card_label_id_seq OWNED BY card_label.id;
 
 
 --
--- Name: comment; Type: TABLE; Schema: public; Owner: Antoine
+-- Name: comment; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE comment (
@@ -160,10 +189,8 @@ CREATE TABLE comment (
 );
 
 
-ALTER TABLE comment OWNER TO "Antoine";
-
 --
--- Name: comment_id_seq; Type: SEQUENCE; Schema: public; Owner: Antoine
+-- Name: comment_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE comment_id_seq
@@ -174,17 +201,15 @@ CREATE SEQUENCE comment_id_seq
     CACHE 1;
 
 
-ALTER TABLE comment_id_seq OWNER TO "Antoine";
-
 --
--- Name: comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Antoine
+-- Name: comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE comment_id_seq OWNED BY comment.id;
 
 
 --
--- Name: label; Type: TABLE; Schema: public; Owner: Antoine
+-- Name: label; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE label (
@@ -194,10 +219,8 @@ CREATE TABLE label (
 );
 
 
-ALTER TABLE label OWNER TO "Antoine";
-
 --
--- Name: label_id_seq; Type: SEQUENCE; Schema: public; Owner: Antoine
+-- Name: label_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE label_id_seq
@@ -208,17 +231,15 @@ CREATE SEQUENCE label_id_seq
     CACHE 1;
 
 
-ALTER TABLE label_id_seq OWNER TO "Antoine";
-
 --
--- Name: label_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Antoine
+-- Name: label_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE label_id_seq OWNED BY label.id;
 
 
 --
--- Name: list; Type: TABLE; Schema: public; Owner: Antoine
+-- Name: list; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE list (
@@ -228,10 +249,8 @@ CREATE TABLE list (
 );
 
 
-ALTER TABLE list OWNER TO "Antoine";
-
 --
--- Name: list_id_seq; Type: SEQUENCE; Schema: public; Owner: Antoine
+-- Name: list_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE list_id_seq
@@ -242,30 +261,26 @@ CREATE SEQUENCE list_id_seq
     CACHE 1;
 
 
-ALTER TABLE list_id_seq OWNER TO "Antoine";
-
 --
--- Name: list_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Antoine
+-- Name: list_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE list_id_seq OWNED BY list.id;
 
 
 --
--- Name: notification; Type: TABLE; Schema: public; Owner: Antoine
+-- Name: notification; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE notification (
     id integer NOT NULL,
     activity_id integer NOT NULL,
-    seen boolean NOT NULL
+    seen boolean DEFAULT false NOT NULL
 );
 
 
-ALTER TABLE notification OWNER TO "Antoine";
-
 --
--- Name: notification_id_seq; Type: SEQUENCE; Schema: public; Owner: Antoine
+-- Name: notification_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE notification_id_seq
@@ -276,66 +291,64 @@ CREATE SEQUENCE notification_id_seq
     CACHE 1;
 
 
-ALTER TABLE notification_id_seq OWNER TO "Antoine";
-
 --
--- Name: notification_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: Antoine
+-- Name: notification_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE notification_id_seq OWNED BY notification.id;
 
 
 --
--- Name: activity id; Type: DEFAULT; Schema: public; Owner: Antoine
+-- Name: activity id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY activity ALTER COLUMN id SET DEFAULT nextval('activity_id_seq'::regclass);
 
 
 --
--- Name: card id; Type: DEFAULT; Schema: public; Owner: Antoine
+-- Name: card id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY card ALTER COLUMN id SET DEFAULT nextval('card_id_seq'::regclass);
 
 
 --
--- Name: card_label id; Type: DEFAULT; Schema: public; Owner: Antoine
+-- Name: card_label id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY card_label ALTER COLUMN id SET DEFAULT nextval('card_label_id_seq'::regclass);
 
 
 --
--- Name: comment id; Type: DEFAULT; Schema: public; Owner: Antoine
+-- Name: comment id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comment ALTER COLUMN id SET DEFAULT nextval('comment_id_seq'::regclass);
 
 
 --
--- Name: label id; Type: DEFAULT; Schema: public; Owner: Antoine
+-- Name: label id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY label ALTER COLUMN id SET DEFAULT nextval('label_id_seq'::regclass);
 
 
 --
--- Name: list id; Type: DEFAULT; Schema: public; Owner: Antoine
+-- Name: list id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY list ALTER COLUMN id SET DEFAULT nextval('list_id_seq'::regclass);
 
 
 --
--- Name: notification id; Type: DEFAULT; Schema: public; Owner: Antoine
+-- Name: notification id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY notification ALTER COLUMN id SET DEFAULT nextval('notification_id_seq'::regclass);
 
 
 --
--- Data for Name: activity; Type: TABLE DATA; Schema: public; Owner: Antoine
+-- Data for Name: activity; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY activity (id, card_id, card_id_source, comment_id, list_id_source, list_id_dest, action, actionable_item, due_date, date) FROM stdin;
@@ -364,18 +377,17 @@ COPY activity (id, card_id, card_id_source, comment_id, list_id_source, list_id_
 
 
 --
--- Name: activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Antoine
+-- Name: activity_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('activity_id_seq', 21, true);
 
 
 --
--- Data for Name: card; Type: TABLE DATA; Schema: public; Owner: Antoine
+-- Data for Name: card; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY card (id, list_id, name, description, due_date, "position", subscriber) FROM stdin;
-1	1	A backlog task	\N	\N	0	f
 2	2	A task for this month	\N	\N	0	f
 4	4	A task for today	\N	\N	0	f
 6	4	An urgent task	Urgent, finish asap	2017-03-14 12:00:00-04	1	f
@@ -384,18 +396,19 @@ COPY card (id, list_id, name, description, due_date, "position", subscriber) FRO
 9	2	A copied card	A description on a card to be copied	2017-03-16 12:00:00-04	2	f
 3	3	A task for this week	\N	\N	1	f
 7	3	A low priority task	\N	\N	0	f
+1	1	A backlog task	\N	\N	0	f
 \.
 
 
 --
--- Name: card_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Antoine
+-- Name: card_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('card_id_seq', 9, true);
 
 
 --
--- Data for Name: card_label; Type: TABLE DATA; Schema: public; Owner: Antoine
+-- Data for Name: card_label; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY card_label (id, card_id, label_id) FROM stdin;
@@ -419,14 +432,14 @@ COPY card_label (id, card_id, label_id) FROM stdin;
 
 
 --
--- Name: card_label_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Antoine
+-- Name: card_label_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('card_label_id_seq', 16, true);
 
 
 --
--- Data for Name: comment; Type: TABLE DATA; Schema: public; Owner: Antoine
+-- Data for Name: comment; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY comment (id, card_id, content) FROM stdin;
@@ -440,14 +453,14 @@ COPY comment (id, card_id, content) FROM stdin;
 
 
 --
--- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Antoine
+-- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('comment_id_seq', 6, true);
 
 
 --
--- Data for Name: label; Type: TABLE DATA; Schema: public; Owner: Antoine
+-- Data for Name: label; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY label (id, name, color) FROM stdin;
@@ -464,14 +477,14 @@ COPY label (id, name, color) FROM stdin;
 
 
 --
--- Name: label_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Antoine
+-- Name: label_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('label_id_seq', 9, true);
 
 
 --
--- Data for Name: list; Type: TABLE DATA; Schema: public; Owner: Antoine
+-- Data for Name: list; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY list (id, name, "position") FROM stdin;
@@ -483,14 +496,14 @@ COPY list (id, name, "position") FROM stdin;
 
 
 --
--- Name: list_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Antoine
+-- Name: list_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('list_id_seq', 4, true);
 
 
 --
--- Data for Name: notification; Type: TABLE DATA; Schema: public; Owner: Antoine
+-- Data for Name: notification; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY notification (id, activity_id, seen) FROM stdin;
@@ -498,14 +511,14 @@ COPY notification (id, activity_id, seen) FROM stdin;
 
 
 --
--- Name: notification_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Antoine
+-- Name: notification_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('notification_id_seq', 1, false);
+SELECT pg_catalog.setval('notification_id_seq', 2, true);
 
 
 --
--- Name: activity activity_pkey; Type: CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: activity activity_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY activity
@@ -513,7 +526,7 @@ ALTER TABLE ONLY activity
 
 
 --
--- Name: card_label card_label_pkey; Type: CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: card_label card_label_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY card_label
@@ -521,7 +534,7 @@ ALTER TABLE ONLY card_label
 
 
 --
--- Name: card card_pkey; Type: CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: card card_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY card
@@ -529,7 +542,7 @@ ALTER TABLE ONLY card
 
 
 --
--- Name: comment comment_pkey; Type: CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: comment comment_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comment
@@ -537,7 +550,7 @@ ALTER TABLE ONLY comment
 
 
 --
--- Name: label label_pkey; Type: CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: label label_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY label
@@ -545,7 +558,7 @@ ALTER TABLE ONLY label
 
 
 --
--- Name: list list_pkey; Type: CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: list list_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY list
@@ -553,7 +566,7 @@ ALTER TABLE ONLY list
 
 
 --
--- Name: notification notification_pkey; Type: CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: notification notification_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY notification
@@ -561,7 +574,14 @@ ALTER TABLE ONLY notification
 
 
 --
--- Name: activity activity_card_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: card notifications_update; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER notifications_update AFTER UPDATE OF subscriber ON card FOR EACH ROW EXECUTE PROCEDURE update_notifications();
+
+
+--
+-- Name: activity activity_card_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY activity
@@ -569,7 +589,7 @@ ALTER TABLE ONLY activity
 
 
 --
--- Name: activity activity_card_id_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: activity activity_card_id_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY activity
@@ -577,7 +597,7 @@ ALTER TABLE ONLY activity
 
 
 --
--- Name: activity activity_comment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: activity activity_comment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY activity
@@ -585,7 +605,7 @@ ALTER TABLE ONLY activity
 
 
 --
--- Name: activity activity_list_id_dest_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: activity activity_list_id_dest_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY activity
@@ -593,7 +613,7 @@ ALTER TABLE ONLY activity
 
 
 --
--- Name: activity activity_list_id_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: activity activity_list_id_source_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY activity
@@ -601,7 +621,7 @@ ALTER TABLE ONLY activity
 
 
 --
--- Name: card_label card_label_card_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: card_label card_label_card_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY card_label
@@ -609,7 +629,7 @@ ALTER TABLE ONLY card_label
 
 
 --
--- Name: card_label card_label_label_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: card_label card_label_label_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY card_label
@@ -617,7 +637,7 @@ ALTER TABLE ONLY card_label
 
 
 --
--- Name: card card_list_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: card card_list_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY card
@@ -625,7 +645,7 @@ ALTER TABLE ONLY card
 
 
 --
--- Name: comment comment_card_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: comment comment_card_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comment
@@ -633,7 +653,7 @@ ALTER TABLE ONLY comment
 
 
 --
--- Name: notification notification_activity_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: Antoine
+-- Name: notification notification_activity_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY notification

@@ -24,6 +24,7 @@ var Card = Backbone.Model.extend({
     this.on({
       'update_name': this.set,
       'update_description': this.set,
+      'update_subscription': this.set,
       'save_due_date': this.saveDueDate,
       'remove_due_date': this.removeDueDate,
       'archive_card': this.archiveCard,

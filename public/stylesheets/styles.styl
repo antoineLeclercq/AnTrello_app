@@ -91,29 +91,26 @@ body
           margin: 0 10px 0 0
           vertical-align: middle
 
-
 #notif
   position: absolute
   top: 7px
   right: 10px
-  > label
+  z-index: 10
+  .notif-btn
+    display: inline-block
     box-sizing: border-box
-    padding: 2px 4px 6px 4px
-    height: $heights.header
+    padding: 2px 4px 3px 4px
     border-radius: $radius.main
     font-size: 18px
     background: $colors.light-blue-gradient-bottom
     color: white
     cursor: pointer
+    &.new-notifs
+      background: $colors.red
     &:hover
       background: $colors.light-blue-gradient-top
     i
       vertical-align: middle
-  input
-    display: none
-    &:checked
-      + .modal
-        display: inline-block
   .modal
     width: 450px
     top: 35px
@@ -122,12 +119,20 @@ body
     color: $colors.darker-grey
     hr
       width: 450px - 30
-    section
-      margin: 5px 0 0 0
-      padding: 30px 0
-      border: 1px dashed $colors.darker-grey
-      border-radius: $radius.main
-      background: $colors.light-grey
+    .notifications
+      activity-list()
+      &.empty
+        margin: 5px 0 0 0
+        padding: 30px 0
+        border: 1px dashed $colors.darker-grey
+        border-radius: $radius.main
+        background: $colors.light-grey
+        color: $colors.darker-grey
+        text-align: center
+      li
+        text-align: left
+      section
+        text-align: left
 
 main
   box-sizing: border-box

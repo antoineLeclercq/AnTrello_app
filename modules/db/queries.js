@@ -14,6 +14,12 @@ var queries = {
     'GROUP BY label.id, label.color, label.name;',
   allComments: 'SELECT * FROM comment;',
   allActivities: 'SELECT * FROM activity ORDER BY date DESC',
+  allNotifications: 'SELECT notification.*, activity.card_id, activity.card_id_source, activity.list_id_source, ' +
+    'activity.list_id_dest, activity.comment_id, activity.action, activity.actionable_item, activity.date ' +
+    'FROM notification ' +
+    'INNER JOIN activity ' +
+    'ON notification.activity_id = activity.id ' +
+    'ORDER BY activity.date DESC;',
 };
 
 module.exports = queries;

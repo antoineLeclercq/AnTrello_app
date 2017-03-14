@@ -25,7 +25,11 @@ var helpers = {
     activities: {
       table: 'activity',
       colNames: ['card_id', 'card_id_source', 'comment_id', 'list_id_source', 'list_id_dest', 'action', 'actionable_item', 'due_date', 'date'],
-    }
+    },
+    notifications: {
+      table: 'notification',
+      colNames: ['activity_id', 'seen'],
+    },
   },
   isValidCardId: function (id, cards) {
     return _.findWhere(cards, { id: id });

@@ -78,7 +78,12 @@
       <ul class="actions">
         <li class="action move-card"><i class="material-icons md-14">arrow_forward</i>Move</li>
         <li class="action copy-card"><i class="material-icons md-14">web_asset</i>Copy</li>
-        <li class="action subscribe"><i class="material-icons md-14">remove_red_eye</i>Subscribe</li>
+        <li class="action subscribe"><i class="material-icons md-14">remove_red_eye</i>
+          Subscribe
+          {{#if subscriber}}
+          <span><i class="material-icons md-18">check</i></span>
+          {{/if}}
+        </li>
         <li class="action archive"><i class="material-icons md-14">archive</i>Archive</li>
       </ul>
     </section>

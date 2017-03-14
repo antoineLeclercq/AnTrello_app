@@ -51,30 +51,27 @@ ALTER TABLE activity ADD CHECK (actionable_item IN ('card', 'due_date', 'comment
 CREATE TABLE notification (
   id serial PRIMARY KEY,
   activity_id integer NOT NULL REFERENCES activity(id) ON DELETE CASCADE,
-  seen boolean NOT NULL
+  seen boolean DEFAULT false NOT NULL
 );
 
--- Starting entities
-INSERT INTO list(name, position) VALUES ('Backlog', 0);
-INSERT INTO list(name, position) VALUES ('This Month', 1);
-INSERT INTO list(name, position) VALUES ('This Week', 2);
-INSERT INTO list(name, position) VALUES ('Today', 3);
+-- automatically add and delete notifications on subscriber column change in card table
+CREATE FUNCTION update_notifications() RETURNS trigger AS $notifications_update$
+    BEGIN
+        IF NEW.subscriber = true THEN
+            INSERT INTO notification (activity_id) (
+                SELECT id FROM activity WHERE card_id = NEW.id
+            );
+        ELSIF NEW.subscriber = false THEN
+            DELETE FROM notification WHERE activity_id IN (
+                SELECT id FROM activity WHERE card_id = NEW.id
+            );
+        END IF;
+        RETURN NULL;
+    END;
+$notifications_update$ LANGUAGE plpgsql;
 
-
--- INSERT INTO card (list_id, name, description, due_date, position, subscriber)
--- VALUES
---   (1, 'backlog task', NULL, NULL, 0, 'false'),
---   (2, 'task for this month', NULL, NULL, 0, false),
---   (3, 'task for this week', 'finish by end of week', NULL, 0, true),
---   (4, 'task for today', 'finish by today', current_timestamp, 0, true),
---   (4, 'another task for today', 'finish by today', current_timestamp, 1, true);
-
--- INSERT INTO comment(card_id, content)
--- VALUES
---   (2, 'test comment - finish by end of month'),
---   (3, 'test comment - finish by end of week'),
---   (4, 'test comment - finish by end of day');
-
+CREATE TRIGGER notifications_update AFTER UPDATE OF subscriber ON card
+FOR EACH ROW EXECUTE PROCEDURE update_notifications();
 
 INSERT INTO label(color)
 VALUES
@@ -87,20 +84,3 @@ VALUES
   ('#FF80CE'),
   ('#4D4D4D'),
   ('#B6BBBF');
-
--- INSERT INTO card_label (card_id, label_id)
--- VALUES
---   (1, 2),
---   (1, 5),
---   (2, 3),
---   (3, 2),
---   (3, 6),
---   (4, 7),
---   (4, 1),
---   (4, 4),
---   (5, 4);
-
--- INSERT INTO activity(card_id, action, actionable_item, due_date)
--- VALUES (4, 'add', 'due_date', current_timestamp);
--- INSERT INTO activity(card_id, list_id_source, list_id_dest, action, actionable_item)
--- VALUES (1, 3, 1, 'move', 'card');

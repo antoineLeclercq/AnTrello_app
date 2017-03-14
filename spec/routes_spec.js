@@ -46,9 +46,16 @@ describe('POST /:collection route', function () {
         card_id: 2,
         list_id_source: 2,
         list_id_dest: 3,
-        action_id: 4,
-        actionable_item_id: 1,
+        action: 'move',
+        actionable_item: 'card',
         date: moment().format(),
+      },
+    }, {
+      collection: 'notifications',
+      table: 'notification',
+      data: {
+        activity_id: 1,
+        seen: true,
       },
     }
   ];

@@ -252,6 +252,8 @@ this["JST"]["card"] = Handlebars.template({"1":function(container,depth0,helpers
     var stack1;
 
   return ((stack1 = container.invokePartial(partials.card_activity,depth0,{"name":"card_activity","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+},"12":function(container,depth0,helpers,partials,data) {
+    return "<span><i class=\"material-icons md-18\">check</i></span>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
@@ -268,7 +270,9 @@ this["JST"]["card"] = Handlebars.template({"1":function(container,depth0,helpers
     + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
     + "</textarea>\n<div class=\"form-controls\">\n<input type=\"submit\" value=\"Save\">\n<a class=\"close\" href=\"#\"><i class=\"material-icons md-30\">close</i></a>\n</div>\n</form>\n</section>\n</div>\n<section class=\"add-comment\">\n<header>\n<i class=\"material-icons\">comment</i>\n<h1>Add Comment</h1>\n</header>\n<form action=\"/comments\" method=\"post\">\n<textarea class=\"comment-content\" placeholder=\"Write a comment...\"></textarea>\n<input type=\"submit\" value=\"Send\">\n</form>\n</section>\n<section class=\"activity\">\n<header>\n<i class=\"material-icons\">list</i>\n<h1>Activity</h1>\n</header>\n<ul class=\"activities\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.activities : depth0),{"name":"each","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</ul>\n</section>\n</div>\n<aside>\n<section class=\"add\">\n<h1>Add</h1>\n<ul class=\"actions\">\n<li class=\"action labels\"><i class=\"material-icons md-14\">local_offer</i>Labels</li>\n<li class=\"action due-date\"><i class=\"material-icons md-14\">access_time</i>Due Date</li>\n</ul>\n</section>\n<section class=\"card-actions\">\n<h1>Actions</h1>\n<ul class=\"actions\">\n<li class=\"action move-card\"><i class=\"material-icons md-14\">arrow_forward</i>Move</li>\n<li class=\"action copy-card\"><i class=\"material-icons md-14\">web_asset</i>Copy</li>\n<li class=\"action subscribe\"><i class=\"material-icons md-14\">remove_red_eye</i>Subscribe</li>\n<li class=\"action archive\"><i class=\"material-icons md-14\">archive</i>Archive</li>\n</ul>\n</section>\n</aside>\n</div>\n";
+    + "</ul>\n</section>\n</div>\n<aside>\n<section class=\"add\">\n<h1>Add</h1>\n<ul class=\"actions\">\n<li class=\"action labels\"><i class=\"material-icons md-14\">local_offer</i>Labels</li>\n<li class=\"action due-date\"><i class=\"material-icons md-14\">access_time</i>Due Date</li>\n</ul>\n</section>\n<section class=\"card-actions\">\n<h1>Actions</h1>\n<ul class=\"actions\">\n<li class=\"action move-card\"><i class=\"material-icons md-14\">arrow_forward</i>Move</li>\n<li class=\"action copy-card\"><i class=\"material-icons md-14\">web_asset</i>Copy</li>\n<li class=\"action subscribe\"><i class=\"material-icons md-14\">remove_red_eye</i>\nSubscribe\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.subscriber : depth0),{"name":"if","hash":{},"fn":container.program(12, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</li>\n<li class=\"action archive\"><i class=\"material-icons md-14\">archive</i>Archive</li>\n</ul>\n</section>\n</aside>\n</div>\n";
 },"usePartial":true,"useData":true});
 
 this["JST"]["cards"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
@@ -430,7 +434,7 @@ this["JST"]["labels"] = Handlebars.template({"1":function(container,depth0,helpe
 },"useData":true});
 
 this["JST"]["list_actions"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<h3>List Actions\n<span class=\"close\"><i class=\"material-icons md-16\">close</i></span>\n</h3>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action copy-list\">Copy List...</li>\n<li class=\"action move-list\">Move List...</li>\n<li class=\"action\">Subscribe...</li>\n</ul>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action move-cards\">Move All cards in This List...</li>\n<li class=\"action archive-cards\">Archive All Cards in This List...</li>\n</ul>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action archive-list\">Archive This List</li>\n</ul>\n";
+    return "<h3>List Actions\n<span class=\"close\"><i class=\"material-icons md-16\">close</i></span>\n</h3>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action copy-list\">Copy List...</li>\n<li class=\"action move-list\">Move List...</li>\n</ul>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action move-cards\">Move All cards in This List...</li>\n<li class=\"action archive-cards\">Archive All Cards in This List...</li>\n</ul>\n<hr/>\n<ul class=\"actions\">\n<li class=\"action archive-list\">Archive This List</li>\n</ul>\n";
 },"useData":true});
 
 this["JST"]["lists"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
@@ -546,6 +550,31 @@ this["JST"]["move_list_form"] = Handlebars.template({"1":function(container,dept
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.positions : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</select>\n</dd>\n</dl>\n<input type=\"submit\" value=\"Move\">\n</form>\n";
 },"useData":true});
+
+this["JST"]["notifications"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    return "<a class=\"notif-btn new-notifs\" href=\"#\">\n<i class=\"material-icons\">notifications_active</i>\n</a>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "<a class=\"notif-btn\" href=\"#\">\n<i class=\"material-icons\">notifications_none</i>\n</a>\n";
+},"5":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<ul class=\"notifications\">\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.notifications : depth0),{"name":"each","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</ul>\n";
+},"6":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = container.invokePartial(partials.card_activity,depth0,{"name":"card_activity","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "");
+},"8":function(container,depth0,helpers,partials,data) {
+    return "<ul class=\"notifications empty\">No Notifications</ul>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : {};
+
+  return ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0["new"] : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "<section class=\"modal\">\n<h3>\nNotifications\n<span class=\"close\"><i class=\"material-icons md-16\">close</i></span>\n</h3>\n<hr>\n\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.notifications : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(8, data, 0),"data":data})) != null ? stack1 : "")
+    + "</section>\n";
+},"usePartial":true,"useData":true});
 
 this["JST"]["search_results"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;

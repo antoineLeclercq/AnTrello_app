@@ -13,6 +13,7 @@ var index = require('./routes/index');
 var new_item = require('./routes/new');
 var update = require('./routes/update');
 var delete_item = require('./routes/delete');
+var get = require('./routes/get');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use('/', index);
 app.use('/', new_item);
 app.use('/', update);
 app.use('/', delete_item);
+app.use('/', get);
 
 
 

@@ -538,6 +538,18 @@ textarea.formated {
 #card-details aside section .actions .action:hover i {
   color: #fff;
 }
+#card-details aside section .actions .subscribe span {
+  float: right;
+  padding: 0 2px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+  color: #fff;
+}
+#card-details aside section .actions .subscribe span i {
+  color: #fff;
+  margin: 0;
+  vertical-align: top;
+}
 .modal {
   display: none;
   position: absolute;
@@ -1131,28 +1143,26 @@ body > header section .menu i {
   position: absolute;
   top: 7px;
   right: 10px;
+  z-index: 10;
 }
-#notif > label {
+#notif .notif-btn {
+  display: inline-block;
   box-sizing: border-box;
-  padding: 2px 4px 6px 4px;
-  height: 40px;
+  padding: 2px 4px 3px 4px;
   border-radius: 3px;
   font-size: 18px;
   background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0, rgba(255,255,255,0.2) 100%);
   color: #fff;
   cursor: pointer;
 }
-#notif > label:hover {
+#notif .notif-btn.new-notifs {
+  background: #b04632;
+}
+#notif .notif-btn:hover {
   background: linear-gradient(to top, rgba(255,255,255,0.3) 0, rgba(255,255,255,0.2) 100%);
 }
-#notif > label i {
+#notif .notif-btn i {
   vertical-align: middle;
-}
-#notif input {
-  display: none;
-}
-#notif input:checked + .modal {
-  display: inline-block;
 }
 #notif .modal {
   width: 450px;
@@ -1164,12 +1174,85 @@ body > header section .menu i {
 #notif .modal hr {
   width: 420px;
 }
-#notif .modal section {
+#notif .modal .notifications {
+  color: #4d4d4d;
+  font-size: 14px;
+}
+#notif .modal .notifications li {
+  padding: 10px 0;
+}
+#notif .modal .notifications li + li {
+  border-top: 1px solid #d6dadc;
+}
+#notif .modal .notifications section {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}
+#notif .modal .notifications section p {
+  display: inline;
+  vertical-align: middle;
+  line-height: 1.25;
+}
+#notif .modal .notifications section h3 {
+  display: inline-block;
+  vertical-align: top;
+  color: #4d4d4d;
+  font-weight: bold;
+}
+#notif .modal .notifications section h3 span {
+  font-weight: normal;
+}
+#notif .modal .notifications section .card-name {
+  color: #4d4d4d;
+  text-decoration: underline;
+}
+#notif .modal .notifications section .card-name:hover {
+  color: #000;
+}
+#notif .modal .notifications footer {
+  display: inline-block;
+  margin: 0 0;
+  color: #8c8c8c;
+  font-size: 12px;
+}
+#notif .modal .notifications .comment {
+  display: block;
+}
+#notif .modal .notifications .comment h3 {
+  display: block;
+  text-align: left;
+}
+#notif .modal .notifications .comment p {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+#notif .modal .notifications .comment + footer {
+  display: block;
+}
+#notif .modal .notifications .comment + footer a {
+  color: #8c8c8c;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#notif .modal .notifications.empty {
   margin: 5px 0 0 0;
   padding: 30px 0;
   border: 1px dashed #8c8c8c;
   border-radius: 3px;
   background: #d6dadc;
+  color: #8c8c8c;
+  text-align: center;
+}
+#notif .modal .notifications li {
+  text-align: left;
+}
+#notif .modal .notifications section {
+  text-align: left;
 }
 main {
   box-sizing: border-box;

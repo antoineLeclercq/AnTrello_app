@@ -100,11 +100,20 @@ var activities = {
   },
 };
 
+var notifications = {
+  all: function (task) {
+    storage.query({
+      query: queries.allNotifications,
+    }, task);
+  }
+};
+
 storage.lists = lists;
 storage.cards = cards;
 storage.comments = comments;
 storage.labels = labels;
 storage.activities = activities;
+storage.notifications = notifications;
 
 storage.startingData = function (task) {
   var data = {};
@@ -125,7 +134,10 @@ storage.startingData = function (task) {
           data.comments = commentsData.rows;
           storage.activities.all(function (activitiesData) {
             data.activities = activitiesData.rows;
-            task(data);
+            storage.notifications.all(function (notificationsData) {
+              data.notifications = notificationsData.rows;
+              task(data);
+            });
           });
         });
       });

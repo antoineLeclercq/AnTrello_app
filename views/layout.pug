@@ -19,15 +19,6 @@ html
           i.material-icons close
       h1 AnTrello
       #notif
-        label(for="notif_check")
-          i.material-icons notifications_none
-        input#notif_check(type="checkbox")
-        .modal
-          h3 Notifications
-            label.close(for="notif_check")
-              i.material-icons.md-16 close
-          hr
-          section No Notifications
       section
         .menu
           i.material-icons.md-16 more_horiz
@@ -52,9 +43,9 @@ html
     +js_scripts("helpers/collection_helpers", "view_helpers")
     +js_scripts("models/comment", "label")
     +js_scripts("collections/comments", "card_labels")
-    +js_scripts("models/list", "card", "activity")
-    +js_scripts("collections/lists", "cards", "list_cards", "labels", "activities")
-    +js_scripts("views/header", "search_results", "lists", "list_cards", "card", "list_form", "card_form", "card_quick_edit", "menu")
+    +js_scripts("models/list", "card", "activity", "notification")
+    +js_scripts("collections/lists", "cards", "list_cards", "labels", "activities", "notifications")
+    +js_scripts("views/header", "search_results", "notifications", "lists", "list_cards", "card", "list_form", "card_form", "card_quick_edit", "menu")
     +js_scripts("views/list_actions/list_actions", "move_list", "copy_list", "move_cards")
     +js_scripts("views/card_actions/labels", "edit_label", "due_date", "move_card", "copy_card", "edit_comment")
 
@@ -64,6 +55,7 @@ html
       App.labels = new Labels(!{JSON.stringify(data.labels)});
       App.addCommentsToCards(!{JSON.stringify(data.comments)});
       App.activities = new Activities(!{JSON.stringify(data.activities)});
+      App.notifications = new Notifications(!{JSON.stringify(data.notifications)});
       App.indexView();
 
     +js_scripts("router")

@@ -52,6 +52,10 @@ var ListCards = Backbone.Collection.extend({
     this.updatePositionsAndSort('add', newCard);
     App.cards.trigger('add_card', newCard);
   },
+  updateAndUpdateNotifications: function (card) {
+    card.save();
+    App.notifications.trigger('fetch');
+  },
   archiveCards: function () {
     _.invoke(this.toArray(), 'destroy');
   },
@@ -68,7 +72,8 @@ var ListCards = Backbone.Collection.extend({
       'create_card': this.createCard,
       'copy_card': this.copyCard,
       'change:list_id change:name change:description': this.update,
-      'change:due_date change:subscriber change:position': this.update,
+      'change:due_date change:position': this.update,
+      'change:subscriber': this.updateAndUpdateNotifications,
       'archive_cards': this.archiveCards,
       'remove_cards': this.reset,
       'add_cards': this.addAndUpdate,

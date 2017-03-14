@@ -2,12 +2,12 @@ var ListsView = Backbone.View.extend({
   el: $('#lists').get(0),
   template: App.templates.lists,
   events: {
-    'click .list > header .more': 'renderMorOptionsView',
+    'click .list > header .more': 'renderMoreOptionsView',
     'click .list > .overlay, .list > .modal .close, .list > header .more': 'toggleMoreOptionsModal',
     'click .overlay-header': 'preventFocus',
     'focusout .title': 'updateListName',
   },
-  renderMorOptionsView: function (e) {
+  renderMoreOptionsView: function (e) {
     var list = this.collection.get($(e.target).closest('.list').attr('data-id'));
 
     App.trigger('render_actions');

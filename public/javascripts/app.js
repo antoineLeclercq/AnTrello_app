@@ -5,6 +5,7 @@ var App = {
     this.addLabelsToCards();
 
     this.renderHeaderView();
+    this.renderNotificationsView();
     this.renderMenuView();
     this.renderLists();
     this.renderCardFormView();
@@ -49,6 +50,9 @@ var App = {
   renderMenuView: function () {
     new MenuView();
   },
+  renderNotificationsView: function () {
+    new NotificationsView({ collection: App.notifications });
+  },
   renderLists: function () {
     this.listsView = new ListsView({ collection: this.lists });
   },
@@ -70,8 +74,8 @@ var App = {
     this.bindAutoResizeTextareaEvent();
   },
   bindAutoResizeTextareaEvent: function () {
-    $('textarea').on('keypress', function (e) {
-      autosize(this);
+    $(document).on('keypress', 'textarea', function (e) {
+      autosize(e.target);
     });
   },
   bindEvents: function () {

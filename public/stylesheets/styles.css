@@ -1166,8 +1166,10 @@ body > header section .menu i {
 }
 #notif .modal {
   width: 450px;
+  max-height: 500px;
   top: 35px;
   right: 5px;
+  overflow: scroll;
   background: #edeff0;
   color: #8c8c8c;
 }

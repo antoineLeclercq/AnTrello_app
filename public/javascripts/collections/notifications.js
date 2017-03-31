@@ -7,10 +7,14 @@ var Notifications = Backbone.Collection.extend({
       notif.save();
     });
   },
+  fetchsForSubscribedCards: function () {
+    this.fetch();
+  },
   initialize: function () {
     this.on({
       'fetch': this.fetch,
       'notifications_seen': this.updateNotifsStatus,
     });
+    this.listenTo(App.activities, 'update', this.fetchsForSubscribedCards);
   },
 });

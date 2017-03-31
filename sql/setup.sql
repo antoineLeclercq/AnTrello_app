@@ -59,7 +59,9 @@ CREATE FUNCTION update_notifications() RETURNS trigger AS $notifications_update$
     BEGIN
         IF NEW.subscriber = true THEN
             INSERT INTO notification (activity_id) (
-                SELECT id FROM activity WHERE card_id = NEW.id
+                SELECT activity.id FROM activity
+                LEFT JOIN notification ON activity.id = notification.activity_id
+                WHERE activity.card_id = NEW.id AND notification.activity_id IS NULL
             );
         ELSIF NEW.subscriber = false THEN
             DELETE FROM notification WHERE activity_id IN (

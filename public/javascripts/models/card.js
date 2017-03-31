@@ -18,7 +18,7 @@ var Card = Backbone.Model.extend({
     App.activities.trigger('create_remove_due_date_activity', this);
   },
   deleteRelatedActivities: function () {
-    App.activities.trigger('delete_activity', App.activities.where({ card_id: this.id }));
+    App.activities.trigger('delete_activities', this);
   },
   initialize: function () {
     this.on({

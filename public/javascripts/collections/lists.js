@@ -38,6 +38,7 @@ var Lists = Backbone.Collection.extend({
     });
   },
   archiveList: function (list) {
+    App.cards.trigger('delete_cards_in_list', list);
     list.destroy();
     this.trigger('move_list_remove', list);
   },

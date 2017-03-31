@@ -89,6 +89,9 @@ var Activities = Backbone.Collection.extend({
 
     this.create(activityData);
   },
+  removeActivitiesLinkedToCard: function (card) {
+    this.remove(this.where({ card_id: card.get('id') }));
+  },
   initialize: function () {
     this.on({
       'create_add_card_activity': this.createAddCardActivity,
@@ -98,7 +101,7 @@ var Activities = Backbone.Collection.extend({
       'create_copy_comment_activity': this.createCopyCommentActivity,
       'create_update_due_date_activity': this.createUpdateDueDateActivity,
       'create_remove_due_date_activity': this.createRemoveDueDateActivity,
-      'delete_activity': this.remove,
+      'delete_activities': this.removeActivitiesLinkedToCard,
     });
   },
 });

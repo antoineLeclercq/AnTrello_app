@@ -3,7 +3,53 @@
 ### Backend tools: Express, Postgresql, node-postgres, jasmine-node
 ### Frontend tools: Backbone, jQuery, jQuery-UI, Underscore, moment, Jasmine, Handlebars, Autosize
 
-Steps to set up app the app:
+## Features
+- Single Page Application
+- Persistence through PostgreSQL DataBase
+- search cards feature
+- bookmarkeable card url
+
+### List Features
+- create/archive list
+- drag and drop list
+- add/edit list name
+- copy list + cards within it
+- move list
+- move all cards in list to other list
+- archive all cards in list
+
+### Card Features
+- create/archve card in list
+- add/edit card title
+- drag and drop card within a list
+- drag and drop card between lists
+- card details view
+- add/edit/remove card description
+- add/remove labels
+- add name to label
+- add/edit/remove due date
+- move card by selecting list and position in list
+- copy card with following options:
+  - copy associated comments
+  - copy associated labels
+  - select list and position in list
+- card activities log:
+  - add card to list
+  - move card to different list
+  - copy card
+  - add/edit/remove due date
+  - add/edit/remove comment
+- subscribe to card => notifications when actvities are logged
+- card prview including: title, labels, due_date, description flag, comment flag + count
+- quick edit feature:
+  - edit labels
+  - edit due date
+  - move card
+  - copy card
+  - archive card
+- link to card for each activity in log
+
+# Steps to set up app the app:
 1) Make sure you have npm installed (https://docs.npmjs.com/getting-started/installing-node)
 2) Install nodemon globally if not already installed (`npm install nodemon -g`)
 3) Clone the repository

@@ -101,6 +101,7 @@ var Activities = Backbone.Collection.extend({
       'create_copy_comment_activity': this.createCopyCommentActivity,
       'create_update_due_date_activity': this.createUpdateDueDateActivity,
       'create_remove_due_date_activity': this.createRemoveDueDateActivity,
+      'delete_activity': this.remove,
       'delete_activities': this.removeActivitiesLinkedToCard,
     });
   },

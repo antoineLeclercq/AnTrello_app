@@ -1,5 +1,8 @@
 # AnTrello App
-## A Database backed Trello clone
+A project management web application based on Trello that allows for
+creation, deletion, archival, reorganization, labeling and keyword search of lists and
+cards in list.
+
 ### Backend tools
 Express, Postgresql, node-postgres, jasmine-node
 

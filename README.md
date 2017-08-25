@@ -1,7 +1,10 @@
 # AnTrello App
 ## A Database backed Trello clone
-### Backend tools: Express, Postgresql, node-postgres, jasmine-node
-### Frontend tools: Backbone, jQuery, jQuery-UI, Underscore, moment, Jasmine, Handlebars, Autosize
+### Backend tools
+Express, Postgresql, node-postgres, jasmine-node
+
+### Frontend tools
+Backbone, jQuery, jQuery-UI, Underscore, moment, Jasmine, Handlebars, Autosize
 
 ## Features
 - Single Page Application

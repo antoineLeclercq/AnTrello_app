@@ -1,5 +1,5 @@
 # AnTrello App
-A project management web application based on Trello that allows for
+A project management web application based that allows for
 creation, deletion, archival, reorganization, labeling and keyword search of lists and
 cards in list.
 
